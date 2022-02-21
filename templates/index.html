@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/test.css') }}">
+<head>
+    <meta charset="utf-8">
+    <title>歷食記錄</title>
+</head>
+</script>
+<body>
+    <p id="test"></p>
+
+<img  src="{{ url_for('static', filename='img/title.svg') }}">
+<div id=login_res>
+    <p class="click open">登入</p><p class="click">註冊</p>
+</div>
+<form aling="center" id="login" method="post" enctype="multipart/form-data">
+    <div id="t0">
+    <div class="t1">
+        <div class="t2">
+        <div class="t3">
+        帳號：
+        </div>
+        <div class="t4"><input type="text" placeholder="請輸入帳號" required="required"></div>
+        </div>
+       </div>
+
+       <div class="t1">
+        <div class="t2">
+        <div class="t3">
+        密碼：
+        </div>
+        <div class="t4"><input type="password" placeholder="請輸入密碼" required="required"></div>
+        </div>
+    </div>
+
+    <div class="t1">
+        <div class="t2">
+        <input  class="btn" type="submit" value="登入" name="send">
+        </div>
+    </div>
+</div>
+</form>
+
+
+<form aling="center" id="register" method="post" enctype="multipart/form-data">
+    <div id="t0">
+    <div class="t1" >
+        
+        <div class="t2">
+            <div class="t3">
+                信箱：
+            </div>
+            <div class="t4">
+                <input type="email"placeholder="請輸入信箱" required="required">
+            </div>
+        
+        </div>
+    </div>
+    <div class="t1">
+        <div class="t2">
+        <div class="t3">
+            使用者名稱：
+        </div>
+        <div class="t4">
+            <input required="required" placeholder="請輸入使用者名稱" >
+        </div>
+        
+        </div>
+    </div>
+    <div class="t1">
+        <div class="t2">
+            <div class="t3">
+                密碼：
+            </div>
+            <div class="t4">
+                <input required="required"
+                    type="password" placeholder="請輸入密碼">
+            </div>
+        </div>
+    </div>
+    <div class="t1">
+        <div class="t2">
+            <div class="t3">
+                確認密碼：
+            </div>
+            <div class="t4">
+                <input required="required"
+                type="password"  placeholder="確認密碼">
+            </div>
+        
+        </div>
+    </div>
+    <div class="t1">
+        <div class="t2">
+            <input class="btn" type='submit' value="註冊" name="send"> 
+    </div>
+    </div>
+</div>
+
+</form>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="{{ url_for('static', filename='js/test.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='js/test2.js') }}" type="text/javascript"></script>
+
+
+</body>
+</html>

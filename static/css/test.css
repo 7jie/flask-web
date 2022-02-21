@@ -1,0 +1,88 @@
+html,body{
+width: 100%;
+height: 100%;
+text-align:center;
+}
+body{ 
+width:100%;
+height:100%;
+text-align: center;
+background-color: #F4DCAC;
+}
+#login_res{
+    margin-top: 1%;
+}
+.click{
+    
+    display: inline-block;
+    width: 30%;
+    line-height:3em;
+    background-color: rgba(253, 253, 253, 0.856);
+    color: #000;
+
+}
+.click{
+    cursor: pointer;
+}
+.open{
+    background-color: rgb(64, 126, 241);
+    color: white;
+}
+
+.t1{
+    margin: 0 auto;
+    height: 50px;
+}
+.btn{
+    background-color: rgb(236, 238, 130);
+    border: none;
+    width: 100px;
+    line-height:2em;
+    border: black 1px solid;
+    float: right;
+}
+.btn:hover{
+    cursor: pointer;
+}
+#register{
+    display: none;
+}
+.t1{
+    margin-top:1%;
+    display: flex;
+}
+.t2{
+    text-align: center;
+    line-height: 50px;
+    width: 100%;
+    margin: auto;
+}
+.t3,.t4{
+    display: inline-block;
+}
+.t3{
+    width: 20%;
+    text-align: left;
+
+}
+.t4{
+    width: 20%;
+    text-align: right;
+}
+.t3 input,.t4 input{
+    width:300px;
+    height: 30px;
+}
+#t0{
+    margin-top: 3%;
+    margin-left:auto;
+    margin-right:auto;
+    width: 55%;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: rgb(248, 236, 236);
+}
+
+@media screen and (max-width: 960px) {
+    
+}

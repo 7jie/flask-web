@@ -1,0 +1,5 @@
+Flask
+gunicorn
+APScheduler
+opencv-python-headless
+numpy
