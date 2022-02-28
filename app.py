@@ -12,7 +12,7 @@ def home():
     
     if request.method=='POST':
         if request.values['send']=='登入':
-            return  flask.render_template('test.html')
+            return  flask.render_template('account.html')
     return flask.render_template('index.html') 
 
 @app.route('/test',methods=['GET','POST'])

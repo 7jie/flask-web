@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css"href="{{ url_for('static',filename='css/test2.css')}}">
+</head>
+<body>
+<div id="m">
+<nav>
+   <ul class="menu">
+        <li class="item">
+            <a href="#" class="menu_text">帳號管理</a>
+            <ul class="item_block">
+                <li>
+                    <a href="#" class="menu_link">1</a>
+                </li>
+                <li>
+                    <a href="#" class="menu_link">2</a>
+                </li>
+                <li>
+                    <a href="#" class="menu_link">3</a>
+                </li>
+            </ul>
+        </li>
+        <li class="item">
+            <a href="#" class="menu_text">食物管理</a>
+            <ul class="item_block">
+                <li>
+                    <a href="#" class="menu_link">1</a>
+                </li>
+                <li>
+                    <a href="#" class="menu_link">2</a>
+                </li>
+                <li>
+                    <a href="#" class="menu_link">3</a>
+                </li>
+            </ul>
+        </li>
+		<li class="item">
+		     <a href="#" class="menu_text">食譜管理</a>
+		     <ul class="item_block">
+		        <li>
+		            <a href="#" class="menu_link">1</a>
+		        </li>
+		        <li>
+		            <a href="#" class="menu_link">2</a>
+		        </li>
+		        <li>
+		            <a href="#" class="menu_link">3</a>
+		        </li>
+		    </ul>
+		</li>
+		<li class="item">
+		     <a href="#" class="menu_text">條碼管理</a>
+		     <ul class="item_block">
+		        <li>
+		            <a href="#" class="menu_link">1</a>
+		        </li>
+		        <li>
+		            <a href="#" class="menu_link">2</a>
+		        </li>
+		        <li>
+		            <a href="#" class="menu_link">3</a>
+		        </li>
+		    </ul>
+		</li>
+   </ul>
+</nav>
+</div>
+<p>
+    {% block cont %}
+    {% endblock %}
+</p>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="{{url_for('static', filename='js/menu.js')}}"></script>
+</body>   
+</html>
