@@ -1,19 +1,16 @@
 
 .menu{
+    align-items:center ;
     margin: 0;
     padding: 0;
-    display:block;
-    background-color: aquamarine;
+    display:flex;
+    justify-content: center;
 }
-nav{
-    background-color: antiquewhite;
-}
+
 #m{
     height: 50px;
     border: #000;
-}
-p{
-    background-color: aliceblue;
+    
 }
 .item a{
     color: #000;
@@ -46,11 +43,13 @@ p{
     display: block;
 }
 .item_block{
-    width: 100%;
+    width: 300px;
     height: 100%;
+    float: left;
     list-style: none;
     display: none;
     position: absolute;
+    padding-left: 0;
 }
 @media screen and (max-width: 650px)  {
     .menu{

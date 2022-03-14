@@ -1,0 +1,27 @@
+{% extends "menu.html" %}
+{% block nav %}
+    {{ super() }}
+{% endblock %}
+{% block cont %}
+<h2>新增食品資料</h2>
+食物類別：<select>
+    <option>
+        吃
+    </option>
+    <option>
+        喝
+    </option>
+</select>
+<p>店家名稱：<input></p>
+<p>食品中文名稱：<input></p>
+<p>食品英文名稱：<input></p>
+<p>份量：<input></p>
+<p>單位(不限)：<input></p>
+<p>熱量(kcal):<input></p>
+<p>蛋白質(g)：<input></p>
+<p>飽和脂肪(g)：<input></p>
+<p>反式脂肪(g)：<input></p>
+<p>糖(g)：<input></p>
+<p>鈉(mg)：<input></p>
+<p>碳水化合物(g)：<input></p>
+{% endblock %}

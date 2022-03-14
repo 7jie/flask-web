@@ -17,6 +17,12 @@ def home():
 @app.route('/test',methods=['GET','POST'])
 def test():
     return  flask.render_template('test.html')
+@app.route('/food',methods=['GET','POST'])
+def food():
+    with open ("food_store.json","r",encoding="utf-8") as f:
+        data=json.load(f)
+
+    return  flask.render_template('food.html',data=data)
 @app.route('/ttt',methods=['GET'])
 def ttt():
     if request.method=='GET':
