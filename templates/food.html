@@ -4,10 +4,16 @@
 {% endblock %}
 {% block cont %}
 <h2>新增食品資料</h2>
-<p><a href="#">新增店家</a></p>
+<p><a href="{{ url_for('newstore') }}">新增店家</a></p>
+<div>
+    <h3>已有店家</h3>
+</div>
+<div id="store">
 {% if data !=undefined %}
     {% for i in data %}
         <p>{{ i }}<button>+</button></p>
     {% endfor %}
+</div>
+
 {% endif %}
 {% endblock %}
