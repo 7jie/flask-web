@@ -1,16 +1,22 @@
-
-.menu{
+#m{
     align-items:center ;
     margin: 0;
     padding: 0;
     display:flex;
-    justify-content: center;
+    justify-content: space-between;
 }
-
-#m{
-    height: 50px;
-    border: #000;
-    
+.menu{
+    margin: 0;
+    padding: 0;
+}
+.logout{
+    list-style: none;
+    display:flex;
+    justify-content: right;
+}
+.logout_link{
+    text-decoration: none;
+    color: #000;
 }
 .item a{
     color: #000;
