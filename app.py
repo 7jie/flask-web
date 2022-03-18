@@ -7,9 +7,9 @@ app=flask.Flask(__name__)
 app.secret_key= 'fgdgedsfw1g6613wg16w15615a1f2d3dvw9894wevebhkjlbghtrh'
 @app.route('/',methods=['GET','POST'])
 def home():
-    with open('./data/t.json','w') as f:
+    with open('data/t.json','w') as f:
         f.write("hi")
-    return "OK"
+    return "測試"
     """
     if request.method=='POST':
         if request.values['send']=='登入':
