@@ -6,8 +6,9 @@ import json
 app=flask.Flask(__name__)
 app.secret_key= 'fgdgedsfw1g6613wg16w15615a1f2d3dvw9894wevebhkjlbghtrh'
 @app.route('/',methods=['GET','POST'])
-
 def home():
+    with open('t.json','w') as f:
+        f.write("hi")
     if request.method=='POST':
         if request.values['send']=='登入':
             return  flask.render_template('account.html')
