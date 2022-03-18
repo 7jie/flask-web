@@ -7,15 +7,13 @@ app=flask.Flask(__name__)
 app.secret_key= 'fgdgedsfw1g6613wg16w15615a1f2d3dvw9894wevebhkjlbghtrh'
 @app.route('/',methods=['GET','POST'])
 def home():
-    with open('data/t.json','w') as f:
-        f.write("hi")
-    return "測試"
-    """
+
+    
     if request.method=='POST':
         if request.values['send']=='登入':
             return  flask.render_template('account.html')
     return flask.render_template('index.html') 
-    """
+    
 
 @app.route('/food')
 def food():
@@ -28,11 +26,16 @@ def food():
 def newstore():
     return flask.render_template('newstore.html') 
 
-@app.route('/newstore_mess')
-def newstore_mess():
-
-    return '測試成功'
-
+@app.route('/insert_food', methods=['GET','POST'])
+def insert_food():
+    if request.method=='POST':
+        mess={'店家名稱：':request.form.get('store_name'),
+            '食品中文名稱：':request.form.get('name_zh'),
+            '份量：':request.form.get('size')
+            }
+        
+        return flask.render_template('insert_food.html', data=mess)
+    
 if __name__=='__main__':
     app.run(host='0.0.0.0',debug=True)
 
