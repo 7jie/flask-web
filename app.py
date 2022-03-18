@@ -9,11 +9,13 @@ app.secret_key= 'fgdgedsfw1g6613wg16w15615a1f2d3dvw9894wevebhkjlbghtrh'
 def home():
     with open('./data/t.json','w') as f:
         f.write("hi")
+    return "OK"
+    """
     if request.method=='POST':
         if request.values['send']=='登入':
             return  flask.render_template('account.html')
     return flask.render_template('index.html') 
-
+    """
 
 @app.route('/food')
 def food():
