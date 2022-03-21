@@ -24,11 +24,11 @@
 {% endif %}
 <h3><span class="text_red">*為必填</span></h3>
 <form name="form1" method="post" action="{{ url_for('insert_food') }}">
-<p>食品中文名稱：<input name="name_zh"><span class="text_red"id="name">*</span></p>
+<p>食品中文名稱：<input name="name_zh"><span class="text_red">*<span id="name"></span></span></p>
 <p>食品英文名稱：<input></p>
 <p>份量：<input></p>
 <p>單位(不限)：<input></p>
-<p>熱量(kcal):<input name="kcal"><span class="text_red">*<span id="kcaltext"></span></p>
+<p>熱量(kcal):<input name="kcal"><span class="text_red">*<span id="kcaltext"></span></span></p>
 <p>蛋白質(g)：<input></p>
 <p>飽和脂肪(g)：<input></p>
 <p>反式脂肪(g)：<input></p>
