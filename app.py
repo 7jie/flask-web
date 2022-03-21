@@ -1,4 +1,3 @@
-
 from flask import Flask,request,session,url_for,redirect,json,jsonify
 import os,flask
 import time
@@ -17,7 +16,7 @@ def home():
     if request.method=='POST':
         if request.values['send']=='登入':
             return  redirect(url_for('index'))
-    return flask.render_template('index.html') 
+    return flask.render_template('home.html') 
     
 @app.route('/index',methods=['GET','POST'])
 def index():
