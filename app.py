@@ -2,13 +2,17 @@ from flask import Flask,request,session,url_for,redirect,json,jsonify
 import os,flask
 import time
 import json
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
+cred = credentials.Certificate("topic.json")#自己的json路徑
+firebase_admin.initialize_app(cred)
+db = firestore.client()
 
 app=flask.Flask(__name__)
 app.secret_key= 'fgdgedsfw1g6613wg16w15615a1f2d3dvw9894wevebhkjlbghtrh'
 @app.route('/',methods=['GET','POST'])
 def home():
-
-    
     if request.method=='POST':
         if request.values['send']=='登入':
             return  flask.render_template('account.html')
@@ -17,8 +21,14 @@ def home():
 
 @app.route('/food')
 def food():
+    data=[]
+    stores=db.collection("food").get()
+    for store in stores:
+        data.append(store.id)
+    """
     with open ("food_store.json","r",encoding="utf-8") as f:
         data=json.load(f)
+    """
     return  flask.render_template('food.html',data=data)
 
 
