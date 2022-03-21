@@ -4,11 +4,9 @@
 {% endblock %}
 {% block cont %}
 
-
-
 {% if data !=undefined %}
     {% for i,key in data.items() %}
-        {% if key!=""%}
+        {% if key!=None%}
         <p>{{ i }}<span>{{ key }}</span></p>
         {% endif %}
     {% endfor %}

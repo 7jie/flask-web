@@ -39,7 +39,7 @@ $(document).ready(function() {
       $('#name').html(chaoyangHotel.checkname());
       $('#kcaltext').html(chaoyangHotel.check_kcal());
       if(chaoyangHotel.checktext()){
-        document.form1.submit();
+        $(location).attr("href","insert_food")
       }else{
         return false;
       }

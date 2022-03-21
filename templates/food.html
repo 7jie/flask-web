@@ -10,10 +10,12 @@
     <h3>已有店家</h3>
 </div>
 <div id="store">
+<form method="post" action="{{url_for('insert_food_mess')}}">
 {% if data !=undefined %}
     {% for i in data %}
-        <p>{{ i }}<button>+</button></p>
+        <p>{{ i }}<button  name="store_name" type="submit" value="{{i}}">+</button></p>
     {% endfor %}
+</form>
 </div>
 
 {% endif %}

@@ -3,6 +3,7 @@
         color: red;
     }
 </style>
+
 {% extends "menu.html" %}
 {% block nav %}
     {{ super() }}
@@ -31,4 +32,6 @@
 <p>碳水化合物(g)：<input></p>
 <p><button id="click">新增店家</button></p>
 </form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="{{ url_for('static', filename='js/newstore.js') }}"></script>
 {% endblock %}
