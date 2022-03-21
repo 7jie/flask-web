@@ -16,10 +16,12 @@ app.secret_key= 'fgdgedsfw1g6613wg16w15615a1f2d3dvw9894wevebhkjlbghtrh'
 def home():
     if request.method=='POST':
         if request.values['send']=='登入':
-            return  flask.render_template('account.html')
+            return  redirect(url_for('index'))
     return flask.render_template('index.html') 
     
-
+@app.route('/index',methods=['GET','POST'])
+def index():
+     return  flask.render_template('account.html')
 @app.route('/food')
 def food():
     data=[]
