@@ -1,0 +1,39 @@
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/store_list.css') }}">
+{% extends "menu.html" %}
+{% block nav %}
+    {{ super() }}
+{% endblock %}
+{% block cont %}
+<h2>食品資料</h2>
+
+<div id="feedback"></div>
+店家名稱：<select name="name" id="store_name">
+    {% if data_name != undefined%}
+        {% for i in data_name %}
+        <option>
+            {{i}}
+        </option>
+        {% endfor %}
+    {% endif%}
+    </select> 
+
+飲食類別：<select name="diet" id="diet_name">
+    <option>
+        吃
+    </option>
+    <option>
+        喝
+    </option>
+</select>
+<input id="search"style="width: 250px;"  placeholder="請先選擇店家及類別後輸入關鍵字">
+<button id="searchbutton">搜尋</button>
+<div id="ttt">
+
+
+
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="{{url_for('static', filename='js/food_list.js')}}"></script>
+{% endblock %}

@@ -34,11 +34,10 @@ background-color: #F4DCAC;
 }
 .btn{
     background-color: rgb(236, 238, 130);
-    border: none;
     width: 100px;
     line-height:2em;
     border: black 1px solid;
-    float: right;
+    margin-left: 1em;
 }
 .btn:hover{
     cursor: pointer;
@@ -56,18 +55,19 @@ background-color: #F4DCAC;
     width: 100%;
     margin: auto;
 }
+
 .t3,.t4{
     display: inline-block;
 }
 .t3{
-    font-family: HanziPen SC,思源黑體 , 微軟正黑體 , 蘋方黑體 , 華康麗黑體 , Helvetica , Arial , sans-serif , serif;
-    width: 20%;
+    width: 10%;
     text-align: left;
 
 }
 .t4{
     width: 20%;
     text-align: right;
+
 }
 .t3 input,.t4 input{
     width:300px;

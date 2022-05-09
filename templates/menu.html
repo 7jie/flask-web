@@ -27,7 +27,7 @@
                 <li>
                     <a href="{{ url_for('food')}}" class="menu_link">新增食品資料</a>
                 </li><li>
-                    <a href="#" class="menu_link">修改與刪除食品資料</a>
+                    <a href="{{ url_for('food_list')}}" class="menu_link">修改與刪除食品資料</a>
                 </li>
             </ul>
         </li>
@@ -35,7 +35,7 @@
 		     <a href="#" class="menu_text">食譜管理</a>
 		     <ul class="item_block">
 		        <li>
-		            <a href="#" class="menu_link">新增食譜</a>
+		            <a href="{{ url_for('newrecipe')}}" class="menu_link">新增食譜</a>
 		        </li>
 		        <li>
 		            <a href="#" class="menu_link">修改及刪除食譜</a>

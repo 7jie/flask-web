@@ -1,0 +1,30 @@
+{% extends "menu.html" %}
+{% block nav %}
+    {{ super() }}
+{% endblock %}
+{% block cont %}
+
+<h2>{{store_name}}</h2>
+<form>
+{% if d !=undefined %}
+{% for a,b in name.items() %}
+    {% for i,key in d.items() %}
+            
+            {% if i==a%}
+                {% if i in de%}
+                
+               
+                <p>{{ b }}：<span>{{ key }}</span></p>
+                
+                {% else %}
+                <p>{{ b }}：<input type="text" name="{{ a }}" value="{{ key }}"></p>
+                {% endif %}
+                
+            {% endif %}
+            
+    {% endfor %}
+{% endfor %}
+{% endif %}
+<button>儲存</button>
+</form>
+{% endblock %}

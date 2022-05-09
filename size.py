@@ -14,29 +14,31 @@ db = firestore.client()
 
 #a=db.collection("food").get()
 #print(a)
-
+zh={}
 
 with open ("food_store.json","r",encoding="utf-8") as f:
     data=json.load(f)
-print(data)
+
 for i in data:
     store={}
     store_drink={}
     store_eat={}
-    name=i+".json"
+
     drink=db.collection("food/"+i+"/drink").get()
     if len(drink) !=0:
         for n in drink:
-            store_drink[n.id]=n.to_dict()
+            a=n.to_dict()
+            zh[a["size_zh"]]=a["size_en"]
+    print(zh)
+            
     
     eat=db.collection("food/"+i+"/eat").get()
     if len(eat) !=0:
         for e in eat:
-            store_eat[e.id]=e.to_dict()
-    if store_drink:
-        store["drink"]=store_drink
-    if store_eat:
-        store["eat"]=store_eat
+            b=e.to_dict()
+            zh[a["size_zh"]]=a["size_en"]
+    print(zh)
+    
         
-    with open("data/"+name,"w",encoding="utf-8") as f:
-        json.dump(store,f,ensure_ascii=False)
+with open("size","w",encoding="utf-8") as f:
+    json.dump(store,f,ensure_ascii=False)
