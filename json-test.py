@@ -1,9 +1,15 @@
 import os,json
+import numpy as np
 with open ("data/"+"麥當勞.json","r",encoding="utf-8") as f:
             data=json.load(f)
-ss=data["eat"]["BLT嫩煎雞腿堡-1個"]
-print(ss)
-del ss['unit']
-#a=[i for i in ss.keys()]
-print(ss)
 
+
+b=["123","151","223","330"]
+
+p=["1","2"]
+
+
+
+#search寫法
+v=set(z for a in p for z in b if a in z)
+print(v)

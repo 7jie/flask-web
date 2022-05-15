@@ -57,6 +57,9 @@
     position: absolute;
     padding-left: 0;
 }
+.red{
+    color: red;
+}
 @media screen and (max-width: 650px)  {
     .menu{
         display:none;

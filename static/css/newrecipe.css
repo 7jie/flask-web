@@ -2,3 +2,9 @@ ul{
     list-style: none;
     padding-left: 0;
 }
+#s{
+    margin-left:1em ;
+}
+.red{
+    color: red;
+}

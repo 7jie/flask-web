@@ -1,12 +1,14 @@
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/store_list.css') }}">
+<div id="back"></div>
+
 {% extends "menu.html" %}
 {% block nav %}
-    {{ super() }}
+
 {% endblock %}
 {% block cont %}
 <h2>食品資料</h2>
 
-<div id="feedback"></div>
+
 店家名稱：<select name="name" id="store_name">
     {% if data_name != undefined%}
         {% for i in data_name %}

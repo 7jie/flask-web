@@ -1,8 +1,3 @@
-<style>
-    .text_red{
-        color: red;
-    }
-</style>
 
 {% extends "menu.html" %}
 {% block nav %}
@@ -10,20 +5,22 @@
 {% endblock %}
 {% block cont %}
 <h2>新增店家及食品資料</h2>
-<h3><span class="text_red">*為必填</span></h3>
+<h5><span class="red">*為必填</span></h5>
 
 <div id="feedback"></div>
 <form name="form1" method="post" action="{{ url_for('insert_food') }}">
-<p>店家名稱：<input name="store_name"><span class="text_red">*<span id="store"></span></span></p>
+<p>店家中文名稱：<input name="store_name"><span class="red">*<span id="store"></span></span></p>
+<p>店家英文名稱：<input name="store_name"></p>
 <select id="type">
     <option value="eat">吃</option>
     <option value="drink">喝</option>
 </select>
-<p>食品中文名稱：<input name="name_zh"><span class="text_red">*<span id="name"></span></span></p>
+<p>食品中文名稱：<input name="name_zh"><span class="red">*<span id="name"></span></span></p>
 <p>食品英文名稱：<input></p>
-<p>份量：<input name="size"></p>
+<p>份量(中文)：<input name="size_zh"><span class="red">*<span id="sizetext"></span></span></p>
+<p>份量(英文)：<input></p>
 <p>單位(不限)：<input></p>
-<p>熱量(kcal):<input name="kcal"><span class="text_red">*<span id="kcaltext"></span></span></p>
+<p>熱量(kcal):<input name="kcal"><span class="red">*<span id="kcaltext"></span></span></p>
 <p>蛋白質(g)：<input></p>
 <p>飽和脂肪(g)：<input></p>
 <p>反式脂肪(g)：<input></p>

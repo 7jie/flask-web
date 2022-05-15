@@ -5,8 +5,13 @@
     background-color: rgba(249, 186, 122, 0.916);
     
 }
-#feedback{
+#back{
     margin: auto;
+    display: none;
+    position: absolute;
+
+    width: 100%;
+    z-index: 1;
 }
 
 #note {

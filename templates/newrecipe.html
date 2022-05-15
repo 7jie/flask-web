@@ -5,20 +5,25 @@
 {% endblock %}
 {% block cont %}
 <h2>新增食譜</h2>
-<p>食譜名稱：<input></p>
+<h5><span class="red">*為必填</span></h5>
+<p>食譜名稱：<input><span class="red">*</span></p>
 <form method='post' enctype="multipart/form-data">
 <p>食譜圖片：<input id="test1"type="file" accept="image/gif, image/jpeg, image/png"></p>
 </form>
 <div id="img"><img src="" id="img1"></div>
-<p>食材：</p>
-<ul>
-<li>名稱<input>&nbsp&nbsp&nbsp&nbsp份量<input><button>+</button></li>
+<p>食材：<button class="r1">+</button></p>
+<ul id="ing">
+<li class="r0"><span>名稱</span><input name="n"class="name"><span class="red">*</span><span id="s">份量</span><input class="size"><span class="red">*</span><button class="r2">x</button></li>
 </ul>
-<p>步驟：</p>
-<ul>
-<li><input><button>+</button></li>
+
+
+<p>步驟：<button class="r3">+</button></p>
+<ul id="st">
+<li><input class="step"><span class="red">*</span><button class="r4">x</button></li>
 </ul>
-<p><button>新增食譜</button></p>
+
+
+<p><button id="go">新增食譜</button></p>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

@@ -5,7 +5,7 @@ $(document).ready(function() {
     this.kcal =kcal;
     this.checkstore = function() {
       if (this.store.length==0)
-        return "請輸入店家名稱";
+        return "請輸入店家中文名稱";
       return "";
     }; 
     this.checkname = function() {
@@ -29,16 +29,18 @@ $(document).ready(function() {
         return false;
       return true;
     }; 
+
+    
   }
 
     $('#click').on('click', function() {
 
       
-      var chaoyangHotel = new Text($('input[name=store_name]').val(),$('input[name=name_zh]').val(), $('input[name=kcal]').val());
-      $('#store').html(chaoyangHotel.checkstore());
-      $('#name').html(chaoyangHotel.checkname());
-      $('#kcaltext').html(chaoyangHotel.check_kcal());
-      if(chaoyangHotel.checktext()){
+      var food_info = new Text($('input[name=store_name]').val(),$('input[name=name_zh]').val(), $('input[name=kcal]').val());
+      $('#store').html(food_info.checkstore());
+      $('#name').html(food_info.checkname());
+      $('#kcaltext').html(food_info.check_kcal());
+      if(food_info.checktext()){
         $(location).attr("href","insert_food")
       }else{
         return false;

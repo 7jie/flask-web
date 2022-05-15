@@ -42,14 +42,6 @@ def food():
 @app.route('/food_list')
 def food_list():
     en={'吃':'eat','喝':'drink'}
-    if 'name' in request.form and 'diet' in request.form:
-        with open ("food_store.json","r",encoding="utf-8") as f:
-            data=json.load(f)
-        with open ("data/"+request.form.get('name')+'.json',"r",encoding="utf-8") as f:
-            food=json.load(f)
-        t=en[request.form.get('diet')]
-        food=food[t]
-        return  render_template('store_list.html',data_name=data,food=food,diet=request.form.get('diet'))
     with open ("food_store.json","r",encoding="utf-8") as f:
         data=json.load(f)
     return  render_template('store_list.html',data_name=data)
@@ -75,7 +67,9 @@ def food_store():
         with open ("data/"+request.form.get('name')+".json","r",encoding="utf-8") as f:
             data=json.load(f)
         aa=data[diet[request.form.get('diet')]]
-        b=[i for i in aa.keys()]
+        b={k["chinese"][k["chinese"].find("-")+1:]+"-"+k["size_zh"]:i for i,k in aa.items()}
+
+
         return jsonify(b)
     except:
         return jsonify([])
@@ -118,8 +112,10 @@ def search():
         with open ("data/"+request.form.get('name')+".json","r",encoding="utf-8") as f:
             data=json.load(f)
             aa=data[diet[request.form.get('diet')]]
-            b=[i for i in aa.keys() if i[:i.find("(")-1].find(request.form.get('text'))!=-1]
-            print(b)
+            print(request.form.get('text'))
+            b={k["chinese"][k["chinese"].find("-")+1:]:i  for i,k in aa.items() if k["chinese"][k["chinese"].find("-")+1:].find(request.form.get('text'))!=-1}
+           
+            
             return jsonify(b)
     except:
         return jsonify([])    
