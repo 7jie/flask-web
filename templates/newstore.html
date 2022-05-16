@@ -1,9 +1,10 @@
-
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/newstore.css') }}">
 {% extends "menu.html" %}
 {% block nav %}
     {{ super() }}
 {% endblock %}
 {% block cont %}
+<div class="con">
 <h2>新增店家及食品資料</h2>
 <h5><span class="red">*為必填</span></h5>
 
@@ -11,24 +12,29 @@
 <form name="form1" method="post" action="{{ url_for('insert_food') }}">
 <p>店家中文名稱：<input name="store_name"><span class="red">*<span id="store"></span></span></p>
 <p>店家英文名稱：<input name="store_name"></p>
-<select id="type">
+飲食類別：<select id="type">
     <option value="eat">吃</option>
     <option value="drink">喝</option>
 </select>
-<p>食品中文名稱：<input name="name_zh"><span class="red">*<span id="name"></span></span></p>
-<p>食品英文名稱：<input></p>
-<p>份量(中文)：<input name="size_zh"><span class="red">*<span id="sizetext"></span></span></p>
-<p>份量(英文)：<input></p>
-<p>單位(不限)：<input></p>
-<p>熱量(kcal):<input name="kcal"><span class="red">*<span id="kcaltext"></span></span></p>
-<p>蛋白質(g)：<input></p>
-<p>飽和脂肪(g)：<input></p>
-<p>反式脂肪(g)：<input></p>
-<p>糖(g)：<input></p>
-<p>鈉(mg)：<input></p>
-<p>碳水化合物(g)：<input></p>
-<p><button id="click">新增店家</button></p>
+<div class="a">
+<div class="left">食品中文名稱：</div><div class="right"><input name="name_zh"><span class="red">*<span id="name"></span></span></div>
+</div>
+
+
+<div>食品英文名稱：</div><div><input></div>
+<div>份量(中文)：</div><div><input name="size_zh"><span class="red">*<span id="sizetext"></span></span></div>
+<div>份量(英文)：</div><div><input></div>
+<div>單位(不限)：</div><div><input></div>
+<div>熱量(kcal):</div><div><input name="kcal"><span class="red">*<span id="kcaltext"></span></span></div>
+<div>蛋白質(g)：</div><div><input></div>
+<div>飽和脂肪(g)：</div><div><input></div>
+<div>反式脂肪(g)：</div></div><input></div>
+<div>糖(g)：</div><div></div><input></div>
+<div>鈉(mg)：</div><div></div><input></div>
+<div>碳水化合物(g)：</div><div><input></div>
+<div><button id="click">新增店家</button></div>
 </form>
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="{{ url_for('static', filename='js/newstore.js') }}"></script>
 {% endblock %}

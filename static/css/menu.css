@@ -1,14 +1,28 @@
+body{
+    background: #e7cba5;
+    margin: 0;
+}
 #m{
     align-items:center ;
-    margin: 0;
+    margin-top: 0;
     padding: 0;
     display:flex;
     justify-content: space-between;
+    background: #c89c62;
+    
+}
+#mm{
+    margin-right: 20px;
+}
+#mm a{
+    color: #fff;
 }
 .menu{
     margin: 0;
     padding: 0;
+    ;
 }
+
 .logout{
     list-style: none;
     display:flex;
@@ -19,7 +33,7 @@
     color: #000;
 }
 .item a{
-    color: #000;
+    color: #ffffff;
     width: 100%;
     text-align: center;
     text-decoration: none;

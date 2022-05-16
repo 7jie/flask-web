@@ -1,0 +1,17 @@
+.left{
+    float: left;
+    width: calc(100% - 300px);
+    margin: 0;
+}
+.right{
+    float: right;
+    width: 300px;
+
+    margin: 0;
+}
+.a{
+    width: 28%;
+    margin: auto;
+    display: flow-root;
+
+}

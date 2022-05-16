@@ -4,6 +4,7 @@
 
 {% block cont %}
 {% if data !=undefined %}
+<div id="ttttt">
 <h2>新增食品資料</h2>
 <p><a href="{{ url_for('newstore') }}">新增店家及食品</a></p>
 <div>
@@ -26,6 +27,7 @@
         <p><button name="store_name" type="submit" value="{{i}}">{{ i }}</button></p>
     {% endfor %}
 </form>
+</div>
 </div>
 {% endif %}
 {% endblock %}

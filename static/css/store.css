@@ -1,6 +1,15 @@
+
 #store{
     margin: auto;
     overflow: auto;
     height: 500px;
     background-color: antiquewhite;
+    border-top:1px solid red;
+}
+#store::-webkit-scrollbar {
+    display: none;
+}
+#ttttt{
+    width: 95%;
+    margin: auto;
 }

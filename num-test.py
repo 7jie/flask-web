@@ -12,6 +12,6 @@ db = firestore.client()
 
 #要改成自己的路徑
 
-a=db.collection("food").get()
+a=db.collection("userCoustomFood").get()
 #print(a)
 print(len(a))
