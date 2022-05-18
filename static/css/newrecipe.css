@@ -5,6 +5,10 @@ ul{
 #s{
     margin-left:1em ;
 }
-.red{
-    color: red;
+ul li{
+    margin-bottom: 10px;
+}
+img{
+    max-width: 700px;
+    max-height: 500px;
 }

@@ -5,9 +5,26 @@ import json
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
+import pyrebase
+import datetime
+import random
+from PIL import Image
 cred = credentials.Certificate("topic.json")#自己的json路徑
 firebase_admin.initialize_app(cred)
 db = firestore.client()
+
+firebaseConfig = {
+     "databaseURL":"https://topic.firebaseio.com",#python要改成自己的專案名稱
+     "apiKey": "AIzaSyAk2Sp6_oP4o1Q1_wOtgOlIKpdaVemoqEI",
+     "authDomain": "topic-3b33d.firebaseapp.com",
+     "projectId": "topic-3b33d",
+     "storageBucket": "topic-3b33d.appspot.com",
+     "messagingSenderId": "536031508017",
+     "appId": "1:536031508017:web:f51954c5819d6923b98710",
+     "measurementId": "G-20ZX53K4QD"
+    }
+firebase=pyrebase.initialize_app(firebaseConfig)
+storage = firebase.storage()
 
 app=Flask(__name__)
 app.secret_key= 'fgdgedsfw1g6613wg16w15615a1f2d3dvw9894wevebhkjlbghtrh'
@@ -122,6 +139,24 @@ def search():
 @app.route('/newrecipe')
 def newrecipe():
     return render_template('newrecipe.html')
+@app.route('/getsize',methods=["POST"])
+def getsize():
+    if request.form.get('size_type')=='drink':
+        with open('size_drink.json','r',encoding='utf-8') as f:
+            data=json.load(f)
+        return data
+    if request.form.get('size_type')=='eat':
+        with open('size_eat.json','r',encoding='utf-8') as f:
+            data=json.load(f)
+        return data    
+@app.route('/recipe',methods=["POST"])
+def recipe():
+    #a=request.files["img"]
+    a=json.loads(request.form.get("step"))
+    
+    for i in a:
+        print(i)
+    return "hi"
 if __name__=='__main__':
     app.run(host='0.0.0.0',debug=True)
 

@@ -6,14 +6,14 @@
 {% block cont %}
 <h2>新增食譜</h2>
 <h5><span class="red">*為必填</span></h5>
-<p>食譜名稱：<input><span class="red">*</span></p>
-<form method='post' enctype="multipart/form-data">
-<p>食譜圖片：<input id="test1"type="file" accept="image/gif, image/jpeg, image/png"></p>
-</form>
+<p>食譜名稱：<input id="recipe_name"><span class="red">*</span></p>
+
+<p>食譜圖片：<input name="image" id="test1"type="file" accept="image/gif, image/jpeg, image/png"></p>
+
 <div id="img"><img src="" id="img1"></div>
 <p>食材：<button class="r1">+</button></p>
 <ul id="ing">
-<li class="r0"><span>名稱</span><input name="n"class="name"><span class="red">*</span><span id="s">份量</span><input class="size"><span class="red">*</span><button class="r2">x</button></li>
+<li class="r0"><span>名稱</span><input name="n"class="name"><span class="red">*</span><span id="s">份量</span><input name="s"class="size"><span class="red">*</span><button class="r2">x</button></li>
 </ul>
 
 

@@ -4,36 +4,82 @@
     {{ super() }}
 {% endblock %}
 {% block cont %}
-<div class="con">
-<h2>新增店家及食品資料</h2>
-<h5><span class="red">*為必填</span></h5>
 
-<div id="feedback"></div>
+<h2>新增店家及食品資料</h2>
+<div class="con">
+<div id="info">
 <form name="form1" method="post" action="{{ url_for('insert_food') }}">
-<p>店家中文名稱：<input name="store_name"><span class="red">*<span id="store"></span></span></p>
-<p>店家英文名稱：<input name="store_name"></p>
-飲食類別：<select id="type">
-    <option value="eat">吃</option>
-    <option value="drink">喝</option>
-</select>
+    <div class="a"><h3><span class="red">*為必填</span></h3><div class="left">店家中文名稱：</div><div class="right"><input name="store_name"><span class="red">*<span id="store"></span></span></div></div>
+    <div class="a"><div class="left">店家英文名稱：</div><div class="right"><input name="store_name"></div></div>
+<div class="a">
+    <div class="left">
+飲食類別：</div>
+    <div class="right"><select id="type">
+        <option value="eat">吃</option>
+        <option value="drink">喝</option>
+    </select>
+    </div>
+</div>
+
 <div class="a">
 <div class="left">食品中文名稱：</div><div class="right"><input name="name_zh"><span class="red">*<span id="name"></span></span></div>
 </div>
 
 
-<div>食品英文名稱：</div><div><input></div>
-<div>份量(中文)：</div><div><input name="size_zh"><span class="red">*<span id="sizetext"></span></span></div>
-<div>份量(英文)：</div><div><input></div>
-<div>單位(不限)：</div><div><input></div>
-<div>熱量(kcal):</div><div><input name="kcal"><span class="red">*<span id="kcaltext"></span></span></div>
-<div>蛋白質(g)：</div><div><input></div>
-<div>飽和脂肪(g)：</div><div><input></div>
-<div>反式脂肪(g)：</div></div><input></div>
-<div>糖(g)：</div><div></div><input></div>
-<div>鈉(mg)：</div><div></div><input></div>
-<div>碳水化合物(g)：</div><div><input></div>
-<div><button id="click">新增店家</button></div>
+<div class="a">
+<div class="left">食品英文名稱：</div><div class="right"><input></div>
+</div>
+<div id="auto">
+<div class="a">
+<div class="left">份量(中文)：</div><div class="right">
+    <select id="size">
+</select><a href="#" id="ch_manual">手動輸入</a></div>
+</div>
+<div class="a">
+<div class="left">份量(英文)：</div><div class="right"><span id="size_en"></span></div>
+</div>
+</div>
+<div id="man">
+<div class="a">
+    <div class="left">份量(中文)：</div><div class="right"><input id="size_zh"><span class="red"><a href="#" id="ch_auto">條列選擇</a>*<span id="sizetext"></span></span>
+    </div>
+    </div>
+    <div class="a">
+    <div class="left">份量(英文)：</div><div class="right"><input></div>
+    </div>
+</div>
+<div class="a num">
+        <div class="left">數量：</div><div class="right"><input></div>
+</div>
+<div class="a">
+<div class="left">單位(不限)：</div><div class="right"><input></div>
+</div>
+<div class="a">
+<div class="left">熱量(kcal):</div><div class="right"><input name="kcal"><span class="red">*<span id="kcaltext"></span></span></div>
+</div>
+<div class="a">
+<div class="left">蛋白質(g)：</div><div class="right"><input></div>
+</div>
+<div class="a">
+<div class="left">飽和脂肪(g)：</div><div class="right"><input></div>
+</div>
+<div class="a">
+<div class="left">反式脂肪(g)：</div><div class="right"><input></div>
+</div>
+
+<div class="a">
+<div class="left">糖(g)：</div><div class="right"><input></div>
+</div>
+<div class="a">
+<div class="left">鈉(mg)：</div><div class="right"><input></div>
+</div>
+<div class="a">
+<div class="left">碳水化合物(g)：</div><div class="right"><input></div>
+</div>
+</div>
+<div id="send"><button id="click">新增店家</button></div>
 </form>
+
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="{{ url_for('static', filename='js/newstore.js') }}"></script>

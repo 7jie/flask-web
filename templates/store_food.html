@@ -1,8 +1,4 @@
-<style>
-    .text_red{
-        color: red;
-    }
-</style>
+
 {% extends "menu.html" %}
 {% block nav %}
     {{ super() }}
@@ -22,7 +18,7 @@
         {{ store_name }}
     </span></p>
 {% endif %}
-<h5><span class="text_red">*為必填</span></h5>
+<h5><span class="red">*為必填</span></h5>
 <form name="form1" method="post" action="{{ url_for('insert_food') }}">
 <p>食品中文名稱：<input name="name_zh"><span class="red">*<span id="name"></span></span></p>
 <p>食品英文名稱：<input></p>
