@@ -1,0 +1,26 @@
+<link rel="stylesheet" type="text/css"href="{{ url_for('static',filename='css/search_recipe.css')}}">
+{% extends "menu.html" %}
+{% block nav %}
+    {{ super() }}
+{% endblock %}
+{% block cont %}
+<h2>食譜資料</h2>
+<div id="con">
+    <div id="seaech_frame">
+    
+    <input id="search"style="width: 250px;"  placeholder="請輸入搜尋關鍵字">
+    <button id="searchbutton">搜尋</button>
+    </div>
+    <div id="ttt">
+
+        {%if data !=undefind%}
+        {% for i,key in data.items()%}
+        <div class="recipe_list">
+            <div class="left">{{key["chinese"]}}</div><div class="right"><a href="rev_recipe?key={{i}}">修改</a> <a href="del_recipe?key={{i}}">刪除</a></div>
+        </div>
+        {% endfor %}
+        {% endif%}
+    </div>
+</div>
+
+{% endblock %}

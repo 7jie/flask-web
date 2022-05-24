@@ -4,9 +4,17 @@
 
 {% block cont %}
 {% if data !=undefined %}
-<div id="ttttt">
 <h2>新增食品資料</h2>
-<p><a href="{{ url_for('newstore') }}">新增店家及食品</a></p>
+
+<div id="con">
+    
+<div id="ttttt">
+    
+<div id="new">
+<form method="post" action="{{url_for('newstore')}}">
+    <button class="click_newbutton">新增店家及食品</button>
+</form>
+</div>
 <div>
     <h3>已有店家</h3>
 </div>
@@ -14,20 +22,18 @@
 <form method="post" action="{{url_for('insert_food_mess')}}">
 
     {% for i in data %}
-        <p>{{ i }}<button  name="store_name" type="submit" value="{{i}}">+</button></p>
+       <div class="store_list">
+           <div class="left">{{i}}</div><div class="right"><button class="click_button" name="store_name" type="submit" value="{{i}}">新增</button></div>
+        </div>
+        
     {% endfor %}
 </form>
 </div>
 
 {% endif %}
-{% if store_name !=undefined %}
-<form method="post"action="{{url_for('food_up_de')}}">
 
-    {% for i in store_name %}
-        <p><button name="store_name" type="submit" value="{{i}}">{{ i }}</button></p>
-    {% endfor %}
-</form>
 </div>
 </div>
-{% endif %}
+</div>
+
 {% endblock %}

@@ -26,6 +26,7 @@ s=true;
 var a='<li class="r0"><span>名稱</span><input name="n"class="name"><span class="red">*</span><span id="s">份量</span><input class="size"><span class="red">*</span><button class="r2">x</button></li>';
 $(document).on('click','.r1',function(){
     
+    
     $('input[class=name]').each(function(){
         if ($(this).val().length==0){
             if($(this).next().html()!="*請填寫食材名稱"){
@@ -61,6 +62,8 @@ $(document).on('click','.r1',function(){
     if(w & v){
         $('#ing').append(a);
         
+    }else if($(".r0").html()==undefined){
+        $('#ing').append(a);
     }
     
 

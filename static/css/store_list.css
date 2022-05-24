@@ -10,13 +10,14 @@
 }
 
 #back{
-    
     display: none;
     width: 50%;
     z-index: 1;
     margin: auto;
 }
-
+#ttt::-webkit-scrollbar{
+    display:none;
+}
 #note {
     color: #fff;
     background-color: rgb(73, 74, 75);
@@ -47,4 +48,7 @@
     text-decoration: none;
     color: aqua;
 }
-  
+#con_frame{
+    width: 80%;
+    margin: auto;
+}  

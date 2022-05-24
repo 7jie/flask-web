@@ -29,6 +29,7 @@ storage = firebase.storage()
 app=Flask(__name__)
 app.secret_key= 'fgdgedsfw1g6613wg16w15615a1f2d3dvw9894wevebhkjlbghtrh'
 diet={"吃":"eat","喝":"drink"}
+recipe=["chinese","english","ingredients","path","step","url"]
 @app.route('/',methods=['GET','POST'])
 def home():
     #return  redirect(url_for('index',name={"hi":{"no":"QQ"}}))
@@ -64,7 +65,7 @@ def food_list():
     return  render_template('store_list.html',data_name=data)
 
 
-@app.route('/newstore')
+@app.route('/newstore', methods=['POST'])
 def newstore():
     return render_template('newstore.html') 
 
@@ -157,6 +158,20 @@ def recipe():
     for i in a:
         print(i)
     return "hi"
+@app.route('/rev_recipe',methods=['POST','GET'])
+def rev_recipe():
+    with open('recipe/lowkcal.json','r',encoding='utf-8') as f:
+        data=json.load(f)
+    name=request.args.get('key')
+    return render_template('rev_recipe.html',data=data[name])
+@app.route('/del_recipe')
+def del_recipe():
+    return "刪除"
+@app.route('/search_recipe')
+def search_recipe():
+    with open('recipe/lowkcal.json','r',encoding='utf-8') as f:
+        data=json.load(f)
+    return render_template("search_recipe.html",data=data)
 if __name__=='__main__':
     app.run(host='0.0.0.0',debug=True)
 
