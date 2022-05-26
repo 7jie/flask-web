@@ -20,13 +20,15 @@
 </div>
 <div id="store">
 <form method="post" action="{{url_for('insert_food_mess')}}">
-
+    <ul id="store_ul">
     {% for i in data %}
+    <li>
        <div class="store_list">
-           <div class="left">{{i}}</div><div class="right"><button class="click_button" name="store_name" type="submit" value="{{i}}">新增</button></div>
+           <div class="left store_name">{{i}}</div><div class="right"><button class="click_button" name="store_name" type="submit" value="{{i}}">新增</button></div>
         </div>
-        
+    </li>    
     {% endfor %}
+</ul>
 </form>
 </div>
 

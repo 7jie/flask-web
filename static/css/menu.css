@@ -11,7 +11,7 @@ body{
     padding: 0;
     display:flex;
     justify-content: space-between;
-    background: #c89c62;
+    background: #9E8764;
     
 }
 #mm{
@@ -57,7 +57,6 @@ body{
 }
 .menu_link{
     text-decoration: none;
-    color: #000;
 }
 .menu_link:hover{
     background-color: rgb(240, 137, 214);
@@ -78,7 +77,16 @@ body{
     color: red;
 }
 .item_block a{
-    color: #000;
+    color: #9E8600;
+}
+.left{
+    float: left;
+    width: calc(100%-300px);
+    text-align:center;
+}
+.right{
+    float: right;
+    width: 200px;
 }
 @media screen and (max-width: 650px)  {
     .menu{

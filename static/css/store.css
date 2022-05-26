@@ -3,7 +3,8 @@
     margin: auto;
     overflow: auto;
     height: 500px;
-    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
 }
 #store form{
     overflow: auto;
@@ -15,7 +16,7 @@
 }
 #con{
     width: 50%;
-    background-color: FFFAE4;
+    background-color: #FFFAE4;
     margin: auto;
 }
 #store::-webkit-scrollbar {
@@ -24,6 +25,7 @@
 #ttttt{
     width: 90%;
     margin: auto;
+    padding-bottom: 20px;
 }
 
 .click_button,.click_newbutton{
@@ -38,22 +40,35 @@
     background-color: #FFFAE4;
 }
 .click_button{
-    background-color: #ffffff;
+    background-color: #FFFAE4;
 }
 .click_button:hover,.click_newbutton:hover{
     cursor: pointer;
 }
 
 .store_list{
-    width: 100%;
     display: flow-root;
     padding: 10px 40px;
 }
 .left{
     float: left;
     width: calc(100%-300px);
+    text-align:center;
+    
+}
+.store_name{
+    line-height:2;
 }
 .right{
     float: right;
-    width: 300px;
+    width: 200px;
+}
+#store_ul{
+    list-style: none;
+    padding:0; 
+    margin:0;
+}
+
+#store_ul li:nth-child(even) {
+    background-color: #F4DCAC;
 }

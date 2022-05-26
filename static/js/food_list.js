@@ -13,15 +13,15 @@ $(document).ready(function() {
         'text':text=$('#search').val()}
       }).done(function(data) {
         if (!$.isEmptyObject(data)){
-          $('#ttt').empty();
+          $('#data_list').empty();
           $.each(data,function(aa,bb){
-            $('#ttt').append("<p><span name='food_name'>"+aa+"</span><a href='revise_food?a="+bb+"&b="+$('#store_name').val()+"&c="+$('#diet_name').val()+"'class='rev'>修改</a>&nbsp<a href='#' class='del'>刪除</a></p>");
+            $('#data_list').append("<div class='food_list'><div class='left'><span name='food_name'>"+aa+"</span></div><div class='right'><div class='left_rev'><a href='revise_food?a="+bb+"&b="+$('#store_name').val()+"&c="+$('#diet_name').val()+"'class='rev'>修改</a></div><div class='right_del'><a href='#' class='del'>刪除</a></div></div></div>");
       
           })
 
       }else{
-          $('#ttt').empty();
-          $('#ttt').append("<p>查無資料，請重新輸入關鍵字</p>");
+          $('#data_list').empty();
+          $('#data_list').append("<div>查無資料，請重新輸入關鍵字</div>");
       }
 
 
@@ -53,16 +53,16 @@ $(document).ready(function() {
                     'diet': $('#diet_name').val()}
           })
           .done(function(data) {
-            $('#ttt').empty();
+            $('#data_list').empty();
             if (!$.isEmptyObject(data)){
                 $.each(data,function(aa,bb){
-                  $('#ttt').append("<p><span name='food_name'>"+aa+"</span><a href='revise_food?a="+bb+"&b="+$('#store_name').val()+"&c="+$('#diet_name').val()+"'class='rev'>修改</a>&nbsp<a href='#' class='del'>刪除</a></p>");
+                  $('#data_list').append("<li><div class='food_list'><div class='left'><span name='food_name'>"+aa+"</span></div><div class='right'><div class='left_rev'><a href='revise_food?a="+bb+"&b="+$('#store_name').val()+"&c="+$('#diet_name').val()+"'class='rev'>修改</a></div><div class='right_del'><a href='#' class='del'>刪除</a></div></div></div></li>");
             
                 })
                 
             }else{
-                $('#ttt').empty();
-                $('#ttt').append("<p>查無資料，請重新選擇店家或飲食類別</p>");
+                $('#data_list').empty();
+                $('#data_list').append("<div>查無資料，請重新選擇店家或飲食類別</div>");
             }
             
           })
