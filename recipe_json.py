@@ -13,7 +13,7 @@ db = firestore.client()
 #docs = db.document("t/2bH80fhc7tQ2X32ho8eA").get().to_dict()
 
 #要改成自己的路徑
-
+"""
 with open("recipe/lowkcal.json","r",encoding="utf-8") as f:
     data=json.load(f)
 
@@ -32,4 +32,4 @@ for i in a:
 with open("recipe/lowkcal.json","w",encoding="utf-8") as f:
     json.dump(k,f,ensure_ascii=False)
 
-"""
+

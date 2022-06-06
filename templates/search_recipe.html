@@ -12,15 +12,19 @@
     <button id="searchbutton">搜尋</button>
     </div>
     <div id="ttt">
-
+    <ul id="data_list">
         {%if data !=undefind%}
         {% for i,key in data.items()%}
+        <li>
         <div class="recipe_list">
-            <div class="left">{{key["chinese"]}}</div><div class="right"><a href="rev_recipe?key={{i}}">修改</a> <a href="del_recipe?key={{i}}">刪除</a></div>
+            <div class="left"><span>{{key["chinese"]}}</span></div><div class="right"><div class='left_rev'><a href="rev_recipe?key={{i}}">修改</a></div><div class='right_del'><a href="del_recipe?key={{i}}">刪除</a></div></div>
         </div>
+        </li>
         {% endfor %}
         {% endif%}
+    </ul>
     </div>
 </div>
 
+<script src="{{url_for('static', filename='js/search_recipe.js')}}"></script>
 {% endblock %}

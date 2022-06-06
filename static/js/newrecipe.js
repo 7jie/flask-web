@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var img
+    var img;
     $('#img').hide();
     $('#test1').on('change', function(e){  
         var f=new FileReader();

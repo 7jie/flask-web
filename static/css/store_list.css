@@ -58,6 +58,10 @@
     display: flow-root;
     padding: 10px 40px;
 }
+.right{
+    float: right;
+    width: 300px;
+}
 .left_rev{
     float: left;
     width: 50%;
@@ -78,5 +82,5 @@
     background-color: #F4DCAC;
 }
 #search_top{
-    padding-top: 20px;   
+    margin-top: 20px;
 }

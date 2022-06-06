@@ -63,6 +63,7 @@ body{
 }
 .menu_text:hover .item_block{
     display: block;
+    z-index: 1;
 }
 .item_block{
     width: 300px;
@@ -81,13 +82,11 @@ body{
 }
 .left{
     float: left;
-    width: calc(100%-300px);
-    text-align:center;
+    width: calc(100% - 300px);
+    word-wrap: break-word;
 }
-.right{
-    float: right;
-    width: 200px;
-}
+
+
 @media screen and (max-width: 650px)  {
     .menu{
         display:none;

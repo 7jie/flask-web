@@ -1,10 +1,15 @@
-
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/newstore.css') }}">
 {% extends "menu.html" %}
 {% block nav %}
     {{ super() }}
 {% endblock %}
 {% block cont %}
 <h2>新增食品資料</h2>
+{% if store_name !=undefined %}
+    <p>店家名稱：<span>
+        {{ store_name }}
+    </span></p>
+{% endif %}
 食物類別：<select>
     <option>
         吃
@@ -13,17 +18,33 @@
         喝
     </option>
 </select>
-{% if store_name !=undefined %}
-    <p>店家名稱：<span>
-        {{ store_name }}
-    </span></p>
-{% endif %}
+
 <h5><span class="red">*為必填</span></h5>
 <form name="form1" method="post" action="{{ url_for('insert_food') }}">
 <p>食品中文名稱：<input name="name_zh"><span class="red">*<span id="name"></span></span></p>
 <p>食品英文名稱：<input></p>
-<p>份量(中文)：<input><span class="red">*<span id="sizetext"></span></span></p>
-<p>份量(英文)：<input></p>
+<div id="auto">
+    <div class="a">
+    <div class="left">份量(中文)：</div><div class="right">
+        <select id="size">
+    </select><a href="#" id="ch_manual">手動輸入</a></div>
+    </div>
+    <div class="a">
+    <div class="left">份量(英文)：</div><div class="right"><span id="size_en"></span></div>
+    </div>
+    </div>
+    <div id="man">
+    <div class="a">
+        <div class="left">份量(中文)：</div><div class="right"><input id="size_zh"><span class="red"><a href="#" id="ch_auto">條列選擇</a>*<span id="sizetext"></span></span>
+        </div>
+        </div>
+        <div class="a">
+        <div class="left">份量(英文)：</div><div class="right"><input></div>
+        </div>
+    </div>
+    <div class="a num">
+            <div class="left">數量：</div><div class="right"><input></div>
+    </div>
 <p>單位(不限)：<input></p>
 <p>熱量(kcal):<input name="kcal"><span class="red">*<span id="kcaltext"></span></span></p>
 <p>蛋白質(g)：<input></p>

@@ -22,15 +22,32 @@
     width: 80%;
 }
 .recipe_list{
-    width: 100%;
     display: flow-root;
-    margin-bottom: 20px;
-}
-.left{
-    float: left;
-    width: calc(100%-300px);
+    padding: 10px 40px;
 }
 .right{
     float: right;
     width: 300px;
+}
+#data_list{
+    list-style: none;
+    padding:0; 
+    margin:0;
+}
+#data_list li:nth-child(even){
+    background-color: #F4DCAC;
+}
+#search_top{
+    padding-top: 20px;   
+}
+.left_rev{
+    float: left;
+    width: 50%;
+}
+.right_del{
+    float: right;
+    width: 50%;
+}
+.right a{
+    text-decoration: none;
 }
