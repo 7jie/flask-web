@@ -15,7 +15,6 @@ import test
 cred = credentials.Certificate("topic.json")#自己的json路徑
 firebase_admin.initialize_app(cred)
 db = firestore.client()
-users=[i.to_dict()["mail"] for i in db.collection("manager").get()]
 
 
 firebaseConfig = {
@@ -46,7 +45,7 @@ class User(UserMixin):
 
 @login_manager.user_loader
 def user_loader(u):
-    if u not in users:
+    if u not in [i.to_dict()["mail"] for i in db.collection("manager").get()]:
         return
 
     user = User()
@@ -61,7 +60,24 @@ def login():
         return redirect(url_for('index'))
     return render_template('home.html') 
 
+@app.route('/login_test',methods=['GET','POST'])
+def login_test():
+    user = User()
+    user.id = request.values.get('mail')
+    login_user(user)
+    user.id = request.values.get('mail')
+    return redirect(url_for('index'))
 
+@app.route('/reg_manager',methods=['GET','POST'])
+def reg_manager():
+    db.collection("manager").document().set({'mail':request.values.get('mail')})
+    user = User()
+    user.id = request.values.get('mail')
+    login_user(user)
+    user.id = request.values.get('mail')
+    return redirect(url_for('index'))
+#可修改成js寫法
+"""
 @app.route('/check_login',methods=['POST'])
 def check_login():
     a=test.man(request.form['mail'],request.form['pass'])
@@ -72,6 +88,8 @@ def check_login():
         session['session_id']=request.form['mail']
         return  "OK"
     return"NO" 
+"""
+
 
 #改json
 @app.route('/manager_check',methods=['POST'])
@@ -81,6 +99,9 @@ def manager_check():
         return "OK"
     return "NO"
 
+@app.route('/newpass',methods=['GET'])
+def newpass():
+    return render_template('newpass.html')
 
 @app.route('/index',methods=['GET','POST']) #'/index/<name>' ,傳參數
 @login_required
@@ -141,6 +162,13 @@ def food_store():
         return jsonify(b)
     except:
         return jsonify([])
+@app.route('/reg_mail',methods=['POST'])
+def reg_mail():
+    mail=request.form['r_mail']
+    manager_mail=[i.to_dict()["mail"] for i in db.collection("manager").get()]
+    if mail not in manager_mail:
+        return "OK"
+    return "NO"
 
 
 @app.route('/insert_food_store', methods=['POST'])
@@ -294,7 +322,7 @@ def logout():
     u = current_user.get_id()
     logout_user()
     print(session.get('userid'))
-    return "已登出"
+    return "<h2>您已登出</h2>"+"<p><a href='/'>回主頁</a></P>"
 
     
 if __name__=='__main__':

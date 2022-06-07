@@ -1,0 +1,15 @@
+{% extends "menu.html" %}
+
+{% block cont %}
+<h3>重設密碼</h3>
+<div>
+    <div>
+        <input id="regmail" type="email" placeholder="請輸入註冊時的mail">
+    </div>
+    <div><button id="newpass_click">發送郵件</button></div>
+</div>
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="{{url_for('static', filename='js/newpass.js')}}"></script>
+{% endblock%}

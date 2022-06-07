@@ -1,10 +1,4 @@
-html,body{
-width: 100%;
-height: 100%;
-}
 body{ 
-width:100%;
-height:100%;
 text-align: center;
 background-color: #F4DCAC;
 }
@@ -93,6 +87,43 @@ background-color: #F4DCAC;
 #warn{
     width: 24px;
     height: 24px;
+}
+
+#preloader {/*   這是整個會蓋住畫面的底色色塊  */
+    z-index: 9999;
+    display: none;
+    }
+#status {/*   這是中間loading的gif坐標css,我們盡量讓他畫面置中  */
+    position: fixed;
+    width: 218px;
+    height: 419px;
+    margin-left: -140px;
+    margin-top: -160px;
+    left: 45%;
+    top: 45%;
+    }
+#mess{
+    z-index: 9999;
+    display: none;
+    position: absolute;
+    width: 50%;
+    top: 60%;
+    left: 25%;
+    margin: auto;
+    background-color: azure;
+}
+#mess_fr{
+    margin: auto;
+    width: 100%;
+}
+#mess_title{
+    font-size: large;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+#mess_text{
+    margin-bottom: 20px;
 }
 @media screen and (max-width: 960px) {
     
