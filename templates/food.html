@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css"href="{{ url_for('static',filename='css/store.css')}}">
+<link rel="stylesheet" type="text/css"href="{{ url_for('static',filename='css/food.css')}}">
 
 {% extends "menu.html" %}
 
@@ -9,22 +9,22 @@
 <div id="con">
     
 <div id="ttttt">
-    
+<div id="have_store">
+    <h3>已有店家</h3>
+</div>
 <div id="new">
 <form method="post" action="{{url_for('newstore')}}">
     <button class="click_newbutton">新增店家及食品</button>
 </form>
 </div>
-<div>
-    <h3>已有店家</h3>
-</div>
+
 <div id="store">
 <form method="post" action="{{url_for('insert_food_mess')}}">
     <ul id="store_ul">
     {% for i in data %}
     <li>
        <div class="store_list">
-           <div class="left store_name">{{i}}</div><div class="right"><button class="click_button" name="store_name" type="submit" value="{{i}}">新增</button></div>
+           <div class="store_name">20</div><div class="left store_name">{{i}}</div><div class="right"><button class="click_button" name="store_name" type="submit" value="{{i}}">新增</button></div>
         </div>
     </li>    
     {% endfor %}

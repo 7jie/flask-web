@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
 <head>
     <meta charset="utf-8">
@@ -20,9 +20,9 @@
 
 <img  src="{{ url_for('static', filename='img/title.png') }}">
 <div id=login_res>
-    <p class="click open">管理者登入</p><p class="click">管理者註冊</p>
+    <div class="click open right_ra">管理者登入</div><div class="click no left_ra">管理者註冊</div>
 </div>
-<form aling="center" id="login" method="post" enctype="multipart/form-data">
+<form aling="center"  id="login" method="post" enctype="multipart/form-data">
     <div id="t0">
     <div class="t1">
         <div class="t2">
@@ -50,12 +50,12 @@
             </div>
     </div>
 
-    <div class="t1">
+    <div class="login_flex">
         
-        <div class="t2">
-        <a  href="{{ url_for('newpass')}}">忘記密碼</a>
+        <div class="go_login">
+        
         <input  class="btn" type="submit" value="登入" name="send">
-        
+        <a  href="{{ url_for('newpass')}}">忘記密碼</a>
         </div>
         
     </div>

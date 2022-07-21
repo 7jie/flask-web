@@ -1,9 +1,13 @@
+
 body{
     background: #e7cba5;
     margin: 0;
     background-image: url("../img/back.jpg");
     background-position: center;
     background-size: cover;
+}
+#icon{
+    height: 60px;
 }
 #m{
     align-items:center ;
@@ -12,14 +16,14 @@ body{
     display:flex;
     justify-content: space-between;
     background: #9E8764;
+    width: 100%;
+ 
     
 }
 #mm{
     margin-right: 20px;
 }
-#mm a{
-    color: #fff;
-}
+
 .menu{
     margin: 0;
     padding: 0;
@@ -33,14 +37,14 @@ body{
 }
 .logout_link{
     text-decoration: none;
-    color: #000;
+    color: #FFFAE4;
+    font-size: 20px;
 }
 .item a{
     color: #FFFAE4;
-    width: 100%;
     text-align: center;
     text-decoration: none;
-    font-size:30px;
+    
 }
 .item {
     list-style-type: none;
@@ -50,13 +54,20 @@ body{
     text-align: left;
 
 }
-
+.menu_text{
+    font-size:30px;
+}
 .menu_text:hover{
     text-decoration: underline;
     color:rgb(45, 16, 212);
 }
 .menu_link{
-    text-decoration: none;
+    width: 200px;
+    background-color: antiquewhite;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: block;
+    font-size: 20px;
 }
 .menu_link:hover{
     background-color: rgb(240, 137, 214);
@@ -87,9 +98,28 @@ body{
 }
 
 
-@media screen and (max-width: 650px)  {
+@media screen and (max-width: 1200px)  {
+
+    #con{
+        width:60%;
+    }
+
+}
+@media screen and (max-width: 1400px)  {
+
+    #con{
+        width:55%;
+    }
+
+}
+
+@media screen and (max-width: 900px)  {
     .menu{
         display:none;
     }
+    #con{
+        width:60%;
+    }
+    
 
 }

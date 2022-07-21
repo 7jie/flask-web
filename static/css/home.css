@@ -8,7 +8,7 @@ background-color: #F4DCAC;
 .click{
     
     display: inline-block;
-    width: 30%;
+    width: 20%;
     line-height:3em;
     background-color: rgba(253, 253, 253, 0.856);
     color: #000;
@@ -17,21 +17,34 @@ background-color: #F4DCAC;
 .click{
     cursor: pointer;
 }
-.open{
-    background-color: rgb(64, 126, 241);
-    color: white;
-}
 
+.open{
+    background-color: #9E8764;
+    color: #FFFAE4;
+    border:2px solid #9E8764;
+    font-weight:bold;
+    letter-spacing:5px;
+}
+.no{
+    background-color: #FFFAE4;
+    color: #9E8764;
+    border:2px solid #9E8764;
+
+    font-weight:bold;
+    letter-spacing:5px;
+}
 .t1{
     margin: 0 auto;
     height: 50px;
 }
 .btn{
-    background-color: rgb(236, 238, 130);
-    width: 100px;
+    background-color: #F4DCAC;
     line-height:2em;
-    border: black 1px solid;
+    color: #9E8764;
+    width: 150px;
+    border: none;
     margin-left: 1em;
+    font-size:medium;
 }
 .btn:hover{
     cursor: pointer;
@@ -63,6 +76,12 @@ background-color: #F4DCAC;
     text-align: right;
 
 }
+.left_ra{
+    border-radius: 0 5px 5px 0;
+}
+.right_ra{
+    border-radius: 5px 0 0 5px;
+}
 .t3 input,.t4 input{
     width:300px;
     height: 30px;
@@ -71,7 +90,7 @@ background-color: #F4DCAC;
     margin-top: 3%;
     margin-left:auto;
     margin-right:auto;
-    width: 55%;
+    width: 58%;
     border-radius: 10px;
     padding: 20px;
     background-color: rgb(248, 236, 236);
@@ -102,6 +121,10 @@ background-color: #F4DCAC;
     left: 45%;
     top: 45%;
     }
+body{
+    background-image: url('../img/back.jpg');
+    background-size: cover;
+}
 #mess{
     z-index: 9999;
     display: none;
@@ -124,6 +147,21 @@ background-color: #F4DCAC;
 }
 #mess_text{
     margin-bottom: 20px;
+}
+span{
+    font-family: Mixed;
+}
+.login_flex{
+    display: flex;
+    justify-content: flex-end;
+}
+.go_login{
+    margin-top: 20px;
+    width: 85%;
+}
+.go_login a{
+    color: #9E8764;
+    text-decoration: none;
 }
 @media screen and (max-width: 960px) {
     

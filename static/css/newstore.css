@@ -1,17 +1,18 @@
 .left{
     float: left;
-    width: calc(100% - 320px);
+    width: calc(100% - 300px);
     margin: 0;
 }
 .right{
     float: right;
-    width: 320px;
+    width: 300px;
     margin: 0;
 }
 .a{
     width: 100%;
     margin: 0;
     display: flow-root;
+    
     margin-bottom: 20px;
 }
 #type,#size{

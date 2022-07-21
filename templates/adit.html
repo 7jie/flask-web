@@ -1,0 +1,133 @@
+<link rel="stylesheet" type="text/css"href="{{ url_for('static',filename='css/adit.css')}}">
+{% extends "menu.html" %}
+
+{% block cont %}
+<h2>
+    {% if n=='drink' %}
+    飲品審核
+    {% endif %}
+    {% if n=='eat' %}
+    食品審核
+    {% endif %}
+    {% if n=='code' %}
+    條碼審核
+    {% endif %}
+    {% if n=='fruit' %}
+    水果審核
+    {% endif %}
+</h2>
+<div id="con">
+
+{% if page==undefined or page==1 %}
+    {% if data|length >pagination.per_page %}
+    {% for d in range(0,pagination.per_page) %}
+
+    <ul class="userfood_info">
+    <li><label><div  class="userfood_title"><input data-uid="{{data[d]['userID']}}" data-num="{{data[d]['list_num']}}" class="c_box"type="checkbox">{{data[d]['chinese']}}</div></label></li>
+    <li class="view">
+        {% for n,key in data[d].items() %}
+            
+           {% if n not in n_view%}
+            <div class="userfood_nutrition">
+                
+                <div class="info_left">{{n}}</div><div class="info_right">{{key}}</div>
+                
+            </div>
+           {% endif %}
+            
+        {% endfor %}
+        </li>
+        
+        </ul>
+    {% endfor %}
+
+
+
+    {% else %}
+            {% for d in range(0,data|length) %}
+            
+            <ul class="userfood_info">
+            <li><label><div  class="userfood_title"><input class="c_box"type="checkbox">{{data[d]['chinese']}}</div></label></li>
+            <li class="view">
+                
+                {% for n,key in data[d].items() %}
+                    
+                {% if n not in n_view%}
+                    <div class="userfood_nutrition">
+                        
+                        <div class="info_left">{{n}}</div><div class="info_right">{{key}}</div>
+                        
+                    </div>
+                {% endif %}
+                    
+                {% endfor %}
+                <div class="click_con"><button class="data_left audit_ok"  data-uid="{{data[d]['userID']}}" data-num="{{data[d]['list_num']}}">符合</button><button  class="data_right audit_no" data-uid="{{data[d]['userID']}}" data-num="{{data[d]['list_num']}}">不符合</button></div>
+                </li>
+                
+                </ul>
+            {% endfor %}
+    {% endif %}
+{% else %}
+{% if page !=total%}
+{% for d in range((page-1)*pagination.per_page,(page-1)*pagination.per_page+pagination.per_page)%}
+<ul class="userfood_info">
+    
+    <li><label><div  class="userfood_title"><input class="c_box"type="checkbox">{{data[d]['chinese']}}</div></label></li>
+    <li class="view">
+        {% for n,key in data[d].items() %}
+            
+           {% if n not in n_view%}
+            <div class="userfood_nutrition">
+                
+                <div class="info_left">{{n}}</div><div class="info_right">{{key}}</div>
+                
+            </div>
+           {% endif %}
+            
+        {% endfor %}
+        <!--<div class="click_con"><button class="data_left audit_ok"  data-uid="{{data[d]['userID']}}" data-num="{{data[d]['list_num']}}">符合</button><button  class="data_right audit_no" data-uid="{{data[d]['userID']}}" data-num="{{data[d]['list_num']}}">不符合</button></div>-->
+        </li>
+        
+        </ul>
+
+{% endfor %}
+{%else%}
+{% for d in range((page-1)*pagination.per_page,pagination.total)%}
+<ul class="userfood_info">
+    <li><label><div  class="userfood_title"><input class="c_box"type="checkbox">{{data[d]['chinese']}}</div></label></li>
+    <li class="view">
+        {% for n,key in data[d].items() %}
+            
+           {% if n not in n_view%}
+            <div class="userfood_nutrition">
+                
+                <div class="info_left">{{n}}</div><div class="info_right">{{key}}</div>
+                
+            </div>
+           {% endif %}
+            
+        {% endfor %}
+        </li>
+        
+        </ul>
+
+{% endfor %}
+{% endif %}
+{% endif %}
+<div class="click_con"><button class="data_left adit_ok">審核通過</button><button  class="data_right adit_no" >否決審核</button></div>
+</div>
+</div>
+<div id="page_con">
+    {% for href in pagination.pages%}
+    {% if page==href %}
+    {{href}}
+    {% else %}
+    <a href="?page={{href}}">{{href}}</a>
+    {% endif %}
+    {% endfor %}
+</div>
+<script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-firestore.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="{{ url_for('static', filename='js/adit.js') }}" type="text/javascript"></script>
+{% endblock %}

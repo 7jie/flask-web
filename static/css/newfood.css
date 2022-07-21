@@ -1,0 +1,81 @@
+.left{
+    float: left;
+    width: calc(100% - 300px);
+    margin: 0;
+}
+.right{
+    float: right;
+    width: 300px;
+    margin: 0;
+}
+.center_name{
+    margin: auto;
+    text-align: center;
+    font-size: larger;
+    padding-bottom: 20px;
+    padding-top: 10px;
+}
+.a{
+    width: 100%;
+    margin: 0;
+    display: flow-root;
+    margin-bottom: 20px;
+}
+#type,#size{
+    width:150px;
+}
+#type option,#size option{
+    text-align: center;
+}
+#info{
+    margin: auto;
+    width: 80%;
+    height: 500px;
+    overflow: auto;
+}
+#info::-webkit-scrollbar{
+    display: none;
+}
+#auto,#man{
+    display: none;
+}
+.con{
+    width: 50%;
+    margin: auto;
+    border: 1px solid black;
+    background-color: antiquewhite;
+    border-radius:10px ;
+    margin-bottom: 10px;
+}
+#send{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.none_eat {
+    width: 100%;
+    margin: 0;
+    display: none;
+}
+.block_eat{
+    display: flow-root;
+    margin-bottom: 20px;
+}
+a{
+    text-decoration: none;
+    margin-left: 10px;
+}
+#preloader {/*   這是整個會蓋住畫面的底色色塊  */
+    z-index: 9999;
+    display: none;
+    }
+#status {/*   這是中間loading的gif坐標css,我們盡量讓他畫面置中  */
+    position: fixed;
+    width: 218px;
+    height: 419px;
+    margin-left: -140px;
+    margin-top: -160px;
+    left: 45%;
+    top: 45%;
+    }

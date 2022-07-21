@@ -1,3 +1,4 @@
+
 import re
 from flask import Flask,request,session,url_for,redirect,json,jsonify,render_template,flash
 import os,flask
@@ -12,6 +13,9 @@ import random
 from PIL import Image
 from flask_login import UserMixin,login_user,LoginManager,current_user,logout_user,login_required
 import test
+from datetime import datetime, timedelta 
+from flask_paginate import Pagination, get_page_parameter
+import math
 cred = credentials.Certificate("topic.json")#自己的json路徑
 firebase_admin.initialize_app(cred)
 db = firestore.client()
@@ -29,6 +33,7 @@ firebaseConfig = {
     }
 firebase=pyrebase.initialize_app(firebaseConfig)
 storage = firebase.storage()
+
 
 app=Flask(__name__)
 app.secret_key= 'fgdgedsfw1g6613wg16w15615a1f2d3dvw9894wevebhkjlbghtrh'
@@ -54,10 +59,14 @@ def user_loader(u):
 
 @app.route('/',methods=['GET','POST'])
 def login():
+
     #return  redirect(url_for('index',name={"hi":{"no":"QQ"}}))
-    print(current_user.is_authenticated)  
+    session.permanent = True
+    app.permanent_session_lifetime = timedelta(minutes=10)
     if current_user.is_authenticated:
         return redirect(url_for('index'))
+    
+    #return redirect(url_for('logout'))
     return render_template('home.html') 
 
 @app.route('/login_test',methods=['GET','POST'])
@@ -107,6 +116,7 @@ def newpass():
 @login_required
 def index(): #index(name)
     #return  '{}'.format(name)
+    print(app.permanent_session_lifetime)
     return  render_template('account.html')
  
 @app.route('/food')
@@ -181,7 +191,7 @@ def insert_food_store():
             }
         return render_template('insert_food.html', data=store_mess)        
 
-@app.route('/insert_food_mess',methods=['POST'])
+@app.route('/insert_food_mess',methods=['GET','POST'])
 @login_required
 def insert_food_mess():
     return render_template('store_food.html',store_name=request.form.get('store_name'))
@@ -317,14 +327,82 @@ def search_recipe():
 
 
 @app.route('/logout')
-@login_required
+#@login_required
 def logout():
-    u = current_user.get_id()
+    global u_type
+    u_type=True
     logout_user()
     print(session.get('userid'))
-    return "<h2>您已登出</h2>"+"<p><a href='/'>回主頁</a></P>"
+    return render_template('logout.html')
 
+def on_snapshot(col_snapshot, changes, read_time):
     
+    a={}    
+    for change in changes:
+        if change.type.name == 'ADDED':
+            print(f'New: {change.document.id}')
+        elif change.type.name == 'MODIFIED':
+            print(f'Modified: {change.document.id}')
+        elif change.type.name == 'REMOVED':
+            print(f'Removed: {change.document.id}')
+        for  i in db.collection(u'userCustomFood').get():
+            a[i.id]=i.to_dict()
+    
+    with open("user_food.json","w",encoding="utf-8")as f:
+        json.dump(a, f)
+            
+
+col_query = db.collection(u'userCustomFood')
+
+# Watch the collection query
+query_watch = col_query.on_snapshot(on_snapshot)
+
+def getdata(name):
+    v=[]
+    with open('user_food.json','r')as f:
+        a=json.load(f)
+    for key,val in a.items():
+        n=0
+        for x in val:
+            if x==name:
+                for b in val[x]:
+                    if b['tag']==False:
+                        b['userID']=key
+                        b['list_num']=n
+                        v.append(b)
+                    n+=1
+    return v
+
+@app.route('/adit',methods=['GET'])
+def adit():
+    if request.values.get('type')=="食品審核":
+        return redirect(url_for('getadit',t='eat'))
+    if request.values.get('type')=="飲品審核":
+        return redirect(url_for('getadit',t='drink'))
+    if request.values.get('type')=="條碼審核":
+        return redirect(url_for('getadit',t='code'))
+    if request.values.get('type')=="水果審核":
+        return redirect(url_for('getadit',t='fruit'))
+@app.route('/adit<t>')
+def getadit(t):
+    data=getdata(t)
+    page=1
+    pre=3
+    num=len(data)
+    total_page=math.ceil(num/pre)
+    star=(page-1)*pre
+    #page = request.args.get(get_page_parameter(), type=int, default=1)
+    print(len(data))
+    
+    pagination =Pagination(page=page, per_page=pre,total=len(data))
+
+    if request.args.get('page'):
+        return render_template('adit.html',n=t,data=data,n_view=['chinese','userID','Tag','list_num'],total=total_page,page=int(request.args.get('page')),pagination=pagination)
+    return render_template('adit.html',n=t,data=data,n_view=['chinese','userID','Tag','list_num'],pagination=pagination,page=1)
+@app.route('/getadit_re',methods=['POST'])
+def getadit_re():
+    print(request.form.get('d'))
+    return "OK"
 if __name__=='__main__':
     app.run(host='0.0.0.0',debug=True)
 

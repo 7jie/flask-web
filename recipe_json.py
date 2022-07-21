@@ -22,14 +22,26 @@ im.show()
 
 
 """
-a=db.collection("recipe/低卡/食譜名稱").get()
+a=db.document("recipe/recipe_all").get().to_dict()
 #print(a)
+"""
 k={}
 for i in a:
     k[i.id]=i.to_dict()
+"""
+for i,k in a.items():
+    for n,o in k.items():
+        a[i][n]=o.path
+        #print(a[i][n])
+#print(a)
 
 
+"""
 with open("recipe/lowkcal.json","w",encoding="utf-8") as f:
     json.dump(k,f,ensure_ascii=False)
+"""
+
+with open("recipe/recipe_all.json","w",encoding="utf-8") as f:
+    json.dump(a,f,ensure_ascii=False)
 
 

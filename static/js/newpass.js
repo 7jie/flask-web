@@ -11,6 +11,7 @@ $(document).ready(function(){
       };
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
+      
         $('#newpass_click').on('click',function(){
         const email = $('#regmail').val();
         firebase.auth().sendPasswordResetEmail(email)
@@ -23,6 +24,8 @@ $(document).ready(function(){
         .catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;
+            alert("電子郵件錯誤！請確認");
+            
             // ..
         });
 

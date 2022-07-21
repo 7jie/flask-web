@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font.css') }}">
 	<link rel="stylesheet" type="text/css"href="{{ url_for('static',filename='css/menu.css')}}">
 </head>
 <body>
 <div id="m">
-	<p>logo</p>
+	<img id="icon"src="{{url_for('static',filename='img/icon.jpg')}}">
+
    <ul class="menu">
         <li class="item">
             <a href="#" class="menu_text">帳號管理</a>
@@ -57,6 +58,23 @@
 		        </li>
 		    </ul>
 		</li>
+		<li class="item">
+			<a href="#" class="menu_text">資料審核</a>
+			<ul class="item_block">
+			   <li>
+				   <a href="#" class="menu_link adit_link">飲品審核</a>
+			   </li>
+			   <li>
+				   <a href="#" class="menu_link adit_link">食品審核</a>
+			   </li>
+			   <li>
+				   <a href="#" class="menu_link adit_link">條碼審核</a>
+			   </li>
+			   <li>
+				<a href="#" class="menu_link adit_link">水果審核</a>
+				</li>
+		   </ul>
+	   </li>
 		
    </ul>  
 <div id="mm">

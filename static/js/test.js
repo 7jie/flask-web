@@ -3,7 +3,6 @@ $(document).ready(function() {
   var reg_pass=Boolean;
   var reg_c_pass=Boolean;
   var password=String;
-
   const firebaseConfig = {
     apiKey: "AIzaSyAk2Sp6_oP4o1Q1_wOtgOlIKpdaVemoqEI",
     authDomain: "topic-3b33d.firebaseapp.com",
@@ -16,6 +15,7 @@ $(document).ready(function() {
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+
 
     $('input[name=send]').click(function(){
       $('#preloader').show();
@@ -48,6 +48,7 @@ $(document).ready(function() {
             // Signed in
             var user = userCredential.user;
             // ...
+            
             window.location.href='/login_test'+'?mail='+mail;
 
         })
@@ -61,6 +62,7 @@ $(document).ready(function() {
       
       return false;
     }
+
     if (reg_m&reg_pass&reg_c_pass){
       var re_mail=$('#reg_mail').val();
       var re_pass=$('#reg_pass').val();
@@ -107,12 +109,16 @@ $(document).ready(function() {
     $('.click').click(function() {
         if ($(this).text()==="管理者註冊"){
         $(this).addClass('open');
-          $("p").prev(".click").removeClass('open');
+        $(this).removeClass('no');
+          $("div").prev(".click").removeClass('open');
+          $("div").prev(".click").addClass('no');
           $("#register").css("display","block");
           $("#login").css("display","none");
         }else{
           $(this).addClass('open');
-          $("p").next(".click").removeClass('open');
+          $(this).removeClass('no');
+          $("div").next(".click").removeClass('open');
+          $("div").next(".click").addClass('no');
           $("#register").css("display","none");
           $("#login").css("display","block");
         }
@@ -120,15 +126,19 @@ $(document).ready(function() {
     $('#login_mail').on('keyup',function(){
       if($(this).val().indexOf("@")==-1){
         $('#mail_fr').html('<span>帳號請輸入mail</span');
-      }else{
+      }
+      else if($(this).val().split('@')[1]==""){
+        $('#mail_fr').html("");
+        $('#mail_fr').html('<span>請在@後輸入完整資料</span');
+        
+      }
+      else{
         $('#mail_fr').html("");
       }
     });
+
     $('#login_mail').on('blur',function(){
-      if($(this).val().indexOf("@")==-1){
-        
-        $('#mail_fr').html('<span>帳號請輸入mail</span');
-      }else{
+      if(($(this).val().indexOf("@")!=-1) & ($(this).val().split('@')[1]!="")){
         $('#mail_fr').html("");
         $.ajax({
           url: '/manager_check',
@@ -146,6 +156,7 @@ $(document).ready(function() {
   
         })
       }
+      
     });
 
     $("#reg_mail").on('blur',function(){

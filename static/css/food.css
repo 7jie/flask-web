@@ -1,0 +1,80 @@
+
+#store{
+    margin: auto;
+    overflow: auto;
+    height: 500px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-family: Mixed;
+}
+#store form{
+    overflow: auto;
+    overflow-x: hidden;
+}
+#new{
+    padding-top: 10px;
+}
+#have_store{
+    padding-top: 10px;
+}
+#con{
+    width: 50%;
+    background-color: #FFFAE4;
+    margin: auto;
+}
+#store::-webkit-scrollbar {
+    display: none;
+}
+#ttttt{
+    width: 90%;
+    margin: auto;
+    padding-bottom: 20px;
+}
+button{
+    font-family :NaikaiFont;
+}
+.click_button,.click_newbutton{
+    padding: 5px 10px;
+    border: 1px solid black;
+    border-radius:4px;
+    color: #9E8764;
+    background-color: #FFFAE4;
+}
+.click_newbutton{
+    font-size:x-large;
+    width: 200px;
+}
+.click_button{
+    font-size:medium;
+    width: 150px;
+}
+.click_button:hover,.click_newbutton:hover{
+    cursor: pointer;
+}
+
+.store_list{
+    display: flow-root;
+    padding: 10px 40px;
+}
+.left{
+    float: left;
+    width: calc(100%-300px);
+    text-align:center;
+    
+}
+.store_name{
+    line-height:2;
+}
+.right{
+    float: right;
+    width: 200px;
+}
+#store_ul{
+    list-style: none;
+    padding:0; 
+    margin:0;
+}
+
+#store_ul li:nth-child(even) {
+    background-color: #F4DCAC;
+}
