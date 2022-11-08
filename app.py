@@ -1341,8 +1341,8 @@ def getadit_re():
         return "OK"
 
     return "OK"
-@app.route('ttt')
+@app.route('txxt')
 def ttt():
-    return "xx"
+    return "xttx"
 if __name__=='__main__':
     app.run('0.0.0.0',debug=True,port='8000') #120.110.7.178
