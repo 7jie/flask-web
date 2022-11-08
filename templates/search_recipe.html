@@ -1,0 +1,39 @@
+
+{% extends "menu.html" %}
+{% block css %}
+<link rel="stylesheet" type="text/css"href="{{ url_for('static',filename='css/search_recipe.css')}}">
+{% endblock css %}
+{% block cont %}
+<h1>食譜資料</h1>
+<div id="preloader">
+    <div id="status"><img src="{{ url_for('static', filename='img/loading.gif') }}"/></div>
+</div>
+<div id="back"></div>
+<div id="con">
+    <div id="seaech_frame">
+    
+    <input id="search" placeholder="輸入多個關鍵字請以空格為間隔，例：魚 麵" autocomplete="off">
+    <button id="searchbutton">搜尋</button>
+    </div>
+    <div id="ttt">
+    <ul id="data_list">
+        {%if data !=undefind%}
+        {% for i,key in data.items()%}
+        <li>
+        <div class="recipe_list">
+            
+            <div class="left"><span>{{key["chinese"]}}</span></div><div class="right"><div class='left_rev'><a href="rev_recipe?key={{i}}">修改</a></div><div class='right_del'><a href="#" class="del_recipe" data-val="{{i}}">刪除</a></div></div> <!-- href='del_recipe?key={{i}}' -->
+        </div>
+        </li>
+        {% endfor %}
+        {% endif%}
+    </ul>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block conjs %}
+<script src="{{url_for('static', filename='js/search_recipe.js')}}"></script>
+{% endblock %}

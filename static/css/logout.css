@@ -1,0 +1,14 @@
+#mess,h1 {
+    display: flex;
+    justify-content: center;
+}
+h1{
+    color: #975C1D;
+    text-align: center;
+    font-family: 'Mixed';
+    font-size: 50px;
+    line-height: 1;
+}
+body{
+    background: #F4DCAC;
+}

@@ -1,0 +1,365 @@
+
+#store{
+    margin: auto;
+    overflow: auto;
+    height: 60vh;
+    font-family: Mixed;
+    font-size: large;
+}
+h3{
+    color: #9E8764;
+}
+#store form{
+    overflow: auto;
+    overflow-x: hidden;
+}
+#new{
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
+.num{
+    width: 1vw;
+    line-height:2;
+    float: left;
+    text-align: left;
+}
+#have_store{
+    padding-top: 10px;
+}
+#con{
+    width: 50vw;
+    background-color: #FFFAE4;
+    margin: auto;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+
+button{
+    font-family :NaikaiFont;
+}
+.click_button,.click_newbutton{
+    padding: 5px 10px;
+    border: 1px solid black;
+    border-radius:4px;
+    color: #9E8764;
+    background-color: #FFFAE4;
+}
+.click_newbutton{
+    font-size:x-large;
+    width: 200px;
+    margin-top: 10px;
+}
+.button_mar{
+    margin-right: 4vw;
+}
+.n_left{
+    float: left;
+    width: calc(100% - 20vw);
+    font-size: large;
+}
+
+#new{
+    overflow: auto;
+}
+.click_button{
+    font-size:large;
+    width: 150px;
+}
+.click_button:hover,.click_newbutton:hover{
+    cursor: pointer;
+}
+
+.store_list{
+    display: flow-root;
+    padding: 10px 40px 10px 50px;
+}
+.left{
+    float: left;
+    width: calc(100% - 20vw);
+    text-align:center;
+    word-wrap: break-word;
+}
+
+#n_tip{
+  position: relative;
+  background-color: #292929;
+  width: 200px;
+  height: 150px;
+  line-height: 150px; /* 垂直居中 */
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+}
+#n_tip:after {
+    border-top-color: #292929;
+    top: 100%;
+    left: 50%;
+    margin-left: -15px;  
+  }
+  button.click_button:hover button.click_button::before{
+    visibility: visible;
+    
+  }
+
+/*
+button.click_button:hover:before {
+  
+    content: "新增店家食物";
+    position: absolute;
+    border-color: #888888 #888888 transparent transparent;
+    border-style: solid solid solid solid;
+    border-width: 2px 1px;
+    transform: translate(10px, -30px);
+    border: 5px solid transparent;
+    color: #444;
+    display: block;
+    background-color: #ecf5ff;
+    border: 2px solid;
+    border-color: #c4e1ff;
+    border-radius: 5px;
+    width: 150px;
+    text-align:center;
+}
+
+*/
+.st_name{
+    text-align: left;
+    margin-left: 11vw;
+}
+.st_right{
+    width: 10vw;
+    margin-left: 15vw;
+}
+.store_name{
+    line-height:2;
+    
+    float: left;
+    text-align: left;
+}
+.right{
+    float: right;
+    width: 200px;
+}
+#newfood{
+    height: 50px;
+}
+ul#store_ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#store_ul li:nth-child(odd) {
+    background-color: #F4DCAC;
+}
+
+.ui-tooltip, .arrow:after {
+    background: black;
+    border: 2px solid white;
+  }
+  .ui-tooltip {
+    padding: 10px 20px;
+    color: white;
+    border-radius: 20px;
+    font: bold 14px "Helvetica Neue", Sans-Serif;
+    text-transform: uppercase;
+    box-shadow: 0 0 7px black;
+  }
+  .arrow {
+    width: 70px;
+    height: 16px;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    margin-left: -35px;
+    bottom: -16px;
+  }
+  .arrow.top {
+    top: -16px;
+    bottom: auto;
+  }
+  .arrow.left {
+    left: 20%;
+  }
+  .arrow:after {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: -20px;
+    width: 25px;
+    height: 25px;
+    box-shadow: 6px 5px 9px -9px black;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  .arrow.top:after {
+    bottom: -20px;
+    top: auto;
+  }
+
+  @media screen and (max-width: 1300px)  {
+    .right {
+        float: right;
+        width: auto;
+    }
+    .click_newbutton {
+        font-size: large;
+        width: 14vw;
+        line-height: 1.5;
+    }
+    .st_right {
+        width: 8vw;
+        margin-left: 13vw;
+    }
+    .left {
+        width: calc(100% - 21vw);
+    }
+    .n_left {
+        width: calc(100% - 18vw);
+    }
+    .st_name {
+        text-align: left;
+        margin-left: 8vw;
+    }
+  }
+  @media screen and (max-width: 1110px)  {
+    .left {
+        width: auto;
+        margin-left: 3vw;
+    }
+    .click_newbutton {
+        width: auto;
+    }
+    .n_left {
+        width: auto;
+    }
+    .st_name {
+        text-align: left;
+        margin-left: 5vw;
+    }
+    .click_newbutton {
+        width: auto;
+    }
+  }
+@media screen and (max-width: 920px)  {
+    .store_list {
+        display: flow-root;
+        padding: auto;
+    }
+    
+    #con{
+        width: 60vw;
+    }
+    #store {
+        height: 40vh;
+    }
+    .st_right {
+        width: auto;
+        margin-left: 15vw;
+    }
+
+}
+@media screen and (max-width: 790px)  {
+    .button_mar {
+        margin-right: 1vw;
+    }
+    .click_newbutton {
+        width: auto;
+        font-size: medium;
+    }
+    .st_name {
+        margin-left: 10vw;
+        font-size: small;
+    }
+    .left {
+        margin-left: 1vw;
+    }
+    .store_list {
+        padding: 10px 10px 10px 20px;
+    }
+    .click_button {
+        font-size: medium;
+        width: 18vw;
+    }
+    h3 {
+        font-size: large;
+    }
+    
+}
+@media screen and (max-width: 530px)  {
+    .n_left {
+        width: auto;
+    }
+    .click_newbutton {
+        font-size: small;
+        margin-top: 5px;
+    }
+    .click_button, .click_newbutton {
+        padding: 2px 10px;
+    }
+    
+    .num {
+        width: 2vw;
+        font-size: small;
+    }
+    h3{
+        font-size: small;
+    }
+    .st_name {
+        margin-left: 10vw;
+        font-size: small;
+        word-break: break-all;
+        width: 18vw;
+    }
+    .store_list {
+        padding: 10px 10px 10px 10px;
+    }
+}
+@media screen and (max-width: 380px)  {
+    
+    .n_left {
+        width: 32vw;
+    }
+    .click_newbutton {
+        width: 26vw;
+        font-size: x-small;
+    }
+    .st_name {
+        font-size: x-small;
+        width: 20vw;
+    }
+    
+}
+@media screen and (max-width: 300px)  {
+    .click_newbutton {
+        width: 24vw;
+        font-size: x-small;
+        padding: 0;
+    }
+    .st_right {
+        width: auto;
+    }
+    .n_left {
+        width: 35vw;
+        line-height: 2;
+    }
+    h3 {
+        font-size: x-small;
+    }
+    .click_button, .click_newbutton {
+        padding: 0;
+    }
+    .st_name {
+        font-size: x-small;
+        width: 20vw;
+    }
+    .click_button {
+        font-size: x-small;
+        width: 15vw;
+    }
+    h1{
+        font-size: x-large;
+    }
+}

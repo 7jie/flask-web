@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css"href="{{ url_for('static',filename='css/logout.css')}}">
+    </head>
+    <body>
+    <h1>您已登出！</h1>
+    <div id="mess_fr">
+        <div id="mess">
+            <button id="click_home">登入</button>
+        </div>
+    </div> 
+    </body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="{{url_for('static', filename='js/logout.js')}}"></script>

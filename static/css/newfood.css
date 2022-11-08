@@ -1,0 +1,152 @@
+.left{
+    float: left;
+    width: 14vw;
+    margin: 0;
+    
+}
+.right{
+    float: right;
+    
+    margin: 0;
+}
+.click{
+    background-color: #9E8764;
+    color: #FFF;
+    border: none;
+    font-weight: bold;
+    font-size: large;
+    border-radius: 5px;
+    padding: 5px 20px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+.center_name{
+    margin: auto;
+    text-align: center;
+    font-size: x-large;
+    padding-bottom: 20px;
+    padding-top: 10px;
+}
+.bt_click{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1vw;
+}
+.a {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 20px;
+    display: flex;
+}
+#type,#size{
+    width:150px;
+}
+#type option,#size option{
+    text-align: center;
+}
+#info{
+    margin: auto;
+    width: 80%;
+    height: 60vh;
+    overflow: auto;
+    font-size: x-large;
+    
+}
+
+#auto,#man{
+    display: none;
+}
+.con{
+    
+    width: 50vw;
+    margin: auto;
+    border: 1px solid black;
+    background-color: antiquewhite;
+    border-radius:10px ;
+    margin-bottom: 10px;
+}
+#send{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.none_eat {
+    width: 100%;
+    margin: 0;
+    display: none;
+}
+.block_eat{
+    display: flow-root;
+    margin-bottom: 20px;
+}
+a{
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.red,#ch_manual,#ch_auto{
+    font-size: large;
+}
+@media screen and (max-width: 1325px)  {
+    .red{
+        display: block;
+    }
+
+}
+@media screen and (max-width: 1200px)  {
+    .left{
+        width: 16vw;
+    }
+}
+
+@media screen and (max-width: 1020px)  {
+    
+
+    
+    .left {
+        width: 25vw;
+    }
+    .right {
+        width: calc(100% - 20vw);
+    }
+    #sizetext{
+        display: block;
+    }
+    
+    .a{
+        flex-direction: column;
+    }
+    .red{
+        display: inline;  
+    }
+    
+    .left,.right{
+        width: 100%;
+    }
+}
+
+@media (max-height: 400px) {
+    .con{
+        height: 300px;
+        
+    }
+}
+
+
+
+@media screen and (max-width: 860px)  {
+    .red{
+        display: block;
+    }
+    
+    .a{
+        justify-content: center;
+    }
+    .con{
+        padding: 0px 5vw 0px 0vw;
+    }
+    #info{
+        width: 60%;
+    }
+}

@@ -1,0 +1,104 @@
+
+{% extends "menu.html" %}
+{% block css %}
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/newfood.css') }}">
+{% endblock %}
+{% block cont %}
+<div id="preloader">
+    <div id="status"><img src="{{ url_for('static', filename='img/loading.gif') }}"/></div>
+</div>
+<h1>新增食品資料</h1>
+<div class="con">
+    {% if store_name !=undefined %}
+<div class="center_name">店家中文名稱：
+    <span>{{store_name}}</span></div>
+
+{% endif %}
+<!--
+        {% if en_name[store_name]==""  %}
+            <div class="center_name">店家英文名稱：
+            <span><input name="store_name_en" type="text"></span>
+            </div>
+        {%else%}
+        <div class="center_name">店家英文名稱：
+        <span>{{en_name[store_name]}}</span>
+        </div>
+        {% endif %}
+-->
+    <div id="info">
+        <form id="form1" name="form1" method="post" action="{{ url_for('insert_food') }}">
+        
+        <div class="a">
+            <div class="left">
+            飲食類別：</div>
+                <div class="right"><select id="type" name="type">
+                    <option value="eat">吃</option>
+                    <option value="drink">喝</option>
+                </select>
+            </div>
+        </div>
+
+    
+    
+    <div class="a"><div class="left">食品中文名稱：</div><div class="right"><input name="name_zh" placeholder="奶茶"><span class="red"><span id="name">*必填</span></span></div></div>
+    <div class="a"><div class="left">食品英文名稱：</div><div class="right"><input name="name_en" placeholder="milk tea"><span class="red"><span id="name_en"></span></span></div></div>
+
+    
+
+    <div id="auto">
+        <div class="a">
+        <div class="left">份量(中文)：</div><div class="right">
+            <select name="auto_size_zh"  id="size">
+        </select><a href="#" id="ch_manual">手動輸入</a></div>
+        </div>
+        <div class="a">
+        <div class="left">份量(英文)：</div><div class="right"><span id="size_en"></span></div>
+        </div>
+        </div>
+
+        <div id="man">
+            <div class="a">
+                <div class="left">份量(中文)：</div><div class="right"><input name="man_size_zh" id="size_zh" placeholder="150克"><a href="#" id="ch_auto">條列選擇</a><span class="red"><span id="sizetext">*必填</span></span>
+                </div>
+                </div>
+                <div class="a">
+                <div class="left">份量(英文)：</div><div class="right"><input name="man_size_en" placeholder="150g"></div>
+                </div>
+            </div>
+            <div class="a num">
+                    <div class="left">數量：</div><div class="right"><input title="請輸入數字" type="number" class="num" placeholder="1" autocomplete="off"></div>
+            </div>
+        <!--
+            <div class="left">單位(不限)：</div><div class="right"><input class="ch_num" placeholder="0"><span class="red"></span></div>
+            </div>
+        -->
+        <div class="a"><div class="left">熱量(kcal):</div><div class="right"><input title="請輸入數字" type="number" name="kcal" placeholder="150"><span class="red"><span id="kcaltext">*必填</span></span></div></div>
+        <div class="a">
+            <div class="left">蛋白質(g)：</div><div class="right"><input title="請輸入數字" type="number" class="ch_num" name="protein" placeholder="0"><span class="red"></span></div>
+        </div>
+        <div class="a">
+            <div class="left">飽和脂肪(g)：</div><div class="right"><input title="請輸入數字" type="number" class="ch_num" name="saturated" placeholder="0"><span class="red"></span></div>
+        </div>
+        <div class="a">
+            <div class="left">反式脂肪(g)：</div><div class="right"><input title="請輸入數字" type="number" class="ch_num" name="trans" placeholder="0"><span class="red"></span></div>
+        </div>
+        <div class="a">
+            <div class="left">糖(g)：</div><div class="right" ><input title="請輸入數字" type="number" class="ch_num" name="sugar" placeholder="0"><span class="red"></span></div>
+        </div>
+        <div class="a">
+            <div class="left">碳水化合物(g)：</div><div class="right"><input title="請輸入數字" type="number" class="ch_num" name="carbohydrate" placeholder="0"><span class="red"></span></div>
+        </div>
+        <div class="a">
+            <div class="left">鈉(mg)：</div><div class="right"><input title="請輸入數字" type="number" class="ch_num" name="sodium" placeholder="0"><span class="red"></span></div>
+        </div>
+        <div class="bt_click"><button class="click">新增食品</button></div>
+</form>
+</div>
+
+
+{% endblock %}
+
+{% block conjs %}
+<script src="{{ url_for('static', filename='js/store_food.js') }}" type="text/javascript"></script>
+{% endblock %}

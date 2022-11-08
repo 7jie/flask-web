@@ -1,0 +1,63 @@
+
+
+{% extends "menu.html" %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/store_list.css') }}">
+{% endblock css %}
+
+
+{% block cont %}
+<h1>食品資料</h1>
+<div id="preloader">
+    <div id="status"><img src="{{ url_for('static', filename='img/loading.gif') }}"/></div>
+</div>
+<div id="back"></div>
+
+<div id="con_frame">
+<div id="search_top">
+    <div id="tip_con"><span class="red first">*請先選擇店家及飲食類別，若查無資料則無該類別資料</span><span class="red store_type"></span><span class="red nodata"></span></div>
+    <div id="search_fr">
+        <div id="name">
+    店家名稱：<select name="name" id="store_name">
+        {% if data_name != undefined%}
+            {% for i in data_name %}
+            <option>
+                {{i}}
+            </option>
+            {% endfor %}
+        {% endif%}
+        </select> 
+    
+    飲食類別：<select name="diet" id="diet_name">
+        <option>
+            吃
+        </option>
+        <option>
+            喝
+        </option>
+    </select>
+    </div>
+    <div id="search_con">
+    <input id="search" placeholder="請以空格為間隔，例：冰淇淋 綠" autocomplete="off">
+    <button id="searchbutton">搜尋</button>
+    </div>
+</div>
+</div>
+
+
+<div id="ttt">
+<ul id="data_list"></ul>
+
+
+</div>
+</div>
+
+
+
+{% endblock %}
+
+{% block conjs %}
+
+<script src="{{url_for('static', filename='js/food_list.js')}}"></script>
+{% endblock %}

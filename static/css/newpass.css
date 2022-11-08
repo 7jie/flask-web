@@ -1,0 +1,86 @@
+body{
+    background-image: url('../img/back.jpg');
+    background-size: cover;
+}
+#pass_con {
+    width: 50vw;
+    background-color: antiquewhite;
+    margin: auto;
+    height: 40vh;
+    border-radius: 10px;
+    border: 3px solid #9E8764;
+}
+h1{
+    color: #975C1D;
+    text-align: center;
+    font-family: 'Mixed';
+    font-size: 50px;
+    line-height: 1;
+}
+#pass_con div {
+    margin-top: 2vw;
+    line-height: 1.5;
+}
+#emaid_fr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: xx-large;
+    margin: auto;
+
+    overflow: auto;
+}
+/*
+.left {
+    text-align: right;
+    float: left;
+    width: calc(100% - 400px);
+}
+.right{
+    float: right;
+    width: 400px;
+}
+*/
+#regmail {
+    width: 30vw;
+    height: 30px;
+}
+#newpass_fr{
+    display: flex;
+    justify-content: center;
+}
+button{
+    padding: 0px 30px;
+    border: none;
+    border-radius: 2px;
+    color: #9E8764;
+    background-color: #F4DCAC;
+    margin: 5px;
+    font-size: x-large;
+}
+a{
+    text-decoration: none;
+    color: #000;
+    font-size: large;
+}
+#re{
+    font-size: x-large;
+}
+@media screen and (max-width: 1000px)  {
+    #emaid_fr {
+        width: 80%;
+        font-size: x-large;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    #regmail {
+        width: 40vw;
+    }
+}
+@media (max-height: 600px) {
+    #pass_con{
+        height: 300px;
+    }
+}
+

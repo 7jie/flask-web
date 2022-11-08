@@ -1,0 +1,207 @@
+#ttt{
+    margin-top: 1em;
+    height: 50vh;
+    overflow: auto;
+    border-top:1px solid black ;
+}
+#a1{
+    margin: auto;
+}
+#name{
+    font-size: x-large;
+}
+#search_con{
+    margin-top: 1vw;
+}
+
+#con_frame{
+    width: 50vw;
+    margin: auto;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #FFFAE4;
+}  
+.food_list{
+    display: flow-root;
+    padding: 10px 40px;
+}
+.right{
+    float: right;
+    width: 20vw;
+}
+.left_rev{
+    float: left;
+    width: 50%;
+}
+.right_del{
+    float: right;
+    width: 50%;
+}
+.right a{
+    text-decoration: none;
+}
+#data_list{
+    font-size: large;
+    list-style: none;
+    padding:0; 
+    margin:0;
+}
+#data_list li:nth-child(odd){
+    background-color: #F4DCAC;
+}
+#search_top{
+    margin-top: 20px;
+    font-size: large;
+}
+input#search {
+    border-radius: 0.2em;
+    margin-left: 0.3em;
+}
+.left{
+    float: left;
+    width: calc(100% - 20vw);
+}
+#search_fr{
+    margin-top:1vw ;
+}
+#search_no{
+    display: flex;
+
+    margin-top: 10vh;
+    font-size: xx-large;
+
+    justify-content: center;
+}
+select{
+    cursor: pointer;
+}
+#store_name {
+    width: 10vw;
+}
+#diet_name{
+    width: 5vw;
+    text-align: center;
+}
+div#search_no {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#search{
+    width: 320px;
+}
+input:focus::-webkit-input-placeholder { 
+    color:transparent; 
+} 
+input:focus:-moz-placeholder { 
+    color:transparent; 
+}
+button{
+    cursor: pointer;
+}
+@media screen and (max-width: 1110px)  {
+    #ttt{
+        height: 40vh;
+    }
+    #search_top{
+        font-size: medium;
+    }
+    .right{
+        width: 15vw;
+    }
+    #data_list {
+        font-size: medium;
+    }
+    #search_no {
+        font-size: x-large;
+    }
+}
+@media screen and (max-width: 800px)  {
+    #name{
+        font-size: large;
+    }
+    #search_top div .red {
+        font-size: medium;
+    }
+    #search{
+        width: 280px;
+    }
+    .first{
+        display: none;
+    }
+    .store_type::after{
+        content: "*請先選擇店家及飲食類別";
+    }
+    .nodata::after{
+        content: "若查無資料則無該類別資料";
+        display: block;
+        margin-top: 1vw;
+    }
+    #search_fr{
+        margin-left: 0.3em;
+    }
+    
+}
+    
+
+
+@media screen and (max-width: 830px)  {
+    #diet_name {
+        width: auto;
+    }
+    #search_no span{
+        display: none;
+    }
+    #search_no::after{
+        content: "查無資料";
+        font-size: xx-large;
+    }
+}
+@media screen and (max-width: 700px)  {
+    div#name {
+        display: flex;
+        flex-direction: column;
+    }
+    #store_name{
+        width: 20vw;
+    }
+    #diet_name{
+        width: 20vw;
+    }
+    #searchbutton{
+        width: 8vw;
+    }
+    #search{
+        width: 30vw;
+    }
+    input#search {
+        margin-left: 0;
+    }
+    #name select,#store_name,#diet_name{
+        margin-top: 1vw;
+    }
+
+}
+@media screen and (max-width: 500px)  {
+    
+    #searchbutton{
+        width: auto;
+        display: flex;
+        margin: auto;
+        margin-top: 1vw;
+    }
+    #search{
+        width: 200px;
+    }
+    #search_top div .red {
+        font-size: small;
+    }
+}
+@media screen and (max-width: 430px)  {
+    #search{
+        width: 90%;
+    }
+    #diet_name {
+        width: 20vw;
+    }
+}

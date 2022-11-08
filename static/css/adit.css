@@ -1,0 +1,248 @@
+.red{
+    color: red;
+}
+body{
+    overflow: auto;
+}
+#s{
+    margin-left:1em ;
+}
+.adit_ok{
+    background-color: #9E8764;
+    color: #FFF;
+    border: none;
+    font-weight: bold;
+    font-size: large;
+}
+.adit_no{
+    background-color: #FFFAE4;
+    color: #9E8764;
+    font-size: large;
+    font-weight: bold;
+    border: 1px solid #9E8764;
+}
+#adit_con{
+    width: 50vw;
+    background-color: antiquewhite;
+    margin: auto;
+    height: 60vh;
+    border-radius: 10px;
+    border: 3px solid #9E8764;
+    overflow: auto;
+}
+#con{
+    width: 100%;
+    margin: auto;
+
+}
+
+.userfood_nutrition{
+    font-size: x-large;
+    /* width: 50%; */
+    /* margin: auto; */
+    /* padding: 20px; */
+    display: flex;
+    justify-content: center;
+
+}
+.rev_left{
+    float: left;
+}
+.userfood_title,.userfood_all{
+    cursor: pointer;
+    margin: 10px;
+}
+.userfood_all{
+    margin-bottom: 0px;
+    font-size: x-large;
+}
+.userfood_title label{
+    cursor: pointer;
+}
+.c_box{
+    transform: scale(1.4);
+    display: inline;
+    
+}
+.c_box:checked{
+    background-color: black;
+}
+.info_left,.info_right {
+    width: 15vw;
+}
+#text_data,#adit_ok {
+    color: #9E8764;
+}
+#note{
+    opacity: 1;
+}
+/*
+.info_left{
+    float: left;
+    width: calc(100% - 200px);
+}
+.info_right{
+    float: right;
+    width: 200px;
+}
+*/
+.userfood_info li:nth-child(odd){
+    background-color: #F4DCAC;
+    
+}
+.nview{
+    display: none;
+}
+.view{
+    display: block;
+}
+.userfood_info{
+    list-style: none;
+    padding: 0;
+}
+.uf_right{
+    float: right;
+}
+.click_con{
+    margin: auto;
+    width: 40%;
+    overflow: auto;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+.data_left{
+    flex: 1;
+}
+.data_right{
+    flex: 1;
+}
+
+button{
+    border-radius: 5px;
+    padding: 5px 20px;
+    cursor: pointer;
+    margin-left: 20px;
+    
+}
+#page_con{
+    margin: auto;
+    width: 50%;
+    margin-top: 20px;
+}
+.userfood_info{
+    font-family: Mixed;
+}
+#page_con {
+    display: flex;
+}
+#page_text{
+    font-size: xx-large;
+    margin: auto;
+}
+
+.u_right{
+    margin-left: 1vw;
+}
+.userfood{
+    display: flex;
+    
+    align-items: center;
+}
+.check{
+    width: 90vw;
+}
+.u_right{
+    margin-right: 1vw;
+    cursor: pointer;
+}
+span#food_name {
+    font-size: large;
+}
+span#nodata {
+    margin: auto;
+    font-size: xxx-large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5vh;
+}
+#dit_no{
+    color: #FF9595;
+}
+/*
+.userfood_title::after {
+    font-family: FontAwesome;
+    content: "\f304";
+    float:right;
+}
+*/
+@media screen and (max-width: 1300px) {
+    .info_right{
+        width: 150px;
+    }
+    .info_left{
+        width: calc(100% - 150px);
+    }
+    .click_con{
+        width: 45%;
+    }
+}
+@media screen and (max-width: 1150px) {
+    .info_right{
+        width: 100px;
+    }
+    .info_left{
+        width: calc(100% - 100px);
+    }
+    .click_con{
+        width: 50%;
+    }
+}
+@media screen and (max-width: 1030px) {
+
+    .click_con{
+        width: 55%;
+    }
+}
+
+@media screen and (max-width: 940px) {
+    .userfood_nutrition{
+        width: 70%;
+    }
+    .info_right{
+        width: 220px;
+    }
+    .info_left{
+        width: calc(100% - 220px);
+    }
+}
+@media screen and (max-width: 795px) {
+    .userfood_nutrition{
+        width: 90%;
+    }
+    .info_right{
+        width: 120px;
+    }
+    .info_left{
+        width: calc(100% - 120px);
+    }
+    .click_con{
+        width: 70%;
+    }
+}
+@media screen and (max-width: 690px) {
+    .click_con{
+        width:90%;
+        margin: auto;
+        margin-bottom: 20px;
+    }
+    
+}
+@media screen and (max-width: 545px) {
+    .click_con{
+        width:100%;
+    }
+    span#nodata{
+        font-size: xx-large;
+    }
+}

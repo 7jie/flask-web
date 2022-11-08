@@ -1,0 +1,66 @@
+<link rel="stylesheet" type="text/css"href="{{ url_for('static',filename='css/rev_recipe.css')}}">
+{% extends "menu.html" %}
+{% block nav %}
+    {{ super() }}
+{% endblock %}
+{% block cont %}
+<h1>修改食譜資料</h1>
+<div id="preloader">
+    <div id="status"><img src="{{ url_for('static', filename='img/loading.gif') }}"/></div>
+</div>
+<div id="con">
+<div class="recipe">
+{% if data != undefind%}
+
+    {%for x in rec%}
+        {% if x=='chinese' %}
+            <div id="recipe_chinese">食譜中文：<input data-val="{{data[x]}}" name="{{x}}" type="text" value="{{data[x]}}" placeholder="{{data[x]}}" size="60"><span class="red" id="{{x}}">*必填</span></div>
+        {% endif %}
+        {% if x=='english' %}
+            <div id="recipe_english">食譜英文：<input data-val="{{data[x]}}" name="{{x}}" type="text" value="{{data[x]}}" placeholder="{{data[x]}}" size="60"><span class="red" id="{{x}}"></span></div>
+        {% endif %}
+        {% if x=='url' %}
+            <div>
+                <p>圖片：<input id="img_file" type="file" id="img"></p>
+                <p><img data-val="{{data['path']}}" src="{{data[x]}}" id="recipe_img" data-path="{{data['path']}}"></p>
+            </div>
+        {% endif %}
+        {% if x=='ingredients' %}
+            <div class="red">食材：<button class="r1">+</button></p></div>
+            
+            <div id="ing_list">
+                <ul id="ing_rev">
+                {% for y,z in data[x].items() %}
+                    
+                    <li><div class="ing_num"><div class="ing_left"><span>名稱：</span><input type="text" class="name" value="{{y}}"></div><div class="ing_right"><span>份量：</span><input type="text" class="size" value="{{z}}"></div><div><button class="r2">刪除</button></div></div></li>
+                    
+                {% endfor%}
+                </ul>
+            </div>
+        {% endif %}    
+        {% if x=='step' %}
+            <div class="red top">步驟：<button class="r3">+</button></p></div>
+            <div id="step_list">
+            <ul id="step_rev">
+            {% for b in range(len) %}
+                
+                <li><div class="step_num"><div class="step_left"><span>{{b+1}}</span>：</div><div class="step_right"><input type="text" class="step" value="{{data[x][b]}}" type="text" size="60"></div><div><button class="r4">刪除</button></div></div></li>
+                
+            {% endfor%}   
+            </ul> 
+        </div>
+        {% endif %}
+    {% endfor%}
+    
+{% endif %}
+
+</div>
+<div id="rev_recipe"><button>儲存</button></div>
+</div>
+
+{% endblock %}
+
+
+{% block conjs %}
+<script src="{{url_for('static', filename='js/rev_recipe.js')}}"></script>
+{% endblock %}

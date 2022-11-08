@@ -1,0 +1,47 @@
+{% extends "menu.html" %}
+{% block css %}
+
+<link rel="stylesheet" type="text/css"href="{{ url_for('static',filename='css/fd_code.css')}}">
+
+{% endblock %}
+
+
+{% block cont %}
+
+
+<h1>修改與刪除條碼資料</h1>
+<div id="preloader">
+    <div id="status"><img src="{{ url_for('static', filename='img/loading.gif') }}"/></div>
+</div>
+
+<div id="back"></div>
+<div id="c">
+    
+    <div id="code_top"><div id="cd_con"><div id="code">條碼</div><div id="code_zh">商品中文</div></div><div id="search_con"><input id="search_code" placeholder="請輸入商品名稱"> <button id="sea_code">搜尋</button></div></div>
+    <div id="code_con">
+
+        <ul id="codedata">
+        {% for i,k in data.items() %}
+            <li>
+                <div id="code_back">
+                    
+                    {% if k['BarCode']!="nan" and k['BarCode']!="" %}
+                        <div id="code_num">{{ k['BarCode'] }}</div><div id="codet_con"><div id="code_text">{{ k['chinese'] }}</div></div><div id="rev_del"><a href="{{ url_for('fix_code',key=i) }}">修改</a><a href="#" class="del" data-val='{{i}}'>刪除</a></div>
+                    {% else %}
+                        <div id="code_num">店內條碼</div><div id="codet_con"><div id="code_text">{{ k['chinese'] }}</div></div><div id="rev_del"><a href="{{ url_for('fix_code',key=i) }}">修改</a><a href="#" class="del" data-val="{{i}}">刪除</a></div>
+                    {% endif %}
+                
+                </div>
+            </li>
+                
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block conjs %}
+<script src="{{ url_for('static', filename='js/fd_code.js') }}"></script>
+{% endblock %}

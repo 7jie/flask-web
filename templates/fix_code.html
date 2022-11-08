@@ -1,0 +1,50 @@
+{% extends "menu.html" %}
+{% block css %}
+<link rel="stylesheet" type="text/css"href="{{ url_for('static',filename='css/fix_code.css')}}">
+{% endblock %}
+
+{% block cont %}
+<h1>修改條碼資料</h1>
+<div id="preloader">
+    <div id="status"><img src="{{ url_for('static', filename='img/loading.gif') }}"/></div>
+</div>
+<div id="c">
+<form id="code_fr" method="post" action="{{url_for('rev_code')}}">
+    {% for i,k in cd_zh.items()%}
+        {% if i=="BarCode" %}
+            {% if d[i]=="" or d[i]=="nan"%}
+            <div class="con"><div>Barcode：</div><div class="cd_block"><input name="{{i}}" disabled></div><a href="#" class="code"></a></div>
+            <!--<div>{{k}}：<input name="{{k}}" placeholder="4710367447634" size=""></div>-->
+            {% else %}
+            <div class="con"><div>{{cd_zh[i]}}：</div><div class="cd_block"><input name="{{i}}" placeholder="{{d[i]}}" value="{{d[i]}}" size=""><span class="red" id="{{k}}">*必填</span></div><a href="#" class="inst_code"></a></div>
+            {% endif %}
+        {%else%}
+            {% if i=="chinese" %}
+
+            <div class="con"><div>{{cd_zh[i]}}：</div><div class="con_block"><input  title="請輸入30字以內" maxlength="30" name="{{i}}" data-val="{{d[i]}}" placeholder="{{d[i]}}" value="{{d[i]}}" size=""><span class="red" id="{{i}}">*必填</span></div></div>
+            {%elif i=="english"%}
+            <div class="con"><div>{{cd_zh[i]}}：</div><div class="con_block"><input name="{{i}}" data-val="{{d[i]}}" title="請輸入80字以內" maxlength="80" placeholder="{{d[i]}}" value="{{d[i]}}" size=""><span class="red" id="{{i}}"></span></div></div>
+            {%elif i=="kcal"%}
+            <div class="con"><div>{{cd_zh[i]}}：</div><div class="con_block"><input name="{{i}}" placeholder="{{d[i]}}" value="{{d[i]}}" size=""><span class="red" id="{{i}}">*必填</span></div></div>
+            {% elif i=="size_zh" %}
+            <div class="con"><div>{{cd_zh[i]}}：</div><div class="con_block"><input name="{{i}}" data-val="{{d[i]}}" placeholder="{{d[i]}}" value="{{d[i]}}" size=""><span class="red" id="{{i}}">*必填</span></div></div>
+            {% elif i=="size_en"%}
+            <div class="con"><div>{{cd_zh[i]}}：</div><div class="con_block"><input name="{{i}}" data-val="{{d[i]}}" placeholder="{{d[i]}}" value="{{d[i]}}" size=""><span class="red" id="{{i}}"></span></div></div>
+            {%else%}
+            <div class="con"><div>{{cd_zh[i]}}：</div><div class="con_block"><input name="{{i}}" class="num" placeholder="{{d[i]}}" value="{{d[i]}}" size=""><span class="red" id="{{i}}"></span></div></div>
+        
+            {% endif %}
+            {% endif %}
+
+
+    {% endfor %}
+    
+
+    <div class="btn_con"><button id="click">修改</button></div>
+</form>
+</div>
+{% endblock %}
+
+{% block conjs %}
+<script src="{{url_for('static', filename='js/fix_code.js')}}"></script>
+{% endblock %}

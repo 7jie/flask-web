@@ -1,0 +1,183 @@
+{% block css %}
+    <link rel="stylesheet" type="text/css"href="{{ url_for('static',filename='css/adit.css')}}">
+{% endblock css %}
+
+{% extends "menu.html" %}
+
+{% block cont %}
+<h1>
+    {% if n=='drink' %}
+    飲品審核
+    {% endif %}
+    {% if n=='eat' %}
+    食品審核
+    {% endif %}
+    {% if n=='code' %}
+    條碼審核
+    {% endif %}
+    {% if n=='fruit' %}
+    水果審核
+    {% endif %}
+</h1>
+<div id="preloader">
+    <div id="status"><img src="{{ url_for('static', filename='img/loading.gif') }}"/></div>
+</div>
+<div id="back"></div>
+<div id="adit_con">
+{% if data|length==0 %} 
+
+    <span id="nodata">暫無審核資料</span>
+
+{% else %}    
+
+<label><div  class="userfood_all"><input  class="c_box" id="choose_all" type="checkbox">全選</div></label>
+<div id="con">
+
+{% if page==undefined or page==1%}
+    {% if data|length >pagination.per_page %}
+    {% for d in range(0,pagination.per_page) %}
+
+    <ul class="userfood_info">
+        <li><div class="userfood"><label class="check"><div  class="userfood_title"><input data-name="{{data[d]['chinese']}}" data-uid="{{data[d]['userID']}}" data-num="{{data[d]['list_num']}}" class="c_box"type="checkbox"><span id="food_name">{{data[d]['chinese']}}</span></div></label><i class="u_right fa-solid fa-pen"></i></div></li>
+    <li class="view">
+        {%for x in d_n.keys()%}
+                
+                        
+                    {% if x not in n_view%}
+                        
+                        <div class="userfood_nutrition">
+                            {%if x in data[d].keys() and data[d][x]!=None  %}
+                            <div class="info_left">{{d_n[x]}}：</div><div class="info_right">{{data[d][x]}}</div>
+                            {%endif%}
+                        
+                        </div>
+                        
+                    {% endif %}
+                        
+
+        {%endfor%}
+        </li>
+        
+        </ul>
+    {% endfor %}
+
+
+
+    {% else %}
+            {% for d in range(0,data|length) %}
+            
+            <ul class="userfood_info">
+                <li><div class="userfood"><label class="check"><div  class="userfood_title"><input data-name="{{data[d]['chinese']}}" data-uid="{{data[d]['userID']}}" data-num="{{data[d]['list_num']}}" class="c_box"type="checkbox"><span id="food_name">{{data[d]['chinese']}}</span></div></label><i class="u_right fa-solid fa-pen"></i></div></li>
+            <li class="view">
+                
+
+                {%for x in d_n.keys()%}
+                
+                        
+                    {% if x not in n_view%}
+                        
+                        <div class="userfood_nutrition">
+                            {%if x in data[d].keys() and data[d][x]!=None  %}
+                            <div class="info_left">{{d_n[x]}}：</div><div class="info_right">{{data[d][x]}}</div>
+                            {%endif%}
+                        
+                        </div>
+                        
+                    {% endif %}
+                        
+
+                {%endfor%}
+                </li>
+                
+                </ul>
+            {% endfor %}
+    {% endif %}
+{% else %}
+{% if page !=total%}
+{% for d in range((page-1)*pagination.per_page,(page-1)*pagination.per_page+pagination.per_page)%}
+<ul class="userfood_info">
+    
+    <li><div class="userfood"><label class="check"><div  class="userfood_title"><input data-name="{{data[d]['chinese']}}" data-uid="{{data[d]['userID']}}" data-num="{{data[d]['list_num']}}" class="c_box"type="checkbox"><span id="food_name">{{data[d]['chinese']}}</span></div></label><i class="u_right fa-solid fa-pen"></i></div></li>
+    <li class="view">
+        {%for x in d_n.keys()%}
+                
+                        
+                    {% if x not in n_view%}
+                        
+                        <div class="userfood_nutrition">
+                            {%if x in data[d].keys() and data[d][x]!=None  %}
+                            <div class="info_left">{{d_n[x]}}：</div><div class="info_right">{{data[d][x]}}</div>
+                            {%endif%}
+                        
+                        </div>
+                        
+                    {% endif %}
+                        
+
+        {%endfor%}
+        
+        </li>
+        
+        </ul>
+
+{% endfor %}
+{%else%}
+{% for d in range((page-1)*pagination.per_page,pagination.total)%}
+<ul class="userfood_info">
+    <li><div class="userfood"><label class="check"><div  class="userfood_title"><input data-name="{{data[d]['chinese']}}" data-uid="{{data[d]['userID']}}" data-num="{{data[d]['list_num']}}" class="c_box"type="checkbox"><span id="food_name">{{data[d]['chinese']}}</span></div></label><i class="u_right fa-solid fa-pen"></i></div></li>
+    <li class="view">
+        {%for x in d_n.keys()%}
+                
+                        
+                    {% if x not in n_view%}
+                        
+                        <div class="userfood_nutrition">
+                            {%if x in data[d].keys() and data[d][x]!=None  %}
+                            <div class="info_left">{{d_n[x]}}：</div><div class="info_right">{{data[d][x]}}</div>
+                            {%endif%}
+                        
+                        </div>
+                        
+                    {% endif %}
+                        
+
+        {%endfor%}
+        </li>
+        
+        </ul>
+
+{% endfor %}
+{% endif %}
+{% endif %}
+
+<div class="click_con"><button class="data_left adit_ok">審核通過</button><button  class="data_right adit_no">否決審核</button></div>
+</div>
+
+
+
+
+
+{% endif %}
+</div>
+<div id="page_con">
+    <div id="page_text">
+    {% for href in pagination.pages%}
+    {% if page==href %}
+    {{href}}
+    {% else %}
+    <a href="?page={{href}}">{{href}}</a>
+    {% endif %}
+    {% endfor %}
+    </div>
+</div>
+<!--
+<script src="https://www.gstatic.com/firebasejs/5.5.5/efirebas-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-firestore.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+-->
+{% endblock %}
+
+
+{% block conjs %}
+<script src="{{ url_for('static', filename='js/adit.js') }}" type="text/javascript"></script>
+{% endblock %}

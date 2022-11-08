@@ -1,0 +1,51 @@
+
+
+{% extends "menu.html" %}
+{% block css %}
+
+<link rel="stylesheet" type="text/css"href="{{ url_for('static',filename='css/food.css')}}">
+
+
+{% endblock css %}
+{% block cont %}
+
+{% if data !=undefined %}
+<h1>新增食品資料</h1>
+
+<div id="con">
+<div id="new">
+<form method="post" action="{{url_for('newstore')}}">
+    
+            <div class="n_left">
+            <div class="left"><h3>已有筆數</h3></div>
+            <div class="st_right"><h3>已有店家</h3></div>
+            </div>
+            <div class="right button_mar"><button class="click_newbutton" title="新增店家與食品資料">新增店家及食品</button></div>
+        
+    
+</form>
+</div>
+
+<div id="store">
+
+<form method="post" action="{{url_for('newfood')}}">
+
+    <ul id="store_ul">
+    {% for i in data %}
+    <li>
+       <div class="store_list">
+        
+           <div class="num">{{num[i]}}</div><div class="left store_name"><div class="st_name">{{i}}</div></div><div class="right"><button class="click_button" title="新增店家食物" name="store_name" type="submit" value="{{i}}">新增</button></div>
+        </div>
+    </li>    
+    {% endfor %}
+</ul>
+</form>
+</div>
+
+{% endif %}
+
+</div>
+</div>
+</div>
+{% endblock %}

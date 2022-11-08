@@ -1,0 +1,50 @@
+
+{% extends "menu.html" %}
+{% block css %}
+<link rel="stylesheet" type="text/css"href="{{ url_for('static',filename='css/revise_food.css')}}">
+{% endblock css %}
+{% block cont %}
+<div id="tip_save"></div>
+<a href="{{ url_for('food_list') }}"><返回</a>
+<h1>修改食品資料</h1>
+<div id="preloader">
+    <div id="status"><img src="{{ url_for('static', filename='img/loading.gif') }}"/></div>
+</div>
+<form id="rev_f_con" method="post" action="{{ url_for('revise_fper')}}">
+<div><h2>{{store_name}}</h2></div>
+{% for a in name.keys()%}
+    {%if a in d.keys()%}
+        {% if a in de%}
+                    
+                
+        <div class="con_nre"><div>{{ name[a] }}：</div><div><span id="{{a}}">{{ d[a] }}</span></div></div>
+        
+        {% else %}
+                    {% if a=="chinese"%}
+                        <div class="con"><div>{{ name[a] }}：</div><div class="con_block"><input type="text" name="{{ a }}" data-val="{{d[a]}}" placeholder="{{ d[a]}}" value="{{d[a]}}"><span class="red" id="zh_text">*必填</span></div></div>
+                    {% elif a=="english"%}
+                        <div class="con"><div>{{ name[a] }}：</div><div><input type="text" name="{{ a }}" data-val="{{d[a]}}" placeholder="{{ d[a] }}" value="{{d[a]}}"><span class="red" id="en_text"></span></div></div>
+                    {% elif a=="kcal"%}
+                        <div class="con"><div>{{ name[a] }}：</div><div class="con_block"><input title="請輸入數字" type="number" name="{{ a }}" data-val="{{d[a]}}" placeholder="{{ d[a] }}" value="{{d[a]}}"><span class="red" id="kcal_text">*必填</span></div></div>
+                    {%else%}
+                    <div class="con"><div>{{  name[a] }}：</div><div><input title="請輸入數字" type="number" name="{{ a }}" value="{{d[a]}}" placeholder="{{d[a]}}"><span class="red"></span></div></div>
+                    {% endif %}
+        {%endif%}
+    {%elif a!="BarCode"%}
+    <div class="con"><div>{{  name[a] }}：</div><div><input title="請輸入數字" type="number" class="n" name="{{ a }}" placeholder="0"><span class="red"></span></div></div>
+    {%endif%}
+
+    
+{%endfor%}
+
+
+<div id="save_fr"><button id="save">儲存</button></div>
+</form>
+
+
+{% endblock %}
+
+
+{% block conjs %}
+<script src="{{url_for('static', filename='js/revise_food.js')}}"></script>
+{% endblock %}

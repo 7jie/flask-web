@@ -1,0 +1,33 @@
+{% extends "menu.html" %}
+{% block css %}
+<link rel="stylesheet" type="text/css"href="{{ url_for('static',filename='css/revise_fper.css')}}">
+{% endblock css %}
+
+
+
+
+{% block cont %}
+
+<h1>修改成功</h1>
+<div id="insert">
+    
+
+{%for i in da_na.keys()%}
+
+    {% if da_na[i] in data.keys() %}
+
+    <div class="info_con">
+        <div class="da-val">
+        <div>{{da_na[i]}}：</div>
+        <div >{{data[da_na[i]]}}</div>
+        </div>
+    </div>
+    {%endif%}
+
+{%endfor%}
+
+
+
+<div id="back"><a href="{{ url_for('food') }}">返回</a></div>
+</div>
+{% endblock %}

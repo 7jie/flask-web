@@ -1,0 +1,23 @@
+{% extends "menu.html" %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/css/in_fd.css">
+{% endblock css %}
+{% block cont %}
+<h1>條碼資料新增成功</h1>
+
+<div id="insert">
+{%for i in cd.keys()%}
+{%if i in data.keys()%}
+<div class="info_cd">
+    <div class="incd_con">
+        <div>{{i}}：</div><div>{{data[i]}}</div>
+    </div>
+</div>
+{%endif%}
+
+{%endfor%}
+
+
+<div id="con_block"><a href="{{ url_for('newcode') }}">返回</a></div>
+</div>
+{% endblock %}

@@ -1,0 +1,72 @@
+
+{% extends "menu.html" %}
+{% block nav %}
+    {{ super() }}
+{% endblock %}
+{% block cont %}
+
+<link rel="stylesheet" type="text/css"href="{{ url_for('static',filename='css/account.css')}}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+<link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
+    />
+<h1>新增帳號</h1>
+<div id="preloader">
+    <div id="status"><img src="{{ url_for('static', filename='img/loading.gif') }}"/></div>
+</div>
+<form name="form_acc" action="/acc_insert" method="post">
+    <div id="c">
+        <div id="step">
+            <div class="step_group"><label>會員帳號：</label><input name="account"><span class="red"><span id="account">*必填</span></span></div>
+            <div class="step_group"><label>會員密碼：</label><input name="password" type="password"><span class="red"><span id="password">*必填</span></span></div>
+            <div class="step_group"><label>電話密碼：</label><input  id="phone" type="tel" name="phone" /></div>
+            <div class="step_group alert alert-info" style="display: none"><span class="red"><span id="info"></span></span></div>
+            <div class="step_group"><button id="button_1" disabled=true>發送驗證碼</button></div>
+            <div class="step_group"><label>驗證碼：</label><input type="text" id="input_1"disabled=true></div>
+            <div class="step_group ver_block" style="display: none"><span class="red"><span id="ver_info"></span></span></div>
+            <div class="n_block"><button id="next" disabled=true>下一步</button></div>
+        </div>
+
+        <div id="step2">
+            <div class="step_group"><label>生日年：</label><input name="birth_year" type="number" placeholder="1987"><span class="red"><span id="birth_year">*必填</span></span></div>
+        <div class="step_group"><label>性別：</label>
+            <select name="sex">
+                <option value="man">男性</option>
+                <option value="woman">女性</option>
+                <option value="unidentified">不方便透露</option>
+            </select>
+        </div>
+        <div class="step_group"><label>身高：</label><input name="height" type="number" placeholder="180">公分<span class="red"><span id="height">*必填</span></span></div>
+        <div class="step_group"><label>體重：</label><input name="weight" type="number" placeholder="60">公斤<span class="red"><span id="weight">*必填</span></span></div>
+        <div class="step_group"><label>想避免的食物：</label>
+            <div class="filterFood">
+                <div><label><input type="checkbox" name="filter"  value="海鮮">海鮮</label></div>
+                <div><label><input type="checkbox" name="filter"  value="奶類">奶類</label></div>
+                <div><label><input type="checkbox" name="filter"  value="蛋">蛋</label></div>
+                <div><label><input type="checkbox" name="filter"  value="花生">花生</label></div>
+                <div><label><input type="checkbox" name="filter"  value="蜂蜜">蜂蜜</label></div>
+                <div><label><input type="checkbox" name="filter"  value="腰果">腰果</label></div>
+                <div><label><input type="checkbox" name="filter"  value="紅豆">紅豆</label></div>
+                <div><label><input type="checkbox" name="filter"  value="小麥">小麥</label></div>
+                <div><label><input type="checkbox" name="filter"  value="鰻魚">鰻魚</label></div>
+            </div>
+        
+        </div>
+        <div id="click_block"><button id="click" disabled=true>完成</button></div>
+        </div>
+        
+        
+        
+        
+    </div>
+</form>
+<script>
+   
+</script>
+<script  src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script  src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="{{ url_for('static', filename='js/account.js') }}"></script>
+{% endblock %}

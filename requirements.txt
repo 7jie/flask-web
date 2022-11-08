@@ -1,0 +1,7 @@
+Flask
+gunicorn
+APScheduler
+opencv-python-headless
+numpy
+firebase_admin
+flask-login

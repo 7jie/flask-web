@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+	<title>FoodFood得正 -我的飲食日記</title>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.css">
+	<!--<link href="{{ url_for('static', filename='fontawesome/css/all.css') }}" rel='stylesheet'></link>-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font.css') }}">
+	<link rel="stylesheet" type="text/css"href="{{ url_for('static',filename='css/menu.css')}}">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{% block css %}
+
+	{% endblock css %}
+</head>
+<body>
+
+<div id="m">
+	<a id="icon"href="#"><img src="{{url_for('static',filename='img/icon.jpg')}}"></a>
+
+   <ul class="menu">
+        <li class="item">
+            <a href="#" class="menu_text">帳號管理</a>
+            <ul class="item_block">
+                <li>
+                    <a href="{{ url_for('account')}}" class="menu_link">新增帳號</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('del_acc')}}" class="menu_link">停用與刪除帳號</a>
+                </li>
+
+            </ul>
+        </li>
+        <li class="item">
+            <a href="#" class="menu_text">食品管理</a>
+            <ul class="item_block">
+                <li>
+                    <a href="{{ url_for('food')}}" class="menu_link">新增食品資料</a>
+                </li><li>
+                    <a href="{{ url_for('food_list')}}" class="menu_link">修改與刪除食品資料</a>
+                </li>
+            </ul>
+        </li>
+		<li class="item">
+		     <a href="#" class="menu_text">食譜管理</a>
+		     <ul class="item_block">
+		        <li>
+		            <a href="{{ url_for('newrecipe')}}" class="menu_link">新增食譜</a>
+		        </li>
+		        <li>
+		            <a href="{{ url_for('search_recipe')}}" class="menu_link" >修改及刪除食譜</a>
+		        </li>
+		    </ul>
+		</li>
+		<li class="item">
+		     <a href="#" class="menu_text">條碼管理</a>
+		     <ul class="item_block">
+		        <li>
+		            <a href="{{ url_for('newcode')}}" class="menu_link">新增條碼</a>
+		        </li>
+		        <li>
+		            <a href="{{ url_for('fd_code')}}" class="menu_link">修改及刪除條碼</a>
+		        </li>
+		        
+		    </ul>
+		</li>
+		<li class="item">
+			<a href="#" class="menu_text">資料審核</a>
+			<ul class="item_block">
+			   <li>
+				   <a href="#" class="menu_link adit_link">飲品審核</a>
+			   </li>
+			   <li>
+				   <a href="#" class="menu_link adit_link">食品審核</a>
+			   </li>
+			   <li>
+				   <a href="#" class="menu_link adit_link">條碼審核</a>
+			   </li>
+			   <li>
+				<a href="#" class="menu_link adit_link">水果審核</a>
+				</li>
+		   </ul>
+	   </li>
+	   
+   </ul>  
+   <img id="title_img" src="{{ url_for('static', filename='img/title2.png') }}">
+
+<div id="mm">
+
+	<a href="{{ url_for('logout')}}"  class="logout_link">登出</a>
+
+</div>
+   
+</div>
+	<!-- 小選單 -->
+	<div class="small">
+	<ul class="small_menu">
+		<li class="small_item">
+			<a href="#" class="small_text">帳號管理</a>
+			<ul class="small_block">
+				<li>
+					<a href="{{ url_for('account')}}" class="small_link">新增帳號</a>
+				</li>
+				<li>
+					<a href="{{ url_for('del_acc')}}" class="small_link">停用與刪除帳號</a>
+				</li>
+				
+			</ul>
+		</li>
+		<li class="small_item">
+			<a href="#" class="small_text">食品管理</a>
+			<ul class="small_block">
+				<li>
+					<a href="{{ url_for('food')}}" class="small_link">新增食品資料</a>
+				</li><li>
+					<a href="{{ url_for('food_list')}}" class="small_link">修改與刪除食品資料</a>
+				</li>
+			</ul>
+		</li>
+		<li class="small_item">
+			 <a href="#" class="small_text">食譜管理</a>
+			 <ul class="small_block">
+				<li>
+					<a href="{{ url_for('newrecipe')}}" class="small_link">新增食譜</a>
+				</li>
+				<li>
+					<a href="{{ url_for('search_recipe')}}" class="small_link" >修改及刪除食譜</a>
+				</li>
+			</ul>
+		</li>
+		<li class="small_item">
+			 <a href="#" class="small_text">條碼管理</a>
+			 <ul class="small_block">
+				<li>
+					<a href="{{ url_for('newcode')}}" class="small_link">新增條碼</a>
+				</li>
+				<li>
+					<a href="{{ url_for('fd_code')}}" class="small_link">修改及刪除條碼</a>
+				</li>
+				
+			</ul>
+		</li>
+		<li class="small_item">
+			<a href="#" class="small_text">資料審核</a>
+			<ul class="small_block">
+			   <li>
+				   <a href="#" class="small_link adit_link">飲品審核</a>
+			   </li>
+			   <li>
+				   <a href="#" class="small_link adit_link">食品審核</a>
+			   </li>
+			   <li>
+				   <a href="#" class="small_link adit_link">條碼審核</a>
+			   </li>
+			   <li>
+				<a href="#" class="small_link adit_link">水果審核</a>
+				</li>
+		   </ul>
+	   </li>
+	
+	</ul>
+</div>
+
+{% block cont %}
+{% endblock %}
+
+</body>   
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src="{{url_for('static', filename='js/menu.js')}}"></script>
+<script src="https://kit.fontawesome.com/16ec288439.js" crossorigin="anonymous"></script>
+{% block conjs %}
+{% endblock %}
+</html>

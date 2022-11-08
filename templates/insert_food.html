@@ -1,0 +1,25 @@
+
+{% extends "menu.html" %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/css/in_fd.css">
+{% endblock css %}
+{% block cont %}
+
+<h1>新增成功</h1>
+<div id="insert">
+{% if data !=undefined %}
+    {% for i,key in data.items() %}
+    <p>{{ i }}<span>{{ key }}</span></p>
+    <!--
+        {% if key!="" %}
+        <p>{{ i }}<span>{{ key }}</span></p>
+        
+        {% endif %}
+    -->
+    {% endfor %}
+
+{% endif %}
+
+<p><a href="{{ url_for('food') }}">返回</a></p>
+</div>
+{% endblock %}

@@ -1,0 +1,183 @@
+h2{ /*標題*/
+    color: #975C1D;
+    text-align: center;
+
+}
+
+#c {
+    margin: 0 auto;
+    background-color: #fffae4;
+    text-align: left;
+    width: 50vw;
+    border-style: solid;
+    border-color: #9E8764;
+    border-radius: 10px;
+    font-size: x-large;
+}
+
+a{
+    color: #975C1D;
+    text-decoration: none;
+    padding-right: 10px;
+}
+
+input{
+    border-color: 1px solid #9E8764;
+    border-radius: 5px;
+    outline: none;
+}
+
+button{
+    color: #975C1D;
+}
+#codedata{
+    font-size: large;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+div#code_top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0px 10px 10px;
+
+}
+div#search_con {
+    width: 18vw;
+}
+div#rev_del {
+    width: 15vw;
+}
+
+div#code_text {
+    word-wrap: break-word;
+    margin-left: 5vw;
+}
+div#codet_con {
+    width: 30vw;
+    text-align: left;
+}
+
+div#code_num{
+    width: 10vw;
+}
+#code_con{
+    height: 60vh;
+    overflow: auto;
+}
+
+#codedata li:nth-child(odd){
+    background: #F4DCAC;
+}
+#codedata li{
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+}
+#code_back {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0px 20px 10px;
+    align-items: center;
+}
+div#rev_del a {
+    margin-left: 1vw;
+}
+
+
+div#cd_con {
+    display: flex;
+    flex: 1;
+}
+div#code{
+    width: 14vw;
+}
+
+@media screen and (max-width: 1300px)  {
+    div#search_con {
+        width: 20vw;
+    }
+    #code_con {
+        font-size: medium;
+    }
+    div#rev_del {
+        width: 15vw;
+    }
+    div#codet_con {
+        width: 30vw;
+        text-align: left;
+    }
+    div#code_num {
+        width: 15vw;
+    }
+    div#rev_del {
+        width: 15vw;
+    }
+    div#code_text {
+        
+        margin-left:0vw;
+    }
+    div#code {
+        width: 12vw;
+    }
+}
+@media screen and (max-width: 1140px)  {
+
+div#search_con {
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+#codedata{
+    font-size: medium;
+}
+#search_code{
+    width: 13vw;
+}
+}
+
+@media screen and (max-width: 900px)  {
+div#code_text {
+    margin-left: 1vw;
+}
+#code_back{
+    padding: 10px 0px 10px 5px;
+}
+}
+@media screen and (max-width: 865px)  {
+    div#code {
+        width: 13vw;
+    }
+    div#cd_con {
+       font-size: large;
+    }
+    div#search_con {
+        width: 20vw;
+    }
+    div#rev_del {
+        width: 20vw;
+    }
+    div#search_con {
+        width: 22vw;
+    }
+    
+}
+
+@media screen and (max-width: 790px)  {
+
+    div#rev_del a {
+        margin-left: 0vw;
+    }
+
+
+    div#code_num {
+        width: auto;
+    }
+    div#codet_con {
+        width: auto;
+    }
+    div#code_text {
+        margin-left: 0vw;
+    }
+}

@@ -1,0 +1,34 @@
+
+{% extends "menu.html" %}
+{% block css %}
+    <link rel="stylesheet" type="text/css"href="{{ url_for('static',filename='css/newcode.css')}}">
+{% endblock css %}
+
+{% block cont %}
+<h1>新增條碼資料</h1>
+<div id="preloader">
+    <div id="status"><img src="{{ url_for('static', filename='img/loading.gif') }}"/></div>
+</div>
+<form id="con" name="form1" method="post" action="{{ url_for('insert_code') }}">
+    <div id="c">
+
+        <div><div id="cd_block">BarCode：</div><div id="code_con"><input name="barcode" placeholder="4712927551874"><a href="#" class="inst_code"></a></div><span class="text_red"><span id="barcode">*必填</span></span></div>
+        <div><div id="ch_block">食品中文名稱：</div><input name="name_zh" placeholder="TOMMI-雙起司鮭魚米漢堡"><span class="text_red"><span id="name_zh">*必填</span></span></div>
+        <div><div id="en_block">食品英文名稱：</div><input name="name_en" placeholder="TOMMI-Double Cheese Salmon Rice Burger"><span class="text_red"><span id="name_en"></span></span></div>
+        <div><div id="sizezh_block">份量(中文)：</div><input name="size_zh" placeholder="130克"><span class="text_red"><span id="size_zh">*必填</span></span></div>
+        <div><div id="sizeen_block">份量(英文)：</div><input name="size_en" placeholder="130g"><span class="text_red"><span id="size_en"></span></span></div>
+        <div><div id="k_block">熱量(kcal)：</div><input title="請輸入數字" type="number" name="kcal" placeholder="261.7"><span class="text_red"><span id="kcal">*必填</span></span></div>
+        <div><div id="pro_block">蛋白質(g)：</div><input title="請輸入數字" type="number" class="num" name="protein" placeholder="0"><span class="text_red"></span></div>
+        <div><div id="satur_block">飽和脂肪(g)：</div><input title="請輸入數字" type="number" class="num" name="saturated" placeholder="0"><span class="text_red"></span></div>
+        <div><div id="trans_block">反式脂肪(g)：</div><input title="請輸入數字" type="number" class="num" name="trans" placeholder="0"><span class="text_red"></span></div>
+        <div><div id="suger_block">糖(g)：</div><input title="請輸入數字" type="number" class="num" name="sugar"placeholder="0"><span class="text_red"></span></div>
+        <div><div id="car_block">碳水化合物(g)：</div><input title="請輸入數字" type="number" class="num" name="carbohydrate"placeholder="0"><span class="text_red"></span></div>
+        <div><div id="sodium_block">鈉(mg)：</div><input title="請輸入數字" type="number" class="num" name="sodium"placeholder="0"><span class="text_red"></span></div>
+        <div id="click_con"><button id="click" >新增條碼</button>
+        
+    </div>
+</form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="{{ url_for('static', filename='js/newcode.js') }}"></script>
+{% endblock %}

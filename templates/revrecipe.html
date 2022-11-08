@@ -1,0 +1,43 @@
+
+{% extends "menu.html" %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/css/revcipe.css">
+{% endblock css %}
+{% block cont %}
+
+<h1>修改成功</h1>
+<div id="insert">
+{% if data !=undefined %}
+
+    {% for i,key in re.items() %}
+    {% if data[i]!="" %}
+        {% if i=="url"%}
+        <img src="{{ data[i] }}">
+        {% elif i=="ingredients"%}
+            <p>{{ key }}</p>
+            {% for x,k in data[i].items() %}
+            <p>{{ x }}：<span>{{ k }}</span></p>
+            {%endfor%}
+        {%elif i=="step"%}
+        <p>{{ key }}</p>
+            {% for x in data[i] %}
+            <p>{{x}}</p>
+            {%endfor%}
+        {%else%}
+        <p>{{ key }}：<span>{{ data[i] }}</span></p>
+        {%endif%}
+    {%endif%}
+    
+    <!--
+        {% if key!="" %}
+        <p>{{ i }}<span>{{ key }}</span></p>
+        
+        {% endif %}
+    -->
+    {% endfor %}
+
+{% endif %}
+
+<div id="back_rev"><a href="{{ url_for('search_recipe') }}">返回</a></div>
+</div>
+{% endblock %}

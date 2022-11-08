@@ -1,0 +1,249 @@
+body{ 
+    text-align: center;
+    background: #F4DCAC;
+    margin: 0;
+    background-image: url("../img/back.jpg");
+
+}
+#title_img{
+    width: 60vw;
+
+}
+.click{
+    
+    display: inline-block;
+    width: 25%;
+    line-height:3em;
+    background-color: rgba(253, 253, 253, 0.856);
+    color: #000;
+
+}
+.click{
+    cursor: pointer;
+}
+
+.open{
+    background-color: #9E8764;
+    color: #FFFAE4;
+    border:2px solid #9E8764;
+    font-weight:bold;
+    letter-spacing:5px;
+}
+.no{
+    background-color: #FFFAE4;
+    color: #9E8764;
+    border:2px solid #9E8764;
+
+    font-weight:bold;
+    letter-spacing:5px;
+}
+.t1{
+    margin: 0 auto;
+    height: 50px;
+}
+.btn{
+    background-color: #F4DCAC;
+    line-height:2em;
+    color: #9E8764;
+    width: 150px;
+    border: none;
+    margin-left: 1em;
+    font-size: large;
+}
+.btn:hover{
+    cursor: pointer;
+}
+#register{
+    display: none;
+}
+.t1{
+    margin-top:1%;
+    display: flex;
+}
+.t2{
+    text-align: center;
+    line-height: 50px;
+    width: 100%;
+    margin: auto;
+}
+
+.t3,.t4{
+    display: inline-block;
+}
+.t3{
+    width: 25%;
+    
+    text-align: left;
+
+}
+.t4{
+    width: 30%;
+    text-align: right;
+
+}
+.left_ra{
+    border-radius: 0 5px 5px 0;
+}
+.right_ra{
+    border-radius: 5px 0 0 5px;
+}
+.t3 input,.t4 input{
+    width:300px;
+    height: 30px;
+}
+#t0{
+    margin-top: 3%;
+    margin-left:auto;
+    margin-right:auto;
+    width: 50%;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: rgb(248, 236, 236);
+    font-size: xx-large;
+}
+#mail_fr{
+    display: flex;
+    justify-content: right;
+}
+#m_con{
+    display: flex;
+    justify-content: center;
+}
+#warn{
+    width: 24px;
+    height: 24px;
+}
+.red{
+    font-size: medium;
+}
+#preloader {/*   這是整個會蓋住畫面的底色色塊  */
+    z-index: 9999;
+    display: none;
+    }
+#status {/*   這是中間loading的gif坐標css,我們盡量讓他畫面置中  */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    }
+    #status img{
+        width: 200px;
+    }
+#mess{
+    z-index: 9999;
+    display: none;
+    position: absolute;
+    width: 50%;
+    top: 60%;
+    left: 25%;
+    margin: auto;
+    background-color: azure;
+}
+#mess_fr{
+    margin: auto;
+    width: 100%;
+}
+#mess_title{
+    font-size: large;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+#mess_text{
+    margin-bottom: 20px;
+}
+span{
+    font-family: Mixed;
+}
+.login_flex{
+    display: flex;
+    justify-content: flex-end;
+}
+.go_login{
+    margin-top: 20px;
+    width: 85%;
+}
+.go_login a{
+    color: #9E8764;
+    text-decoration: none;
+}
+.red{
+    color: red;
+}
+.red::before{
+    content: "\f06a";
+    font-family: FontAwesome;
+}
+#login_res{
+    margin-top: 5vh;
+    font-size: x-large;
+}
+@media screen and (max-width: 1450px) {
+    .t2{
+        max-width: 80%;
+    }
+    .t4{
+        width: auto;
+    }
+    .t4 input{
+        width: 20vw;
+    }
+    .t3{
+        width: 120px;
+        text-align: left;
+    }
+    #t0{
+        font-size: x-large;
+    }
+    
+}
+@media screen and (max-width: 1200px)  {
+    #t0{
+        font-size: x-large;
+        width: 70vw;
+    }
+     .t4 input{
+        width: 35vw;
+    }
+    .t2{
+        width: auto;
+    }
+    .btn{
+        width: 100px;
+    }
+    .click{
+        width: 35vw;
+
+    }
+    .t3{
+        
+        text-align: left;
+
+    }
+    #t0{
+        font-size: x-large;
+    }
+
+}
+@media screen and (max-width: 700px) {
+    .click {
+        width: 45vw;
+    }
+    .t4{
+        width: 30vw;
+    }
+    
+    #t0{
+        font-size: x-large;
+        width: 80vw;
+    }
+    .t3{
+        float: left;
+    }
+    .btn{
+        width: 80px;
+    }
+    #title_img{
+        width: 80vw;
+    }
+}

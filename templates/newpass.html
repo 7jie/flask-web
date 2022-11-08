@@ -1,0 +1,20 @@
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/newpass.css') }}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<div id="re">
+	<a href="{{ url_for('login') }}"><返回</a>
+</div>
+<h1>忘記密碼</h1>
+<div id="pass_con">
+    <div id="emaid_fr">
+        <div class="left">驗證email：</div><div class="right"><input id="regmail" type="email" placeholder="請輸入註冊時的mail"></div>
+    </div>
+    <div id="newpass_fr"><button id="newpass_click">確認</button></div>
+</div>
+
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="{{url_for('static', filename='js/newpass.js')}}"></script>
+

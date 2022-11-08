@@ -1,0 +1,98 @@
+
+{% extends "menu.html" %}
+{% block css %}
+    <link rel="stylesheet" type="text/css"href="{{ url_for('static',filename='css/newstore.css')}}">
+{% endblock css %}
+{% block cont %}
+
+<h1>新增店家及食品資料</h1>
+<div id="preloader">
+    <div id="status"><img src="{{ url_for('static', filename='img/loading.gif') }}"/></div>
+</div>
+<div class="con">
+<div id="info">
+<form id="form1" method="post" action="{{ url_for('insert_food')}}">
+    <div class="a"><div class="left">店家中文名稱：</div><div class="right"><input placeholder="50嵐" list="store" maxlength="20" name="store_name" autocomplete="off"><datalist id="store"></datalist><span class="red"><span id="store_text">*必填</span></span></div></div>
+        
+    <div class="a"><div class="left">店家英文名稱：</div><div class="right"><input placeholder="50 Lan" name="store_name_en" autocomplete="off"><span class="red"><span id="store_name_en"></span></span></div></div>
+<div class="a">
+    <div class="left">
+飲食類別：</div>
+    <div class="right"><select name="type" id="type" >
+        <option value="eat">吃</option>
+        <option value="drink">喝</option>
+    </select>
+    </div>
+</div>
+
+<div class="a">
+<div class="left">食品中文名稱：</div><div class="right"><input placeholder="奶茶" name="name_zh"type="text" autocomplete="off"><span class="red"><span id="name">*必填</span></span></div>
+</div>
+
+
+<div class="a">
+<div class="left">食品英文名稱：</div><div class="right"><input placeholder="milk tea"name="name_en" autocomplete="off"><span class="red"><span id="name_en"></span></span></div>
+</div>
+<div id="auto">
+<div class="a">
+<div class="left">份量(中文)：</div><div class="right">
+    <select name="auto_size_zh" id="size">
+</select><a href="#" id="ch_manual">手動輸入</a></div>
+</div>
+<div class="a">
+<div class="left">份量(英文)：</div><div class="right"><span id="size_en"></span></div>
+</div>
+</div>
+<div id="man">
+<div class="a">
+    <div class="left">份量(中文)：</div><div class="right"><input name="man_size_zh" id="size_zh" autocomplete="off"><span><a href="#" id="ch_auto">條列選擇</a><span class="red" id="sizetext">*必填</span></span>
+    </div>
+    </div>
+    <div class="a">
+    <div class="left">份量(英文)：</div><div class="right"><input  name="man_size_en" autocomplete="off"></div>
+    </div>
+</div>
+<div class="num">
+        <div class="a"><div class="left">數量：</div><div class="right"><input title="請輸入數字" type="number" class="num_text" placeholder="1" autocomplete="off"><span class="red" id="num_text"></span></div></div>
+</div>
+
+<!--
+    <div class="left">單位(不限)：</div><div class="right"><input class="ch_num" placeholder="0"><span class="red"></span></div>
+</div>
+-->
+<div class="a">
+<div class="left">熱量(kcal):</div><div class="right"><input title="請輸入數字" type="number" name="kcal" placeholder="0" autocomplete="off"><span class="red"><span id="kcaltext">*必填</span></span></div>
+</div>
+<div class="a">
+<div class="left">蛋白質(g)：</div><div class="right"><input title="請輸入數字" type="number" class="ch_num" name="protein" placeholder="0" autocomplete="off"><span class="red"></span></div>
+</div>
+<div class="a">
+<div class="left">飽和脂肪(g)：</div><div class="right"><input title="請輸入數字" type="number" class="ch_num" name="saturated" placeholder="0" autocomplete="off"><span class="red"></span></div>
+</div>
+<div class="a">
+<div class="left">反式脂肪(g)：</div><div class="right"><input title="請輸入數字" type="number" class="ch_num" name="trans" placeholder="0" autocomplete="off"><span class="red"></span></div>
+</div>
+
+<div class="a">
+<div class="left">糖(g)：</div><div class="right" ><input title="請輸入數字" type="number" class="ch_num" name="sugar" placeholder="0" autocomplete="off"><span class="red"></span></div>
+</div>
+
+<div class="a">
+<div class="left">碳水化合物(g)：</div><div class="right"><input title="請輸入數字" type="number" class="ch_num" name="carbohydrate" placeholder="0" autocomplete="off"><span class="red"></span></div>
+</div>
+<div class="a">
+<div class="left">鈉(mg)：</div><div class="right"><input title="請輸入數字" type="number" class="ch_num" name="sodium" placeholder="0" autocomplete="off"><span class="red"></span></div>
+</div>
+
+<div id="send"><button class="click">新增店家</button></div>
+</form>
+
+</div>
+</div>
+
+{% endblock %}
+
+{% block conjs %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="{{ url_for('static', filename='js/newstore.js') }}"></script>
+{% endblock %}

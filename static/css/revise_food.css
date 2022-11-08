@@ -1,0 +1,118 @@
+#rev_f_con{
+    height: 50vh;
+    font-size: x-large;
+    width: 50vw;
+    overflow: auto;
+    margin: auto;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #FFFAE4;
+}
+#rev_f_con div{
+    margin-top: 1vw;
+    margin-left: 1vw;
+}
+h1{
+    text-align: center;
+}
+#save_fr{
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+#tip_save{
+    display: none;
+    z-index: 1;
+    left: 30%;
+    color: #fff;
+    background-color: rgb(73, 74, 75);
+    opacity: 0.9;
+    box-shadow: -3px 3px 6px #000;
+    padding: 1em 1em 2em 1em;
+    width: 40%;
+    position: absolute;
+    top: 12em;
+    margin: auto;
+}
+#text {
+    background: rgb(255, 255, 255);
+    position: relative;
+    text-align: center;
+    top: 1px;
+    color: #FF9595;
+    padding: 20px;
+    margin: auto;
+
+}
+#title{
+    text-align: right;   
+    margin-bottom: 10px;
+}
+#title a {
+    color: #FFFAE4;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+#tip_save button{
+    padding: 5px 10px;
+    border: 1px solid black;
+    border-radius: 4px;
+    color: #FFFAE4;
+    background-color: #9E8764;
+    margin: 5px;
+}
+button#save {
+    background-color: #9E8764;
+    color: #FFF;
+    border: none;
+    font-weight: bold;
+    font-size: large;
+    border-radius: 5px;
+    padding: 5px 20px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+a{
+    text-decoration: none;
+    color: #000;
+    font-size: x-large;
+}
+.red{
+    font-size: large;
+}
+.con,.con_nre{
+    display: flex;
+    justify-content: start;
+}
+h2 {
+    text-align: center;
+}
+@media screen and (max-width: 900px) {
+    .con{
+        flex-direction: column;
+    }
+    #zh_text{
+        font-size: medium;
+    }
+    
+}
+@media screen and (max-width:550px)  {
+    .con_nre{
+        flex-direction: column;
+    }
+    .con_block{
+        display: flex;
+        flex-direction: column;
+    }
+    input {
+        width: 40vw;
+    }
+}
+@media screen and (max-width:360px)  {
+    form#rev_f_con {
+        font-size: large;
+    }
+    }
