@@ -1339,7 +1339,6 @@ def getadit_re():
                     firestore_db.document(path).set(new_data)
                     firestore_db.document('fruit/fruit_all').update({newdata["english"]:newdata["chinese"]})
         return "OK"
-
     return "OK"
 
 if __name__=='__main__':
