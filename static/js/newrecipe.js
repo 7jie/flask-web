@@ -11,9 +11,6 @@ $(document).ready(function() {
 
             $('#img').show();
         }
-        
-
-        
             
 });
 var recipe_name;
@@ -84,25 +81,29 @@ $(document).on('blur','.step',function(){
         }
     }
 })
+function rename(){
+    var na=$('#recipe_name').val()
+    if(na.length==0){
+        return '*請填寫食譜名稱'
+    }else if(na.length>30){
+        return '*請輸入30字以內'
+    }else if(!/.*[\u4e00-\u9fa5]+.*$/.test(na)){
+        return '*請包含中文'
+    }else{
+        return '*必填'
+    }
+}
+function ch_rename(){
+    var re_na=rename()
+    $('#recipe_name').next().html(re_na)
+    if (re_na!='*必填'){
+        n=false
+    }else{
+        n=true
+    }
+}
 $(document).on('blur','#recipe_name',function(){
-    if ($(this).val().length==0){
-            $(this).next().html('*請填寫食譜名稱');
-            n=false;
-        
-    }
-    else if($(this).val().length>30){
-            $(this).next().html('*請輸入30字以內');
-            n=false;
- 
-    }
-    else if(!/.*[\u4e00-\u9fa5]+.*$/.test($(this).val())){
-        $(this).next().html('*請包含中文');
-        n=false;
-    }
-    else{
-        $(this).next().html('*必填');
-        n=true;
-    }
+    ch_rename()
 })
 $(document).on('blur','#recipe_en',function(){
     if($(this).val().length>80){
@@ -145,7 +146,7 @@ $(document).on('click','.r3',function(){
 
 $('#go').on('click',function(){
     $('#preloader').show();
-    
+    ch_rename()
     var ing=true;
     var recipe_size=true;
     var recipe_step=true;
