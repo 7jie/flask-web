@@ -71,9 +71,7 @@ button:not(#go){
     
     margin-top: 1vw;
 }
-.size{
-    width: 100px;
-}
+
 .r2,.r4{
     margin-left: 0.5vw;
 }
@@ -99,12 +97,26 @@ div#img {
     align-items: center;
     margin-left: 10vw;
 }
+.st_block .red{
+    display: block;
+}
+.test{
+    display: flex;
+}
+#rename_con{
+    display: flex;
+}
+#re_name{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 5vh;
+}
 @media screen and (max-width: 1500px){
     
     .ins_ri span.red, .ins_le span.red {
         display: block;
     }
-    .float_ins div{
+    .test div {
         margin-right: 1vw;
     }
 }
@@ -116,14 +128,30 @@ div#img {
         width: 60px;
     }
 }
-@media screen and (max-width: 1080px)  {
-    .ins_ri input, .ins_le input {
-        display: block;
+@media screen and (max-width: 900px)  {
+
+    
+    #con{
+        width: 80vw;
     }
+}
+@media screen and (max-width: 600px)  {
     .float_ins span{
         font-size: large;
     }
-    .ins_le .red,.ins_ri .red{
+
+    .size,.name{
+        width: 120px;
+    }
+}
+@media screen and (max-width: 400px)  {
+    .size,.name{
+        width: 100px;
+    }
+}
+@media screen and (max-width: 500px)  {
+
+    .ins_le span.red, .ins_ri span.red {
         font-size: small;
     }
 

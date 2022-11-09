@@ -21,23 +21,15 @@ var k={};
 var recipe={};
 var n=false;
 var en=true
+var ing=true;
+var recipe_size=true;
+var recipe_step=true;
 
-var a='<li class="r0"><div class="float_ins"><div class="ins_le"><span>名稱：</span><input name="n" class="name"><span class="red">*必填</span></div><div class="ins_ri"><span>份量：</span><input name="s" class="size"><span class="red">*必填</span></div><div><button class="r2">刪除</button></div></div></li>';
+var a='<div class="float_ins"><div class="test"><div class="ins_le"><span>名稱：</span><input name="n" class="name"><span class="red">*必填</span></div><div class="ins_ri"><span>份量：</span><input name="s" class="size"><span class="red">*必填</span></div></div><div><button class="r2">刪除</button></div></div>';
 $(document).on('click','.r1',function(){
 
-    var name_num=0
-    var size_num=0
-    $('input[class=name]').each(function(){
-        if($(this).next().html()=="*請填寫食材名稱")
-            name_num+=1
-    })
 
-    $('input[class=size]').each(function(){
-        if($(this).next().html()=="*請填寫食材份量")
-            size_num+=1
-    })
-
-    if(name_num==0 & size_num==0){
+    if(ch_name()==0 & ch_size()==0){
         $('#ing').append(a);
         
     }else if($(".r0").html()==undefined){
@@ -46,40 +38,78 @@ $(document).on('click','.r1',function(){
     
 
     })
+function ch_name(){
+    var name_num=0
+    $('input[class=name]').each(function(){
+        if ($(this).val().length==0){
+            $(this).next().html("*請填寫食材份量")
 
+            name_num+=1
+        }else{
+            $(this).next().html("*必填")
+        }
+            
+    })
+    return  name_num
+}
+function name_check(){
+    if (ch_name()!=0)
+        ing=false
+    else
+        ing=true
+}
+function ch_size(){
+    var size_num=0
+    $('input[class=size]').each(function(){
+        if ($(this).val().length==0){
+            $(this).next().html("*請填寫食材份量")
+
+            size_num+=1
+        }else{
+            $(this).next().html("*必填")
+        }
+            
+    })
+    return size_num
+}
+function size_check(){
+    
+    console.log(ch_size())
+    if (ch_size()!=0)
+        recipe_size=false
+    else
+        recipe_size=true
+}
 $(document).on('blur','.size',function(){
-    if ($(this).val().length==0){
-        if($(this).next().html()!="*請填寫食材份量"){
-            $(this).next().html('*請填寫食材份量');
-        }
-    }else{
-        if($(this).next().html()=="*請填寫食材份量"){
-            $(this).next().html('*必填');
-        }
-    }
+    size_check()
+
 })
 $(document).on('blur','.name',function(){
-    if ($(this).val().length==0){
-        if($(this).next().html()!="*請填寫食材名稱"){
-            $(this).next().html('*請填寫食材名稱');
-        }
-    }else{
-        if($(this).next().html()=="*請填寫食材名稱"){
-            $(this).next().html('*必填');
-        }
-    }
+    name_check()
 })
+function ch_step(){
+    var step_num=0
+    $('input[class=step]').each(function(){
+        if ($(this).val().length==0){
+            $(this).next().html("*請填寫食譜步驟")
 
+            step_num+=1
+        }else{
+            $(this).next().html("*必填")
+        }
+            
+    })
+    return step_num
+}
+
+function step_check(){
+    if (ch_step()!=0)
+        recipe_step=false
+    else
+        recipe_step=true
+}
 $(document).on('blur','.step',function(){
-    if ($(this).val().length==0){
-        if($(this).next().html()!="*請填寫食譜步驟"){
-            $(this).next().html('*請填寫食譜步驟');
-        }
-    }else{
-        if($(this).next().html()=="*請填寫食譜步驟"){
-            $(this).next().html('*必填');
-        }
-    }
+    step_check()
 })
 function rename(){
     var na=$('#recipe_name').val()
@@ -95,7 +125,7 @@ function rename(){
 }
 function ch_rename(){
     var re_na=rename()
-    $('#recipe_name').next().html(re_na)
+    $('#chinese').html(re_na)
     if (re_na!='*必填'){
         n=false
     }else{
@@ -126,49 +156,33 @@ $(document).on('click','.r2',function(){
 });
 $(document).on('click','.r3',function(){
     s=Boolean
-    var b='<li><input class="step"><span class="red">*必填</span><button class="r4">刪除</button></li>';
+    var b='<li><div><div class="st_block"><input class="step"><span class="red">*必填</span></div></div><div><button class="r4">刪除</button></div></li>';
     var st_num=0
     $('input[class=step]').each(function(){
-
-        
-        if($(this).next().html()=="*請填寫食譜步驟")
+        if ($(this).val().length==0){
+            $(this).next().html("*請填寫食譜步驟")
             st_num+=1
+        }
+           
     })
+
     if(st_num==0){
         $('#st').append(b);
     }
     })
     $(document).on('click','.r4',function(){
     
-        $(this).parent().remove();
+        $(this).parent().parent().remove();
         
         })
 
 $('#go').on('click',function(){
     $('#preloader').show();
     ch_rename()
-    var ing=true;
-    var recipe_size=true;
-    var recipe_step=true;
-    $('input[class=name]').each(function(){
-         if ($(this).val().length==0){
-            ing=false;
-         }
-        
-    });
-    $('input[class=size]').each(function(){
-        if ($(this).val().length==0){
-            recipe_size=false;
-            
-         }
-        
-    });
-    $('input[class=step]').each(function(){
-        if ($(this).val().length==0){
-            recipe_step=false;
-        }
-       
-   });
+    ch_name()
+    ch_size()
+    ch_step()
+    
 
     if(ing & recipe_size & recipe_step & n & en){
         
@@ -225,57 +239,11 @@ $('#go').on('click',function(){
           
     
     }else{
-        console.log("請輸入完整食譜資料");
+        
         $('#preloader').hide();
     }
 
-
-/*
-    $('.tip').each(function(){
-        if ($(this).text()=="*請填寫食材名稱"|$(this).text()=="*請填寫食材份量"|$(this).text()=="*請填寫食材步驟"){
-            console.log("資料填寫不完整");
-            return false;
-        }else{
-            $('input[class=name]').each(function(){
-                
-                name.push($(this).val());
-                
-            });
-            $('input[class=size]').each(function(){
-                
-                size.push($(this).val());
-                
-
-            });
-        
-        
-            for (var x=0;x<name.length;x++){
-                k[name[x]]=size[x];
-            }
-        
-            $.ajax({
-                url: '/search',
-                type: 'POST',
-                data:{
-                  "n":JSON.stringify(k)
-                },
-              })
-              .done(function(data) {
-                console.log(data)
-        
-                //$(location).attr("href","insert_food")
-        
-              })
-              .fail(function() {
-                console.log('失敗');
-              });
-        }
-    })
-    */
-
 })
-
-
 
 
 });
