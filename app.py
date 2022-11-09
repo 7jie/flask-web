@@ -658,18 +658,21 @@ def revise_fper():
     with open ("store_name.json","r",encoding="utf-8") as f:
         st_en_name=json.load(f)
     st_en_name=st_en_name[request.form.get('store_name')]
+
     if revise_fdata['食品英文名稱：']=="":
-        revise_fdata['食品英文名稱：']=st_en_name+"-"+translator.translate(revise_fdata['食品中文名稱：'], dest='en').text
+        revise_fdata['食品英文名稱：']=translator.translate(revise_fdata['食品中文名稱：'], dest='en').text
     path='food/'+request.form.get('store_name')+'/'+request.form.get('type')+'/'+request.form.get('key')
     #取店家英文名稱
     
-    print(st_en_name)
+    
     #寫資料庫
 
     rf_data={stroe_map[x]:k for x,k in revise_fdata.items() if k!=""}
     rf_data=num_info(rf_data)
     rf_data['unit']={"份":1}
     rf_data['chinese']=request.form.get('store_name')+'-'+rf_data['chinese']
+    rf_data['english']=st_en_name+"-"+rf_data['english']
+    print(rf_data['english'])
     firestore_db.document(path).set(rf_data)
     with open('data/'+request.form.get('store_name')+'.json','r',encoding="utf-8")as f:
         store_data=json.load(f)
