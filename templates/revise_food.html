@@ -12,7 +12,9 @@
 </div>
 <form id="rev_f_con" method="post" action="{{ url_for('revise_fper')}}">
 <div><h2>{{store_name}}</h2></div>
+
 {% for a in name.keys()%}
+
     {%if a in d.keys()%}
         {% if a in de%}
                     
@@ -30,6 +32,8 @@
                     <div class="con"><div class="name_con">{{  name[a] }}：</div><div><input title="請輸入數字" type="number" name="{{ a }}" value="{{d[a]}}" placeholder="{{d[a]}}"><span class="red"></span></div></div>
                     {% endif %}
         {%endif%}
+    {%elif a=="english"%}
+    <div class="con"><div class="name_con">{{ name[a] }}：</div><div><input type="text" name="{{ a }}" data-val="{{d[a]}}" placeholder="{{ d[a] }}" value="{{d[a]}}"><span class="red" id="en_text"></span></div></div>
     {%elif a!="BarCode"%}
     <div class="con"><div class="name_con">{{  name[a] }}：</div><div><input title="請輸入數字" type="number" class="n" name="{{ a }}" placeholder="0"><span class="red"></span></div></div>
     {%endif%}
