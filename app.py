@@ -25,9 +25,9 @@ from firebase_admin import db
 import hashlib
 from googletrans import Translator
 translator = Translator()
-#cred = credentials.Certificate("python.json")#自己的json路徑
-cred = credentials.Certificate("topic.json")#自己的json路徑
-"""
+cred = credentials.Certificate("python.json")#自己的json路徑
+#cred = credentials.Certificate("topic.json")#自己的json路徑
+
 firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://python-f1901-default-rtdb.firebaseio.com/',
     'storageBucket': 'python-f1901.appspot.com'
@@ -37,8 +37,8 @@ firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://topic-3b33d-default-rtdb.firebaseio.com/',
     'storageBucket': 'topic-3b33d.appspot.com'
 })
-
 """
+
 firebaseConfig = {
    "databaseURL":"https://python-f1901-default-rtdb.firebaseio.com/",
   "apiKey": "AIzaSyDU4SMG9hpVMear3YN1aPtV8ABFuu2yHjM",
@@ -62,7 +62,7 @@ firebaseConfig = {
      "measurementId": "G-20ZX53K4QD"
     }
 
-
+"""
 bucket=st.bucket()
 firestore_db = firestore.client()
 firebase=pyrebase.initialize_app(firebaseConfig)
@@ -383,21 +383,17 @@ def del_food():
 
     if f_type=='eat':
         
-        if 'english' in fdata and st_name_en_zh[request.form.get("name")]!="":
 
-            del food_all_en["eatName_en"][fdata['english']+'-'+fdata['size_en']]
-            firestore_db.document('food/food_all_en').set(food_all_en)
-
+        del food_all_en["eatName_en"][fdata['english']+'-'+fdata['size_en']]
+        firestore_db.document('food/food_all_en').set(food_all_en)
 
         del food_all["eatName_zh"][request.form.get("name")+'-'+request.form.get("n_size")]
         firestore_db.document('food/food_all_zh').set(food_all)
 
     else: 
         
-        if 'english' in fdata and st_name_en_zh[request.form.get("name")]!="":
-            
-            del food_all_en["drinkName_en"][fdata['english']+'-'+fdata['size_en']]
-            firestore_db.document('food/food_all_en').set(food_all_en)
+        del food_all_en["drinkName_en"][fdata['english']+'-'+fdata['size_en']]
+        firestore_db.document('food/food_all_en').set(food_all_en)
             
         del food_all["drinkName_zh"][request.form.get("name")+'-'+request.form.get("n_size")]
         firestore_db.document('food/food_all_zh').set(food_all)
@@ -432,14 +428,20 @@ def insert_food():
             '碳水化合物(g):':request.form.get('carbohydrate'),
             '鈉(mg):':request.form.get('sodium')
             }
-        print(translator.translate(mess['店家中文名稱：'], dest='en').text)
+        with open ("store_name.json","r",encoding="utf-8") as f:
+            st_en_name=json.load(f)
+
         if mess['店家英文名稱：']=="" or mess['店家英文名稱：']==None:
-           mess['店家英文名稱：'] = translator.translate(mess['店家中文名稱：'], dest='en').text
+            if mess['店家中文名稱：'] not in st_en_name:
+                mess['店家英文名稱：'] = translator.translate(mess['店家中文名稱：'], dest='en').text
+            else:
+                mess['店家英文名稱：']=st_en_name[request.form.get('store_name')]
+        
 
         if mess['食品英文名稱：']=="":
             mess['食品英文名稱：'] = mess['店家英文名稱：']+"-"+translator.translate(mess['食品中文名稱：'], dest='en').text
 
-
+    
         #取條列選擇值or手動輸入的值，接著改匯入資料庫
         if request.form.get('auto'):
             mess['份量(英文)：']=request.form.get('auto_size_en')
@@ -463,23 +465,6 @@ def insert_food():
             firestore_db.document('food/'+request.form.get('store_name')).set({"store_chinese":request.form.get('store_name'),
             "store_english":mess['店家英文名稱：'],"time":tw.localize(datetime.datetime.now())})
         
-        """
-        #elif 可以不要
-        elif request.form.get('store_name') in food_data and food_data[request.form.get('store_name')]=="":
-            food_data[request.form.get('store_name')]=request.form.get('store_name_en')
-            with open ("store_name.json","w",encoding="utf-8") as f:
-                json.dump(food_data,f)
-            with open(request.form.get('store_name')+'.json','r',encoding="utf-8") as f:
-                data=json.load(f)
-            en_all__data=firestore_db.document('food/food_all_en').get()
-            for x,k in data.items():
-                for z,o in k.items():
-                    if "english" in o.keys():
-                        if "size_en" in o.keys():
-                            en_all__data[request.form.get('store_name_en')+'-'+o["english"]+'-'+o["size_en"]]
-            firestore_db.document('food/'+request.form.get('store_name')).set({"store_english":request.form.get('store_name_en')},merge=True)
-        """
-        
             
         n.pop('店家中文名稱：','')
         n.pop('店家英文名稱：','')
@@ -492,6 +477,7 @@ def insert_food():
         st_data=num_info(st_data)
         st_data["unit"]={"份":1}
         st_data['chinese']=request.form.get('store_name')+'-'+st_data['chinese']
+
         firestore_db.document(x).set(st_data)
         #寫json
         print(st_data)
@@ -516,7 +502,7 @@ def insert_food():
 
             
             eat_en=firestore_db.document("food/food_all_en").get().to_dict()
-            eat_en["eatName_en"][request.form.get('store_name_en')+"-"+request.form.get('name_en')+"-"+mess['份量(英文)：']]=firestore_db.document(x)
+            eat_en["eatName_en"][mess['食品英文名稱：']+"-"+mess['份量(英文)：']]=firestore_db.document(x)
             firestore_db.document("food/food_all_en").set(eat_en)
             
         else:
@@ -526,7 +512,7 @@ def insert_food():
             
             
             drink_en=firestore_db.document("food/food_all_en").get().to_dict()
-            drink_en["drinkName_en"][request.form.get('store_name_en')+"-"+request.form.get('name_en')+"-"+mess['份量(英文)：']]=firestore_db.document(x)
+            drink_en["drinkName_en"][mess['食品英文名稱：']+"-"+mess['份量(英文)：']]=firestore_db.document(x)
             firestore_db.document("food/food_all_en").set(drink_en)
         
         return render_template('insert_food.html', data=n)#hi
@@ -702,7 +688,7 @@ def revise_fper():
         if st_en_name!="":
             p=st_en_name+'-'+request.form.get('def_english')+'-'+request.form.get('size_en')
             fa_en_db=firestore_db.document("food/food_all_en").get().to_dict()
-            rf_refname=st_en_name+'-'+request.form.get('english')+'-'+request.form.get('size_en')
+            rf_refname=rf_data['english']+'-'+request.form.get('size_en')
 
             if request.form.get('type')=="eat":
             
