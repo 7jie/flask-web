@@ -71,7 +71,10 @@ button:not(#go){
     
     margin-top: 1vw;
 }
-
+#go:disabled{
+    cursor: default;
+    background-color: #b6b6b6;
+}
 .r2,.r4{
     margin-left: 0.5vw;
 }
@@ -144,15 +147,20 @@ div#img {
         width: 120px;
     }
 }
-@media screen and (max-width: 400px)  {
-    .size,.name{
-        width: 100px;
-    }
-}
 @media screen and (max-width: 500px)  {
 
     .ins_le span.red, .ins_ri span.red {
         font-size: small;
     }
+    img{
+        max-width: 300px;
+        max-height: 300px;
+    }
 
+}
+
+@media screen and (max-width: 400px)  {
+    .size,.name{
+        width: 100px;
+    }
 }

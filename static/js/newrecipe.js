@@ -21,9 +21,9 @@ var k={};
 var recipe={};
 var n=false;
 var en=true
-var ing=true;
-var recipe_size=true;
-var recipe_step=true;
+var ing=false;
+var recipe_size=false;
+var recipe_step=false;
 
 var a='<div class="float_ins"><div class="test"><div class="ins_le"><span>名稱：</span><input name="n" class="name"><span class="red">*必填</span></div><div class="ins_ri"><span>份量：</span><input name="s" class="size"><span class="red">*必填</span></div></div><div><button class="r2">刪除</button></div></div>';
 $(document).on('click','.r1',function(){
@@ -57,6 +57,7 @@ function name_check(){
         ing=false
     else
         ing=true
+    checkcon()
 }
 function ch_size(){
     var size_num=0
@@ -79,13 +80,23 @@ function size_check(){
         recipe_size=false
     else
         recipe_size=true
+    checkcon()
 }
 $(document).on('blur','.size',function(){
     size_check()
-
+    
+})
+$(document).on('input','.size',function(){
+    size_check()
+    
 })
 $(document).on('blur','.name',function(){
     name_check()
+    
+})
+$(document).on('input','.name',function(){
+    name_check()
+    
 })
 function ch_step(){
     var step_num=0
@@ -107,8 +118,12 @@ function step_check(){
         recipe_step=false
     else
         recipe_step=true
+    checkcon()
 }
 $(document).on('blur','.step',function(){
+    step_check()
+})
+$(document).on('iunput','.step',function(){
     step_check()
 })
 function rename(){
@@ -131,9 +146,15 @@ function ch_rename(){
     }else{
         n=true
     }
+    checkcon()
 }
 $(document).on('blur','#recipe_name',function(){
     ch_rename()
+    
+})
+$(document).on('input','#recipe_name',function(){
+    ch_rename()
+    
 })
 $(document).on('blur','#recipe_en',function(){
     if($(this).val().length>80){
@@ -149,6 +170,7 @@ $(document).on('blur','#recipe_en',function(){
         $(this).next().html('');
         en=true;
     }
+    checkcon()
 })
 $(document).on('click','.r2',function(){
     $(this).parent().parent().parent().remove();
@@ -176,6 +198,15 @@ $(document).on('click','.r3',function(){
         
         })
 
+
+
+    function checkcon(){
+        if(ing & recipe_size & recipe_step & n & en){
+            $('#go').attr('disabled',false)
+        }else{
+            $('#go').attr('disabled',true)
+        }
+        }
 $('#go').on('click',function(){
     $('#preloader').show();
     ch_rename()
