@@ -655,13 +655,14 @@ def revise_fper():
             '碳水化合物(g):':request.form.get('carbohydrate'),
             '鈉(mg):':request.form.get('sodium')
             }
-    if revise_fdata['食品英文名稱：']=="":
-        revise_fdata['食品英文名稱：']=translator.translate(revise_fdata['食品中文名稱：'], dest='en').text
-    path='food/'+request.form.get('store_name')+'/'+request.form.get('type')+'/'+request.form.get('key')
-    #取店家英文名稱
     with open ("store_name.json","r",encoding="utf-8") as f:
         st_en_name=json.load(f)
     st_en_name=st_en_name[request.form.get('store_name')]
+    if revise_fdata['食品英文名稱：']=="":
+        revise_fdata['食品英文名稱：']=st_en_name+"-"+translator.translate(revise_fdata['食品中文名稱：'], dest='en').text
+    path='food/'+request.form.get('store_name')+'/'+request.form.get('type')+'/'+request.form.get('key')
+    #取店家英文名稱
+    
     print(st_en_name)
     #寫資料庫
 
