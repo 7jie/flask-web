@@ -432,6 +432,7 @@ def insert_food():
             '碳水化合物(g):':request.form.get('carbohydrate'),
             '鈉(mg):':request.form.get('sodium')
             }
+        print(translator.translate(mess['店家中文名稱：'], dest='en').text)
         if mess['店家英文名稱：']=="" or mess['店家英文名稱：']==None:
            mess['店家英文名稱：'] = translator.translate(mess['店家中文名稱：'], dest='en').text
 
@@ -513,21 +514,20 @@ def insert_food():
             eat_zh["eatName_zh"][request.form.get('store_name')+"-"+request.form.get('name_zh')+"-"+request.form.get('size')]=firestore_db.document(x)
             firestore_db.document("food/food_all_zh").set(eat_zh)
 
-            if request.form.get('name_en')!="" and request.form.get('store_name_en')!="":
-                eat_en=firestore_db.document("food/food_all_en").get().to_dict()
-                eat_en["eatName_en"][request.form.get('store_name_en')+"-"+request.form.get('name_en')+"-"+mess['份量(英文)：']]=firestore_db.document(x)
-                firestore_db.document("food/food_all_en").set(eat_en)
+            
+            eat_en=firestore_db.document("food/food_all_en").get().to_dict()
+            eat_en["eatName_en"][request.form.get('store_name_en')+"-"+request.form.get('name_en')+"-"+mess['份量(英文)：']]=firestore_db.document(x)
+            firestore_db.document("food/food_all_en").set(eat_en)
             
         else:
             drink_zh=firestore_db.document("food/food_all_zh").get().to_dict()
             drink_zh["drinkName_zh"][request.form.get('store_name')+"-"+request.form.get('name_zh')+"-"+request.form.get('size')]=firestore_db.document(x)
             firestore_db.document("food/food_all_zh").set(drink_zh)
             
-
-            if request.form.get('name_en')!=""&request.form.get('store_name_en')!="":
-                drink_en=firestore_db.document("food/food_all_en").get().to_dict()
-                drink_en["drinkName_en"][request.form.get('store_name_en')+"-"+request.form.get('name_en')+"-"+mess['份量(英文)：']]=firestore_db.document(x)
-                firestore_db.document("food/food_all_en").set(drink_en)
+            
+            drink_en=firestore_db.document("food/food_all_en").get().to_dict()
+            drink_en["drinkName_en"][request.form.get('store_name_en')+"-"+request.form.get('name_en')+"-"+mess['份量(英文)：']]=firestore_db.document(x)
+            firestore_db.document("food/food_all_en").set(drink_en)
         
         return render_template('insert_food.html', data=n)#hi
 
