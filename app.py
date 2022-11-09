@@ -698,7 +698,7 @@ def revise_fper():
         if st_en_name!="":
             p=st_en_name+'-'+request.form.get('def_english')+'-'+request.form.get('size_en')
             fa_en_db=firestore_db.document("food/food_all_en").get().to_dict()
-            rf_refname=st_en_name+'-'+request.form.get('englsih')+'-'+request.form.get('size_en')
+            rf_refname=st_en_name+'-'+request.form.get('english')+'-'+request.form.get('size_en')
 
             if request.form.get('type')=="eat":
             
