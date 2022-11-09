@@ -23,14 +23,21 @@ from firebase_admin import auth
 from firebase_admin import storage as st
 from firebase_admin import db
 import hashlib
+from googletrans import Translator
+translator = Translator()
 #cred = credentials.Certificate("python.json")#自己的json路徑
 cred = credentials.Certificate("topic.json")#自己的json路徑
-
-
+"""
+firebase_admin.initialize_app(cred, {
+    'databaseURL': 'https://python-f1901-default-rtdb.firebaseio.com/',
+    'storageBucket': 'python-f1901.appspot.com'
+})
+"""
 firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://topic-3b33d-default-rtdb.firebaseio.com/',
     'storageBucket': 'topic-3b33d.appspot.com'
 })
+
 """
 firebaseConfig = {
    "databaseURL":"https://python-f1901-default-rtdb.firebaseio.com/",
@@ -425,6 +432,12 @@ def insert_food():
             '碳水化合物(g):':request.form.get('carbohydrate'),
             '鈉(mg):':request.form.get('sodium')
             }
+        if mess['店家英文名稱：']=="" or mess['店家英文名稱：']==None:
+           mess['店家英文名稱：'] = translator.translate(mess['店家中文名稱：'], dest='en').text
+
+        if mess['食品英文名稱：']=="":
+            mess['食品英文名稱：'] = mess['店家英文名稱：']+"-"+translator.translate(mess['食品中文名稱：'], dest='en').text
+
 
         #取條列選擇值or手動輸入的值，接著改匯入資料庫
         if request.form.get('auto'):
@@ -433,20 +446,24 @@ def insert_food():
         else:
             mess['份量(英文)：']=request.form.get('man_size_en')
             print(request.form.get('man_size_en'))
+
         n={x:k for x,k in mess.items() if k!=""}
         
         with open ("store_name.json","r",encoding="utf-8") as f:
             food_data=json.load(f)
-
+        
         if request.form.get('store_name') not in food_data:
-            food_data[request.form.get('store_name')]=request.form.get('store_name_en')
+            food_data[request.form.get('store_name')]=mess['店家英文名稱：']
             with open ("store_name.json","w",encoding="utf-8") as f:
                 json.dump(food_data,f)
             with open("data/"+request.form.get('store_name')+".json","w",encoding="utf-8")as f:
                 json.dump({},f)
             tw = pytz.timezone('Asia/Taipei')
             firestore_db.document('food/'+request.form.get('store_name')).set({"store_chinese":request.form.get('store_name'),
-            "store_english":request.form.get('store_name_en'),"time":tw.localize(datetime.datetime.now())})
+            "store_english":mess['店家英文名稱：'],"time":tw.localize(datetime.datetime.now())})
+        
+        """
+        #elif 可以不要
         elif request.form.get('store_name') in food_data and food_data[request.form.get('store_name')]=="":
             food_data[request.form.get('store_name')]=request.form.get('store_name_en')
             with open ("store_name.json","w",encoding="utf-8") as f:
@@ -460,7 +477,8 @@ def insert_food():
                         if "size_en" in o.keys():
                             en_all__data[request.form.get('store_name_en')+'-'+o["english"]+'-'+o["size_en"]]
             firestore_db.document('food/'+request.form.get('store_name')).set({"store_english":request.form.get('store_name_en')},merge=True)
-
+        """
+        
             
         n.pop('店家中文名稱：','')
         n.pop('店家英文名稱：','')
@@ -475,6 +493,8 @@ def insert_food():
         st_data['chinese']=request.form.get('store_name')+'-'+st_data['chinese']
         firestore_db.document(x).set(st_data)
         #寫json
+        print(st_data)
+        
         with open("data/"+request.form.get('store_name')+".json","r",encoding="utf-8")as f:
                 d=json.load(f)
         
@@ -486,7 +506,7 @@ def insert_food():
         
         with open("data/"+request.form.get('store_name')+".json","w",encoding="utf-8")as f:
                         json.dump(d,f)
-
+        
         if request.form.get('type')=="eat":
             #匯入all資料庫
             eat_zh=firestore_db.document("food/food_all_zh").get().to_dict()
@@ -498,8 +518,6 @@ def insert_food():
                 eat_en["eatName_en"][request.form.get('store_name_en')+"-"+request.form.get('name_en')+"-"+mess['份量(英文)：']]=firestore_db.document(x)
                 firestore_db.document("food/food_all_en").set(eat_en)
             
-            
-
         else:
             drink_zh=firestore_db.document("food/food_all_zh").get().to_dict()
             drink_zh["drinkName_zh"][request.form.get('store_name')+"-"+request.form.get('name_zh')+"-"+request.form.get('size')]=firestore_db.document(x)
@@ -510,8 +528,8 @@ def insert_food():
                 drink_en=firestore_db.document("food/food_all_en").get().to_dict()
                 drink_en["drinkName_en"][request.form.get('store_name_en')+"-"+request.form.get('name_en')+"-"+mess['份量(英文)：']]=firestore_db.document(x)
                 firestore_db.document("food/food_all_en").set(drink_en)
-
-        return render_template('insert_food.html', data=n)
+        
+        return render_template('insert_food.html', data=n)#hi
 
 
 @app.route('/food_store', methods=['POST'])
@@ -637,7 +655,8 @@ def revise_fper():
             '碳水化合物(g):':request.form.get('carbohydrate'),
             '鈉(mg):':request.form.get('sodium')
             }
-
+    if revise_fdata['食品英文名稱：']=="":
+        revise_fdata['食品英文名稱：']=translator.translate(revise_fdata['食品中文名稱：'], dest='en').text
     path='food/'+request.form.get('store_name')+'/'+request.form.get('type')+'/'+request.form.get('key')
     #取店家英文名稱
     with open ("store_name.json","r",encoding="utf-8") as f:
@@ -1187,7 +1206,6 @@ def getadit(t):
 @app.route('/adit_no',methods=['POST'])
 def adit_ch():
     data=json.loads(request.form.get('d'))
-    print(data)
     if request.form.get('type')=="eat":
         for i in data:
             for x,k in i.items():
@@ -1335,7 +1353,7 @@ def getadit_re():
                     del newdata['tag']
                     del newdata['foodType']
                     new_data={key:val for key,val in newdata.items() if val!=None}
-                    path='fruit/'+newdata["chinese"]+'/單位'+newdata["chinese"]+newdata["size_zh"]
+                    path='fruit/'+newdata["chinese"]+'/單位/'+newdata["chinese"]+"-"+newdata["size_zh"]
                     firestore_db.document(path).set(new_data)
                     firestore_db.document('fruit/fruit_all').update({newdata["english"]:newdata["chinese"]})
         return "OK"

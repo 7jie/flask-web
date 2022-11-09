@@ -10,14 +10,18 @@
     margin-bottom: 10px;
     overflow: auto;
 }
-#insert p {
-    margin-left: 2vw;
-    font-size: x-large;
-}
-#insert a {
-    
+#back{
+    display: flex;
+    justify-content: center;
     color: #975C1D;
+    text-decoration: none;
 }
+.data_con {
+    display: flex;
+    margin-top: 5vh;
+    flex-wrap: wrap;
+}
+
 .info_cd{
     width: 80%;
     margin: auto;
@@ -38,4 +42,10 @@ img{
 
     max-width: 600px;
     max-height: 500px;
+}
+@media screen and (max-width: 500px)  {
+
+    #insert{
+        font-size: x-large;
+    }
 }

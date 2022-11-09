@@ -1,6 +1,6 @@
 
 $(document).ready(function() {
-
+    $('#preloader').show()
     function db_pre(){
         $.ajax({
             url:'/getuser',
@@ -23,22 +23,20 @@ $(document).ready(function() {
                 })
             }
 
-    
+            $('#preloader').hide()
         })
     }
     console.log($('#acc_ch').val())
-    $('#preloader').show()
+
     db_pre()
     setTimeout(function() {
-        $('#preloader').hide()
+        
     },2000)
     $('#acc_ch').on('change',function(){
-        console.log($(this).val())
         $('#preloader').show()
+        
         db_pre()
-        setTimeout(function() {
-            $('#preloader').hide()
-        },2000)
+        
     })
     $(document).on('click','.del',function(){
         $('#back').html("");

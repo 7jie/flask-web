@@ -9,7 +9,8 @@
 <div id="insert">
 {% if data !=undefined %}
     {% for i,key in data.items() %}
-    <p>{{ i }}<span>{{ key }}</span></p>
+    <div class="data_con"><div>{{ i }}</div><div>{{ key }}</div></div>
+    
     <!--
         {% if key!="" %}
         <p>{{ i }}<span>{{ key }}</span></p>
@@ -20,6 +21,6 @@
 
 {% endif %}
 
-<p><a href="{{ url_for('food') }}">返回</a></p>
+<div id="back"><a href="{{ url_for('food') }}">返回</a></div>
 </div>
 {% endblock %}

@@ -112,7 +112,7 @@ $(document).ready(function() {
       //alert("已通過："+data_name);
       console.log(d)
       
-   /*
+   
       $.ajax({
         
         url:'/getadit_re',
@@ -124,25 +124,43 @@ $(document).ready(function() {
       })
       .done(function(data){
         $('#preloader').hide();
-        $('#back').html("");
-        var msg = '<div id="note">';
-        msg += '<div id="title"><a href="#">關閉X</a></div><div id="text"><h2 id="adit_ok">審核通過</h2>';
-        msg +='<p id="text_data">'+data_name+'</p>';
-        msg += '<button id="affirm">確認</button>';
-        msg += '</div></div>'
-        $('#back').append(msg);
-        $('#back').show();
-        $('body').click((e) => {
-          if (['back','note','title','text','text_data','adit_ok'].indexOf(e.target.id) > -1) {
-            return false;
-          }
-          $('#back').hide();
-          location.reload(true)
+        if (d.length!=0){
+          $('#back').html("");
+          var msg = '<div id="note">';
+          msg += '<div id="title"><a href="#">關閉X</a></div><div id="text"><h2 id="adit_ok">審核通過</h2>';
+          msg +='<p id="text_data">'+data_name+'</p>';
+          msg += '<button id="affirm">確認</button>';
+          msg += '</div></div>'
+          $('#back').append(msg);
+          $('#back').show();
+          $('body').click((e) => {
+            if (['back','note','title','text','text_data','adit_ok'].indexOf(e.target.id) > -1) {
+              return false;
+            }
+            $('#back').hide();
+            location.reload(true)
+        })
+        }else{
+          $('#back').html("");
+          var msg = '<div id="note">';
+          msg += '<div id="title"><a href="#">關閉X</a></div><div id="text"><h2 id="adit_ok">您未選取通過的資料</h2>';
+          msg += '<button id="affirm">確認</button>';
+          msg += '</div></div>'
+          $('#back').append(msg);
+          $('#back').show();
+          $('body').click((e) => {
+            if (['back','note','title','text','text_data','adit_ok'].indexOf(e.target.id) > -1) {
+              return false;
+            }
+            $('#back').hide();
+        })
+        }
+
+        
+
+        console.log(d.length)
       })
 
-        console.log(data)
-      })
-*/
       
     })
 
@@ -191,20 +209,37 @@ $(document).ready(function() {
       .done(function(data){
         $('#preloader').hide();
         $('#back').html("");
-        var msg = '<div id="note">';
-        msg += '<div id="title"><a href="#">關閉X</a></div><div id="text"><h2 id="adit_no">已否決以下項目</h2>';
-        msg +='<p id="text_data">'+data_name+'</p>';
-        msg += '<button id="affirm">確認</button>';
-        msg += '</div></div>'
-        $('#back').append(msg);
-        $('#back').show();
-        $('body').click((e) => {
-          if (['back','note','title','text','text_data','adit_no'].indexOf(e.target.id) > -1) {
-            return false;
-          }
-          $('#back').hide();
-          location.reload(true)
-      })
+        if (d.length!=0){
+          var msg = '<div id="note">';
+          msg += '<div id="title"><a href="#">關閉X</a></div><div id="text"><h2 id="adit_no">已否決以下項目</h2>';
+          msg += '<button id="affirm">確認</button>';
+          msg += '</div></div>'
+          $('#back').append(msg);
+          $('#back').show();
+          $('body').click((e) => {
+            if (['back','note','title','text','text_data','adit_no'].indexOf(e.target.id) > -1) {
+              return false;
+            }
+            $('#back').hide();
+            location.reload(true)
+        })
+        }else{
+          var msg = '<div id="note">';
+          msg += '<div id="title"><a href="#">關閉X</a></div><div id="text"><h2 id="adit_no">您未選取否決的資料</h2>';
+          msg +='<p id="text_data">'+data_name+'</p>';
+          msg += '<button id="affirm">確認</button>';
+          msg += '</div></div>'
+          $('#back').append(msg);
+          $('#back').show();
+          $('body').click((e) => {
+            if (['back','note','title','text','text_data','adit_no'].indexOf(e.target.id) > -1) {
+              return false;
+            }
+            $('#back').hide();
+        })
+        }
+        
+        
 
       })
 

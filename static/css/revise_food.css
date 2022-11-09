@@ -90,7 +90,17 @@ a{
 h2 {
     text-align: center;
 }
+.con_block {
+    display: flex;
+    flex-wrap: wrap;
+}
+@media screen and (max-width:1165px) {
+    #zh_text{
+        display: block;
+    }
+}
 @media screen and (max-width: 900px) {
+    
     .con{
         flex-direction: column;
     }
@@ -109,6 +119,11 @@ h2 {
     }
     input {
         width: 40vw;
+    }
+}
+@media screen and (max-width: 580px)  {
+    .red{
+        display: block;
     }
 }
 @media screen and (max-width:360px)  {

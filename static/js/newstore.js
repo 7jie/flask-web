@@ -359,6 +359,7 @@ $(document).ready(function() {
         name_bool()
         stn_bool()
         k_bool()
+        info_num()
 
         //console.log($('.num_text').val()+"Pieces")
         //console.log($('#size_zh').val());
@@ -369,10 +370,11 @@ $(document).ready(function() {
         console.log("熱量"+kcal_bool)
         console.log("店"+stname_bool)
         console.log("名"+nazh_blool)
-        console.log("名"+num_tag)
+        console.log("數"+num_tag)
         console.log(man_bool)
         */
         if( kcal_bool& stname_bool& nazh_blool& num_tag & man_bool & num_bool &st_en &na_en){
+          $('input[name="store_name_en"]').attr('disabled',false)
           $('#preloader').show();
           
           if($('#man').css("display")=="block"){

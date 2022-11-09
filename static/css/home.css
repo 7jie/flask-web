@@ -119,12 +119,19 @@ body{
 #preloader {/*   這是整個會蓋住畫面的底色色塊  */
     z-index: 9999;
     display: none;
+    background: gray;
+    opacity: 0.8;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    position: absolute;
     }
 #status {/*   這是中間loading的gif坐標css,我們盡量讓他畫面置中  */
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    opacity: 1;
     }
     #status img{
         width: 200px;

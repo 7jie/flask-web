@@ -12,20 +12,24 @@
     {% for i,key in re.items() %}
     {% if data[i]!="" %}
         {% if i=="url"%}
-        <p>{{ key }}</p>
-        <p><img src="{{data[i]}}"></p>
+        <div><div>{{ key }}</div>
+            <div>
+                <img src="{{data[i]}}">
+            </div>
+        </div>
+        
         {% elif i=="ingredients"%}
-            <p>{{ key }}</p>
+            <div>{{ key }}</div>
             {% for x,k in data[i].items() %}
-            <p>{{ x }}：<span>{{ k }}</span></p>
+            <div>{{ x }}：<span>{{ k }}</span></div>
             {%endfor%}
         {%elif i=="step"%}
-        <p>{{ key }}</p>
+        <div>{{ key }}</div>
             {% for x in data[i] %}
-            <p>{{x}}</p>
+            <div>{{x}}</div>
             {%endfor%}
         {%else%}
-        <p>{{ key }}：<span>{{ data[i] }}</span></p>
+        <div>{{ key }}：<span>{{ data[i] }}</span></div>
         {%endif%}
     {%endif%}
     
@@ -39,6 +43,6 @@
 
 {% endif %}
 
-<p><a href="{{ url_for('newrecipe') }}">返回</a></p>
+<div id="back"><a href="{{ url_for('newrecipe') }}">返回</a></div>
 </div>
 {% endblock %}
