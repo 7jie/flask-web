@@ -15,6 +15,9 @@
     overflow: auto;
     max-height: 20vh;
 }
+#st{
+    margin-top: 2vh;
+}
 #s{
     margin-left:0.1em ;
 }
@@ -22,9 +25,7 @@
     margin-bottom: 10px;
 }
 
-#st li{
-    margin-left: 1vw;
-}
+
 img{
 
     max-width: 600px;
@@ -49,7 +50,9 @@ img{
     border: 2px dashed blue;
     margin-top: 1vw;
 }
-
+input.step {
+    flex: 1;
+}
 button:not(#go){
     background-color: #FFFAE4;
     color: #9E8764;
@@ -81,7 +84,9 @@ button:not(#go){
 div#img {
     margin-bottom: 1vw;
 }
-
+.name ,.size{
+    width: 90%;
+}
 .float_ins{
     display: flex;
     justify-content: center;
@@ -98,10 +103,20 @@ div#img {
 #st li {
     display: flex;
     align-items: center;
-    margin-left: 10vw;
+    margin-left: 5vw;
 }
 .st_block .red{
     display: block;
+}
+
+.st_con {
+    width: 90%;
+    display: flex;
+}
+.st_block {
+    display: flex;
+    flex: 8;
+    flex-wrap: wrap;
 }
 .test{
     display: flex;

@@ -25,9 +25,9 @@ from firebase_admin import db
 import hashlib
 from googletrans import Translator
 translator = Translator()
-cred = credentials.Certificate("python.json")#自己的json路徑
-#cred = credentials.Certificate("topic.json")#自己的json路徑
-
+#cred = credentials.Certificate("python.json")#自己的json路徑
+cred = credentials.Certificate("topic.json")#自己的json路徑
+"""
 firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://python-f1901-default-rtdb.firebaseio.com/',
     'storageBucket': 'python-f1901.appspot.com'
@@ -37,8 +37,8 @@ firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://topic-3b33d-default-rtdb.firebaseio.com/',
     'storageBucket': 'topic-3b33d.appspot.com'
 })
-"""
 
+"""
 firebaseConfig = {
    "databaseURL":"https://python-f1901-default-rtdb.firebaseio.com/",
   "apiKey": "AIzaSyDU4SMG9hpVMear3YN1aPtV8ABFuu2yHjM",
@@ -62,7 +62,7 @@ firebaseConfig = {
      "measurementId": "G-20ZX53K4QD"
     }
 
-"""
+
 bucket=st.bucket()
 firestore_db = firestore.client()
 firebase=pyrebase.initialize_app(firebaseConfig)
@@ -622,7 +622,7 @@ def rev_code():
     if "english" in d and "size_en" in d:
         cd_all["codeName_en"][d['english']+'-'+d['size_en']]=firestore_db.document(code_path)
     firestore_db.document('code/code_all').set(cd_all)
-    print(d)
+
     return render_template('rev_code.html',data=d,cd=code_map)
 @app.route('/revise_fper',methods=['POST'])
 @login_required
@@ -700,19 +700,6 @@ def revise_fper():
                 del fa_en_db["drinkName_en"][p]
                 fa_en_db["drinkName_en"][rf_refname]=firestore_db.document(path)
                 firestore_db.document("food/food_all_en").set(fa_en_db)
-
-
-
-
-    """
-    #刪除?
-    else:
-        #沒有更改名稱，有更改資料
-        if request.form.get('type')=="drink":
-            with open('data/'+request.form.get('store_name')+'.json','r',encoding="utf-8")as f:
-                store_data=json.load(f)
-    """         
-
     return render_template('revise_fper.html',data=st_data,da_na=data_name)#,data=revise_fdata
 #整合code
 @app.route('/newcode')
