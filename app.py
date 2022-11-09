@@ -908,7 +908,9 @@ def recipe():
     recipe["step"]=step
     recipe["ingredients"]=ing
     recipe["chinese"]=request.form.get('chinese')
-    recipe["english"]=request.form.get('english')
+    #recipe["english"]=request.form.get('english')
+    if request.form.get('english')=="":
+        recipe["english"]=translator.translate(recipe["chinese"], dest='en').text
     db_path=firestore_db.collection('recipe/低卡/食譜名稱').document().path
 
     firestore_db.document(db_path).set(recipe)
@@ -921,30 +923,25 @@ def recipe():
     
     recipe_all=firestore_db.document('recipe/recipe_all').get().to_dict()
     recipe_all["recipeName_zh"][recipe["chinese"]]=firestore_db.document(db_path)
-    if recipe["english"]!="":
-        recipe_all["recipeName_en"][recipe["english"]]=firestore_db.document(db_path)
+    
+    recipe_all["recipeName_en"][recipe["english"]]=firestore_db.document(db_path)
     #分類
     for i in json.loads(request.form.get("ing")):
         if i in seafood:
             recipe_all["recipeName_seafood_zh"][recipe["chinese"]]=firestore_db.document(db_path)
-            if recipe["english"]!="":
-                recipe_all["recipeName_seafood_en"][recipe["english"]]=firestore_db.document(db_path)
+            recipe_all["recipeName_seafood_en"][recipe["english"]]=firestore_db.document(db_path)
         if i in egg:
             recipe_all["recipeName_egg_zh"][recipe["chinese"]]=firestore_db.document(db_path)
-            if recipe["english"]!="":
-                recipe_all["recipeName_egg_en"][recipe["english"]]=firestore_db.document(db_path)
+            recipe_all["recipeName_egg_en"][recipe["english"]]=firestore_db.document(db_path)
         if i in milk:
             recipe_all["recipeName_milk_zh"][recipe["chinese"]]=firestore_db.document(db_path)
-            if recipe["english"]!="":
-                recipe_all["recipeName_milk_en"][recipe["english"]]=firestore_db.document(db_path)
+            recipe_all["recipeName_milk_en"][recipe["english"]]=firestore_db.document(db_path)
         if i in nuts:
             recipe_all["recipeName_nuts_zh"][recipe["chinese"]]=firestore_db.document(db_path)
-            if recipe["english"]!="":
-                recipe_all["recipeName_nuts_en"][recipe["english"]]=firestore_db.document(db_path)
+            recipe_all["recipeName_nuts_en"][recipe["english"]]=firestore_db.document(db_path)
         if i in honey:
             recipe_all["recipeName_honey_zh"][recipe["chinese"]]=firestore_db.document(db_path)
-            if recipe["english"]!="":
-                recipe_all["recipeName_honey_en"][recipe["english"]]=firestore_db.document(db_path)
+            recipe_all["recipeName_honey_en"][recipe["english"]]=firestore_db.document(db_path)
 
     firestore_db.document('recipe/recipe_all').set(recipe_all)
 
@@ -978,7 +975,8 @@ def recipe_rev():
     recipe["step"]=step
     recipe["ingredients"]=ing
     recipe["chinese"]=request.form.get('chinese')
-    recipe["english"]=request.form.get('english')
+    if request.form.get('english')=="":
+        recipe["english"]=translator.translate(recipe["chinese"], dest='en').text
 
     path='recipe/低卡/食譜名稱/'+request.form.get('key')
     firestore_db.document(path).set(recipe,merge=True)
@@ -996,8 +994,7 @@ def recipe_rev():
         json.dump(recipe_data,f)
     recipe_all=firestore_db.document('recipe/recipe_all').get().to_dict()
     recipe_all["recipeName_zh"][recipe["chinese"]]=firestore_db.document(path)
-    if recipe["english"]!="":
-        recipe_all["recipeName_en"][recipe["english"]]=firestore_db.document(path)
+    recipe_all["recipeName_en"][recipe["english"]]=firestore_db.document(path)
     if request.form.get("def_chinese"):
         if request.form.get("def_chinese") in recipe_all["recipeName_seafood_zh"]:
             del recipe_all["recipeName_seafood_zh"][request.form.get("def_chinese")]
@@ -1024,24 +1021,19 @@ def recipe_rev():
     for i in json.loads(request.form.get("ing")):
         if i in seafood:
             recipe_all["recipeName_seafood_zh"][recipe["chinese"]]=firestore_db.document(path)
-            if recipe["english"]!="":
-                recipe_all["recipeName_seafood_en"][recipe["english"]]=firestore_db.document(path)
+            recipe_all["recipeName_seafood_en"][recipe["english"]]=firestore_db.document(path)
         if i in egg:
             recipe_all["recipeName_egg_zh"][recipe["chinese"]]=firestore_db.document(path)
-            if recipe["english"]!="":
-                recipe_all["recipeName_egg_en"][recipe["english"]]=firestore_db.document(path)
+            recipe_all["recipeName_egg_en"][recipe["english"]]=firestore_db.document(path)
         if i in milk:
-            recipe_all["recipeName_milk_zh"][recipe["chinese"]]=firestore_db.document(path)
-            if recipe["english"]!="":
-                recipe_all["recipeName_milk_en"][recipe["english"]]=firestore_db.document(path)
+            recipe_all["recipeName_milk_zh"][recipe["chinese"]]=firestore_db.document(path)           
+            recipe_all["recipeName_milk_en"][recipe["english"]]=firestore_db.document(path)
         if i in nuts:
-            recipe_all["recipeName_nuts_zh"][recipe["chinese"]]=firestore_db.document(path)
-            if recipe["english"]!="":
-                recipe_all["recipeName_nuts_en"][recipe["english"]]=firestore_db.document(path)
+            recipe_all["recipeName_nuts_zh"][recipe["chinese"]]=firestore_db.document(path)           
+            recipe_all["recipeName_nuts_en"][recipe["english"]]=firestore_db.document(path)
         if i in honey:
             recipe_all["recipeName_honey_zh"][recipe["chinese"]]=firestore_db.document(path)
-            if recipe["english"]!="":
-                recipe_all["recipeName_honey_en"][recipe["english"]]=firestore_db.document(path)
+            recipe_all["recipeName_honey_en"][recipe["english"]]=firestore_db.document(path)
     firestore_db.document('recipe/recipe_all').set(recipe_all)
     recipe=firestore_db.document(path).get().to_dict()
 
