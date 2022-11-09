@@ -1360,4 +1360,4 @@ def getadit_re():
     return "OK"
 
 if __name__=='__main__':
-    app.run('0.0.0.0',debug=True,port='8000') #120.110.7.178 測試
+    app.run('0.0.0.0',debug=True,port='8000') #120.110.7.178 
