@@ -1,5 +1,14 @@
 $(document).ready(function() {
-  
+  var man_size_num=0
+  var size_num=0
+  introJs().setOptions({
+    steps: [
+      {element: document.querySelector('input[name="name_zh"'),
+        intro: "請輸入中文"},
+      {element: document.querySelector('input[name="kcal"'),
+        intro: "請輸入熱量"}
+    ]
+  }).start();
   var num_tag=false
   var na_en=true
   var name_bool=false
@@ -98,7 +107,6 @@ $(document).ready(function() {
         
       }, 500);
       
-      
 
     });
 
@@ -111,6 +119,15 @@ $(document).ready(function() {
       if($("#type").val()=="eat"){
         if($(this).val()!="1份" ){
           $('.num').show();
+          if (size_num==0){
+            introJs().setOptions({
+            steps: [
+              {element: document.querySelector('#num_text'),
+                intro: "請輸入數量，例:5，若無輸入則預設1"},
+                ]
+              }).start();
+          }
+          
         }else{
           $('.num').hide();
         }
@@ -125,11 +142,19 @@ $(document).ready(function() {
       $('#auto').hide();
       $('#man').show();
       $('.num').hide();
+      if (man_size_num==0){
+        introJs().setOptions({
+          steps: [
+            {element: document.querySelector('input[name="man_size_zh"]'),
+              intro: "請輸入商品份量中文"},
+          ]
+        }).start();
+        man_size_num+=1
+      }
      })
 
      $('#ch_auto').click(function(){
       var top=$(document).scrollTop();
-      console.log(top);
       $('#auto').show();
       $('#man').hide();
       if ($("#size").val()!="1份"){
