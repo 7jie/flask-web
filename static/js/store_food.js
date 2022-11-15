@@ -10,30 +10,7 @@ $(document).ready(function() {
   $('#auto').show();
   
   
-  /*
-  $('input[name="store_name"]').on("compositionend", function (e) {
-    console.log($(this).val())
-    $.ajax({
-        url: "/getstore",
-        type:'POST',
-      data:{
-                "store_name":$(this).val()
-                },
-        })
-    .done(function(data) {
-      //要再改
-      console.log(data)
-      for(i in data){
-      console.log(data[i])
-      }
-        
-    })
-    .fail(function(){
-      console.log("qq");
-    })
   
-    });
-*/
   $('.num').hide();
   
   $('input[name="name_en"]').on('input',function(){
@@ -194,8 +171,15 @@ $(document).ready(function() {
         $($('#size_zh')).on('input',function(){
         
         var text_val=$(this).val().split("")
-        console.log(text_val)
-       
+        var n=Number
+        $.each(text_val,function(k,v){
+          console.log("t")
+          if (/.*[\u4e00-\u9fa5]+.*$/.test(v)){
+            n=k
+            console.log(n)
+            return false
+          }
+        })
         if($('#size_zh').val().length==0){//
           $('#sizetext').html('*請輸入份量中文');
           man_bool=false;
@@ -210,6 +194,10 @@ $(document).ready(function() {
         }
         else if (isNaN(text_val[0])){
           $('#sizetext').html('*份量數字請輸入在前');
+          man_bool=false;
+        }
+        else if(Number($('#size_zh').val().slice(0,n))>2000){
+          $('#sizetext').html('*請勿大於2000');
           man_bool=false;
         }
         else{
@@ -272,21 +260,6 @@ $(document).ready(function() {
 
           console.log("是block");
           
-          if($('#size_zh').val().length==0){//
-            $('#sizetext').html('*請輸入份量中文');
-            man_bool=false;
-          }
-          else if(!/.*[\u4e00-\u9fa5]+.*$/.test($('#size_zh').val())){
-            $('#sizetext').html('*請包含中文');
-            man_bool=false;
-          }
-          else{
-            man_bool=true;
-            size=$('#size_zh').val();
-            console.log(size);
-            $('#sizetext').html('*必填');
-            
-          }
         }else{
           size=$('#size').val();
           man_bool=true;
