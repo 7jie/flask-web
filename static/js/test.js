@@ -15,7 +15,9 @@ $(document).ready(function() {
       {element: document.querySelector('.right_ra'),
         intro: "請登入"},
       {element: document.querySelector('.left_ra'),
-        intro: "點此切換註冊"}
+        intro: "點此切換註冊"},
+      {element: document.querySelector('a'),
+        intro: "忘記密碼請點此"}
     ],
     nextLabel:'下一步>>',
     prevLabel:'<<上一步',
