@@ -6,6 +6,20 @@ $(document).ready(function() { //確保網頁載入完畢才執行程式
   var size=false
   var english_bool=true
   var size_en_bool=true
+  introJs().setOptions({
+    steps: [
+      {element: document.querySelector('input[name="barcode"]'),
+        intro: "請輸入條碼"},
+      {element: document.querySelector('.inst_code'),
+        intro: "若條碼為店內條碼，請點選"},
+    ],
+    hidePrev: true,
+    hideNext: true,   
+    nextLabel:'下一步>>',
+    prevLabel:'<<上一步',
+    skipLabel:'跳過',
+    doneLabel: '我知道了'
+  }).start();
   function ch_english(){
     var en=$('input[name="english"]').val()
     if (en.length>80){
@@ -20,6 +34,9 @@ $(document).ready(function() { //確保網頁載入完畢才執行程式
     }
   }
   $('input[name="english"]').on('input',function(){
+    ch_english()
+  })
+  $('input[name="english"]').on('blur',function(){
     ch_english()
   })
     function ch_size_en(){
@@ -64,6 +81,9 @@ $(document).ready(function() { //確保網頁載入完畢才執行程式
 
     }
     $('input[name="size_en"]').on('input',function(){
+      ch_size_en()
+    })
+    $('input[name="size_en"]').on('blur',function(){
       ch_size_en()
     })
   function check_code(){
@@ -181,10 +201,16 @@ function check_size(){
   $('input[name="barcode"]').on('input',function(){
     code_bool()
   })
+  $('input[name="barcode"]').on('blur',function(){
+    code_bool()
+  })
   $('input[name="name_zh"]').on('input',function(){
     check_name()
   })
 
+  $('input[name="name_zh"]').on('blur',function(){
+    check_name()
+  })
   
   $('input[name="kcal"]').on('input',function(){
     check_kcal()
@@ -193,6 +219,9 @@ function check_size(){
   
   
   $('input[name="size_zh"]').on('input',function(){
+    check_size()
+  })
+  $('input[name="size_zh"]').on('blur',function(){
     check_size()
   })
 

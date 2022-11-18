@@ -1,9 +1,6 @@
 .red{
     color: red;
 }
-body{
-    overflow: auto;
-}
 #s{
     margin-left:1em ;
 }
@@ -25,7 +22,7 @@ body{
     width: 50vw;
     background-color: antiquewhite;
     margin: auto;
-    height: 60vh;
+    height: 500px;
     border-radius: 10px;
     border: 3px solid #9E8764;
     overflow: auto;
@@ -38,11 +35,12 @@ body{
 
 .userfood_nutrition{
     font-size: x-large;
-    /* width: 50%; */
-    /* margin: auto; */
-    /* padding: 20px; */
+
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    width: 80%;
+    margin: auto;
+
 
 }
 .rev_left{
@@ -67,9 +65,10 @@ body{
 .c_box:checked{
     background-color: black;
 }
-.info_left,.info_right {
-    width: 15vw;
+.info_left {
+    width: 200px;
 }
+
 #text_data,#adit_ok {
     color: #9E8764;
 }
@@ -104,17 +103,17 @@ body{
     float: right;
 }
 .click_con{
-    margin: auto;
-    width: 40%;
-    overflow: auto;
+    display: flex;
+    justify-content: center;
     margin-top: 40px;
     margin-bottom: 30px;
 }
-.data_left{
-    flex: 1;
-}
-.data_right{
-    flex: 1;
+i.u_right:after {
+    font-family: FontAwesome;
+    content: "\f304";
+    font-weight: 900;
+    line-height: 1;
+    font-style: normal;
 }
 
 button{
@@ -169,6 +168,25 @@ span#nodata {
 #dit_no{
     color: #FF9595;
 }
+@media screen and (max-width: 900px) {
+    #adit_con{
+        width: 70vw;
+    }
+.userfood_nutrition {
+
+    margin: auto;
+    width: 60%;
+}
+}
+@media screen and (max-width: 900px) {
+.userfood_nutrition{
+    font-size: large;
+    width: 80%;
+}
+}
+
+
+
 /*
 .userfood_title::after {
     font-family: FontAwesome;
@@ -176,6 +194,7 @@ span#nodata {
     float:right;
 }
 */
+/*
 @media screen and (max-width: 1300px) {
     .info_right{
         width: 150px;
@@ -209,12 +228,7 @@ span#nodata {
     .userfood_nutrition{
         width: 70%;
     }
-    .info_right{
-        width: 220px;
-    }
-    .info_left{
-        width: calc(100% - 220px);
-    }
+   
 }
 @media screen and (max-width: 795px) {
     .userfood_nutrition{
@@ -245,4 +259,4 @@ span#nodata {
     span#nodata{
         font-size: xx-large;
     }
-}
+}*/

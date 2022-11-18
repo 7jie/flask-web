@@ -86,6 +86,7 @@ a{
 .con,.con_nre{
     display: flex;
     justify-content: start;
+    flex-wrap: wrap;
 }
 h2 {
     text-align: center;
@@ -94,19 +95,23 @@ h2 {
     display: flex;
     flex-wrap: wrap;
 }
+
 @media screen and (max-width:1165px) {
     #zh_text{
         display: block;
     }
 }
+@media screen and (max-width: 1100px)  {
+    #rev_f_con{
+        width: 70vw;
+    }
+}
 @media screen and (max-width: 900px) {
     
-    .con{
-        flex-direction: column;
+    #rev_f_con{
+        width: 80vw;
     }
-    #zh_text{
-        font-size: medium;
-    }
+    
     
 }
 @media screen and (max-width:550px)  {
@@ -119,6 +124,9 @@ h2 {
     }
     input {
         width: 40vw;
+    }
+    #zh_text{
+        font-size: medium;
     }
 }
 @media screen and (max-width: 580px)  {

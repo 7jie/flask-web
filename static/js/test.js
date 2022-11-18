@@ -1,6 +1,27 @@
 $(document).ready(function() {
 
+  //document.cookie = 'cookie3=home=1;path=/';
 
+  //var cookieAry = document.cookie.split(';');
+  //document.cookie = 'ttt=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+
+  //console.log(document.cookie)
+
+  introJs().setOptions({
+    steps: [
+      {
+        intro:'歡迎使用'
+      },
+      {element: document.querySelector('.right_ra'),
+        intro: "請登入"},
+      {element: document.querySelector('.left_ra'),
+        intro: "點此切換註冊"}
+    ],
+    nextLabel:'下一步>>',
+    prevLabel:'<<上一步',
+    skipLabel:'跳過',
+    doneLabel: '我知道了'
+  }).start();
   var reg_m=Boolean;
   var reg_pass=Boolean;
   var reg_c_pass=Boolean;

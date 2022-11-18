@@ -38,7 +38,7 @@
     {% for d in range(0,pagination.per_page) %}
 
     <ul class="userfood_info">
-        <li><div class="userfood"><label class="check"><div  class="userfood_title"><input data-name="{{data[d]['chinese']}}" data-uid="{{data[d]['userID']}}" data-num="{{data[d]['list_num']}}" class="c_box"type="checkbox"><span id="food_name">{{data[d]['chinese']}}</span></div></label><i class="u_right fa-solid fa-pen"></i></div></li>
+        <li><div class="userfood"><label class="check"><div  class="userfood_title"><input data-name="{{data[d]['chinese']}}" data-uid="{{data[d]['userID']}}" data-num="{{data[d]['list_num']}}" class="c_box"type="checkbox"><span id="food_name">{{data[d]['chinese']}}</span></div></label><i class="u_right"></i></div></li>
     <li class="view">
         {%for x in d_n.keys()%}
                 
@@ -67,7 +67,7 @@
             {% for d in range(0,data|length) %}
             
             <ul class="userfood_info">
-                <li><div class="userfood"><label class="check"><div  class="userfood_title"><input data-name="{{data[d]['chinese']}}" data-uid="{{data[d]['userID']}}" data-num="{{data[d]['list_num']}}" class="c_box"type="checkbox"><span id="food_name">{{data[d]['chinese']}}</span></div></label><i class="u_right fa-solid fa-pen"></i></div></li>
+                <li><div class="userfood"><label class="check"><div  class="userfood_title"><input data-name="{{data[d]['chinese']}}" data-uid="{{data[d]['userID']}}" data-num="{{data[d]['list_num']}}" class="c_box"type="checkbox"><span id="food_name">{{data[d]['chinese']}}</span></div></label><i class="u_right"></i></div></li>
             <li class="view">
                 
 
@@ -97,7 +97,7 @@
 {% for d in range((page-1)*pagination.per_page,(page-1)*pagination.per_page+pagination.per_page)%}
 <ul class="userfood_info">
     
-    <li><div class="userfood"><label class="check"><div  class="userfood_title"><input data-name="{{data[d]['chinese']}}" data-uid="{{data[d]['userID']}}" data-num="{{data[d]['list_num']}}" class="c_box"type="checkbox"><span id="food_name">{{data[d]['chinese']}}</span></div></label><i class="u_right fa-solid fa-pen"></i></div></li>
+    <li><div class="userfood"><label class="check"><div  class="userfood_title"><input data-name="{{data[d]['chinese']}}" data-uid="{{data[d]['userID']}}" data-num="{{data[d]['list_num']}}" class="c_box"type="checkbox"><span id="food_name">{{data[d]['chinese']}}</span></div></label><i class="u_right"></i></div></li>
     <li class="view">
         {%for x in d_n.keys()%}
                 
@@ -124,7 +124,7 @@
 {%else%}
 {% for d in range((page-1)*pagination.per_page,pagination.total)%}
 <ul class="userfood_info">
-    <li><div class="userfood"><label class="check"><div  class="userfood_title"><input data-name="{{data[d]['chinese']}}" data-uid="{{data[d]['userID']}}" data-num="{{data[d]['list_num']}}" class="c_box"type="checkbox"><span id="food_name">{{data[d]['chinese']}}</span></div></label><i class="u_right fa-solid fa-pen"></i></div></li>
+    <li><div class="userfood"><label class="check"><div  class="userfood_title"><input data-name="{{data[d]['chinese']}}" data-uid="{{data[d]['userID']}}" data-num="{{data[d]['list_num']}}" class="c_box"type="checkbox"><span id="food_name">{{data[d]['chinese']}}</span></div></label><i class="u_right"></i></div></li>
     <li class="view">
         {%for x in d_n.keys()%}
                 

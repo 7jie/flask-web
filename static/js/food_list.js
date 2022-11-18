@@ -1,4 +1,21 @@
 $(document).ready(function() {
+  introJs().setOptions({
+    steps: [
+      
+    {element: document.querySelector('#store_name'),
+        intro: "請選擇店家名稱"},
+    {element: document.querySelector('#diet_name'),
+        intro: "請選擇飲食類別"},
+    {element: document.querySelector('#search'),
+        intro: "請輸入關鍵字"}
+    ],
+
+  
+    nextLabel:'下一步>>',
+    prevLabel:'<<上一步',
+    skipLabel:'跳過',
+    doneLabel: '我知道了'
+  }).start();
 
     get_data();
   function getsearch(){

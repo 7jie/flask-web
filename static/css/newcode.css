@@ -8,9 +8,9 @@ h2{/*標題*/
 
 }
 
-div{ /*所有div*/
+div:not(.small){ /*所有div*/
     padding: 8px;
-    color: #9E8764;
+    
 }
 
 #click{ /*新增條碼*/
@@ -70,7 +70,10 @@ input:focus:-moz-placeholder {
 .code::after{
     content: "輸入條碼";
 }
-a{
+.introjs-tooltiptext{
+    color: black;
+}
+a:not(.small_text,.introjs-button,.menu_text){
     text-decoration: none;
     font-size: large;
 }

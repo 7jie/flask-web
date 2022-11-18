@@ -1,39 +1,46 @@
+#con div:not(#rev_recipe){
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
 img{
-    max-width: 600px;
-    max-height: 500px;
+    max-width: 60vw;
+    max-height: 50vh;
 }
 #con{
     margin: auto;
     margin-top: 1em;
     width: 50vw;
-    height: 60vh;
+    height: 550px;
     border: 1px solid black;
     background-color: antiquewhite;
     border-radius:10px ;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
     overflow: auto;
 }
 #rev_recipe{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 10px 0;
+    margin-top: 5vh;
+    margin-bottom: 2vh;
 }
-#ing_rev li,#step_rev{
+#ing_rev, #step_rev {
     list-style: none;
     padding-left: 0;
-
+}
+#ing_rev li{
+    margin-left: 2vw;
 }
 .step_num{
     display: flex;
 
-    padding: 10px 20px;
+    margin-left: 5vw;
 }
 .ing_num{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    padding: 10px 20px;
+    
     margin: auto;
     font-size: x-large;
 }
@@ -83,4 +90,52 @@ button:not(#go) {
     border-radius: 5px;
     padding: 5px 10px;
     cursor: pointer;
+}
+.con{
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+}
+.con_rev{
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+}
+
+.test{
+    display: flex;
+}
+.name, .size {
+    width: 90%;
+}
+
+@media screen and (max-width: 1100px)  {
+    #con{
+        width: 70vw;
+    }
+}
+@media screen and (max-width: 950px)  {
+    #con{
+        width: 80vw;
+    }
+}
+
+@media screen and (max-width: 800px)  {
+    #ing_rev li, #step_rev{
+        flex-wrap: wrap;
+    }
+    .r2 {
+        width: 60px;
+    }
+    .size, .name {
+        width: 120px;
+    }
+    input.step {
+        width: 300px;
+    }
+}
+@media screen and (max-width: 640px)  {
+    input.step {
+        width: 200px;
+    }
 }

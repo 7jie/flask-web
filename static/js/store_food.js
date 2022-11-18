@@ -1,11 +1,16 @@
 $(document).ready(function() {
+  
   var man_size_num=0
   var size_num=0
   introJs().setOptions({
     steps: [
-      {element: document.querySelector('input[name="name_zh"'),
+      {element: document.querySelector('input[name="name_zh"]'),
         intro: "請輸入中文"},
-      {element: document.querySelector('input[name="kcal"'),
+      {element: document.querySelector('#size'),
+        intro: "選擇食品份量"},
+      {element: document.querySelector('#ch_manual'),
+        intro: "若要手動輸入份量請點選"},  
+      {element: document.querySelector('input[name="kcal"]'),
         intro: "請輸入熱量"}
     ]
   }).start();

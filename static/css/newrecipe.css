@@ -2,13 +2,14 @@
     margin: auto;
     margin-top: 1em;
     width: 50vw;
-    height: 60vh;
+    height: 550px;
     border: 1px solid black;
     background-color: antiquewhite;
     border-radius:10px ;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
     overflow: auto;
 }
+
 #ing,#st{
     list-style: none;
     padding-left: 0;
@@ -27,9 +28,8 @@
 
 
 img{
-
-    max-width: 600px;
-    max-height: 500px;
+    max-width: 60vw;
+    max-height: 50vh;
 }
 #recipe_insert{
     font-size: x-large;
@@ -43,16 +43,15 @@ img{
     margin-bottom: 10px;
 }
 .ins_con{
-    
     border: 2px dashed red;
+    max-height: 220px;
 }
 .step_con{
     border: 2px dashed blue;
-    margin-top: 1vw;
+    max-height: 220px;
+
 }
-input.step {
-    flex: 1;
-}
+
 button:not(#go){
     background-color: #FFFAE4;
     color: #9E8764;
@@ -71,8 +70,8 @@ button:not(#go){
     border-radius: 5px;
     padding: 5px 20px;
     cursor: pointer;
-    
-    margin-top: 1vw;
+    margin-bottom:2vh ;
+    margin-top: 2vh;
 }
 #go:disabled{
     cursor: default;
@@ -99,7 +98,9 @@ div#img {
 .red{
     font-size: medium;
 }
-
+.red:not(#re_name .red,#rena_en .red,.must) {
+    font-size: xx-large;
+}
 #st li {
     display: flex;
     align-items: center;
@@ -114,17 +115,19 @@ div#img {
     display: flex;
 }
 .st_block {
-    display: flex;
-    flex: 8;
+    margin-right: 5vw;
     flex-wrap: wrap;
 }
 .test{
     display: flex;
 }
+li.r0 {
+    margin-left: 2vw;
+}
 #rename_con{
     display: flex;
 }
-#re_name{
+#re_name,#rena_en{
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 5vh;
@@ -146,6 +149,12 @@ div#img {
         width: 60px;
     }
 }
+
+@media screen and (max-width: 1100px)  {
+    #con{
+        width: 70vw;
+    }
+}
 @media screen and (max-width: 900px)  {
 
     
@@ -161,6 +170,9 @@ div#img {
     .size,.name{
         width: 120px;
     }
+    #rename_con {
+        flex-flow: column;
+    }
 }
 @media screen and (max-width: 500px)  {
 
@@ -172,6 +184,7 @@ div#img {
         max-height: 300px;
     }
 
+    
 }
 
 @media screen and (max-width: 400px)  {

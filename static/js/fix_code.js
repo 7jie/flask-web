@@ -269,8 +269,6 @@ $(document).on('click','.inst_code',function(){
     $('input[name="BarCode"]').attr('disabled',true)
     $(this).addClass("code")
     $(this).removeClass("inst_code")
-    $('input[name="BarCode"]').next().remove()
-    
       
 })
       
@@ -278,7 +276,7 @@ $(document).on('click','.code',function(){
     $('input[name="BarCode"]').attr('disabled',false)
     $(this).addClass("inst_code")
     $(this).removeClass("code")
-    $('.cd_block').append('<span class="red" id="Barcode">*必填</span>')
+    
     
     /*
     $('input[name="barcode"]').attr('disabled',false)

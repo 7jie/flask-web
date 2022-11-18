@@ -93,6 +93,9 @@ div#code{
     width: 14vw;
 }
 
+div#code_con {
+    border-top: 2px solid;
+}
 @media screen and (max-width: 1300px)  {
     div#search_con {
         width: 20vw;
@@ -121,6 +124,14 @@ div#code{
         width: 12vw;
     }
 }
+@media screen and (max-width: 1100px)  {
+    #c{
+        width: 70vw;
+    }
+    div#code {
+        width: 19vw;
+    }
+}
 @media screen and (max-width: 1140px)  {
 
 div#search_con {
@@ -138,6 +149,7 @@ div#search_con {
 }
 
 @media screen and (max-width: 900px)  {
+   
 div#code_text {
     margin-left: 1vw;
 }
@@ -145,9 +157,16 @@ div#code_text {
     padding: 10px 0px 10px 5px;
 }
 }
+
+@media screen and (max-width: 900px)  {
+    #c{
+        width: 70vw;
+    }
+
+}
 @media screen and (max-width: 865px)  {
-    div#code {
-        width: 13vw;
+    div#code_num {
+        width: 12vw;
     }
     div#cd_con {
        font-size: large;
@@ -161,23 +180,26 @@ div#code_text {
     div#search_con {
         width: 22vw;
     }
+    div#codet_con {
+        width: 25vw;
+    }
+    div#code {
+        width: 17vw;
+    }
     
 }
 
-@media screen and (max-width: 790px)  {
-
-    div#rev_del a {
-        margin-left: 0vw;
+@media screen and (max-width: 660px)  {
+    #c{
+        width: 80vw;
     }
-
-
-    div#code_num {
-        width: auto;
+    div#code {
+        width: 22vw;
     }
-    div#codet_con {
-        width: auto;
+    div#search_con {
+        width: 35vw;
     }
-    div#code_text {
-        margin-left: 0vw;
+    #search_code {
+        width: 20vw;
     }
 }

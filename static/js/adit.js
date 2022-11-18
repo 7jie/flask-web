@@ -2,9 +2,40 @@ $(document).ready(function() {
 
     var href=decodeURI($(location).attr('href'))
     var type=href.slice(href.indexOf('adit')+4,).replace('#','')
+    setTimeout(function(){
+      },1000);
+
+      
+    introJs().setOptions({
+      steps: [
+        {element: document.querySelector('#choose_all'),
+        intro: "全選請點此"},
+        {element: document.querySelector('.u_right'),
+        intro: "若要修改名稱請點選"},
+        /*
+        {element: document.querySelector('input[name="store_name_en"]'),
+          intro: "若無輸入店家英文名稱則系統自動翻譯"},
+        {element: document.querySelector('#type'),
+          intro: "請選擇食品類別"},
+        {element: document.querySelector('input[name="name_zh"]'),
+          intro: "請輸入食品中文名稱"},
+        {element: document.querySelector('input[name="name_en"]'),
+        intro: "若無輸入食品英文名稱則系統自動翻譯"},
+        {element: document.querySelector('#ch_manual'),
+        intro: "若要手動輸入份量請點選"},
+        
+        {element: document.querySelector('input[name="kcal"]'),
+        intro: "請輸入熱量"},
+        */
+        
+      ],
+      nextLabel:'下一步>>',
+      prevLabel:'<<上一步',
+      skipLabel:'跳過',
+      doneLabel: '我知道了'
+    }).start();
     
-    
-    
+    var e_d_num=0
     $('.u_right').on('click',function(){
       var userfood=$(this).prev().children(".userfood_title");
       
@@ -18,6 +49,22 @@ $(document).ready(function() {
           userfood.append('<input type="text" class="rev_stname" value='+st+'>'+'-'+'<input type="text" class="rev_name" value='+name+'>')
           //userfood.append('<input type="text" class="rev_name" value='+$(this).prev().children(".userfood_title").children("#food_name").text()+'>')
           userfood.children("#food_name").remove();
+          if (e_d_num==0){
+            introJs().setOptions({
+              steps: [
+                {element: document.querySelector('.rev_stname'),
+                intro: "修改店家名稱"},
+                {element: document.querySelector('.rev_name'),
+                intro: "修改食品名稱"}
+                ],
+                nextLabel:'下一步>>',
+                prevLabel:'<<上一步',
+                skipLabel:'跳過',
+                doneLabel: '我知道了'
+              }).start();
+          }
+
+          
         }else{
           userfood.append('<input type="text" class="rev_name" value='+name+'>')
           userfood.children("#food_name").remove();

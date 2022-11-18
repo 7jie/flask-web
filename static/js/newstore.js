@@ -8,6 +8,7 @@ $(document).ready(function() {
   var num_bool=true
   var na_en=true
   var st_en=true
+  
   $.ajax({
     url:"/getstore",
     type:'POST',
@@ -20,7 +21,31 @@ $(document).ready(function() {
 
 
     })
-
+    var elem = document.querySelector('input[name="name_en"]');
+    introJs().setOptions({
+      steps: [
+        {element: document.querySelector('input[name="store_name"]'),
+        intro: "請輸入店家中文名稱"},
+        {element: document.querySelector('input[name="store_name_en"]'),
+          intro: "若無輸入店家英文名稱則系統自動翻譯"},
+        {element: document.querySelector('#type'),
+          intro: "請選擇食品類別"},
+        {element: document.querySelector('input[name="name_zh"]'),
+          intro: "請輸入食品中文名稱"},
+        {element: document.querySelector('input[name="name_en"]'),
+        intro: "若無輸入食品英文名稱則系統自動翻譯"},
+        {element: document.querySelector('#ch_manual'),
+        intro: "若要手動輸入份量請點選"},
+        
+        {element: document.querySelector('input[name="kcal"]'),
+        intro: "請輸入熱量"}
+        
+      ],
+      nextLabel:'下一步>>',
+      prevLabel:'<<上一步',
+      skipLabel:'跳過',
+      doneLabel: '我知道了'
+    }).start();
   
   $('input[name="name_en"]').on('input',function(){
     if($(this).val().length>80){
@@ -132,13 +157,27 @@ $(document).ready(function() {
 
 
 
-    
+    var num=0
     $("#size").on('change', function() {
 
       $("#size_en").text(size_drink[$(this).val()]);
       if($("#type").val()=="eat"){
         if($(this).val()!="1份" ){
           $('.num').show();
+          if (num==0){
+            introJs().setOptions({
+              steps: [
+                {element: document.querySelector('.num_text'),
+                  intro: "請輸入數量，例：5，若無輸入則預設1"},
+              ],
+              nextLabel:'下一步>>',
+              prevLabel:'<<上一步',
+              skipLabel:'跳過',
+              doneLabel: '我知道了'
+            }).start();
+            num+=1
+          }
+          
         }else{
           $('.num').hide();
         }
@@ -146,13 +185,29 @@ $(document).ready(function() {
 
       
     })
-
+    var man=0
      $('#ch_manual').click(function(){
       var top=$(document).scrollTop();
       //console.log(top);
       $('#auto').hide();
       $('#man').show();
       $('.num').hide();
+      if(man==0){
+        introJs().setOptions({
+          steps: [
+            {element: document.querySelector('#size_zh'),
+              intro: "請輸入份量中文"},
+            {element: document.querySelector('input[name="man_size_en"]'),
+              intro: "若無輸入份量英文則系統自動翻譯"}
+          ],
+          nextLabel:'下一步>>',
+          prevLabel:'<<上一步',
+          skipLabel:'跳過',
+          doneLabel: '我知道了'
+        }).start();
+        man+=1
+      }
+      
      })
 
      $('#ch_auto').click(function(){
@@ -242,7 +297,10 @@ $(document).ready(function() {
 
           size_bool()
         })
-        
+        $($('#size_zh')).on('blur',function(){
+
+          size_bool()
+        })
       function ch_kcal(){
         var kcal=$('input[name="kcal"]').val()
         if(kcal==0)
@@ -266,7 +324,9 @@ $(document).ready(function() {
       $('input[name="kcal"').on('input',function(){
         k_bool()
       })
-
+      $('input[name="kcal"').on('blur',function(){
+        k_bool()
+      })
       function check_store() {
         
         if ($('input[name="store_name"]').val()==0){
@@ -303,6 +363,9 @@ $(document).ready(function() {
       $('input[name="store_name"]').on('input',function(){
         stn_bool()
       })
+      $('input[name="store_name"]').on('blur',function(){
+        stn_bool()
+      })
       function check_name() {
         if ($('input[name="name_zh"]').val()==0)
           return "*請輸入食品中文名稱";
@@ -320,7 +383,10 @@ $(document).ready(function() {
         else
           nazh_blool=true
       }
-      $('input[name="name_zh"').on('input',function(){
+      $('input[name="name_zh"]').on('input',function(){
+        name_bool()
+      })
+      $('input[name="name_zh"]').on('blur',function(){
         name_bool()
       })
       $(".num_text").on('input',function(){

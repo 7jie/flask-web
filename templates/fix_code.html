@@ -16,7 +16,7 @@
             <div class="con"><div>Barcode：</div><div class="cd_block"><input name="{{i}}" disabled></div><a href="#" class="code"></a></div>
             <!--<div>{{k}}：<input name="{{k}}" placeholder="4710367447634" size=""></div>-->
             {% else %}
-            <div class="con"><div>{{cd_zh[i]}}：</div><div class="cd_block"><input name="{{i}}" placeholder="{{d[i]}}" value="{{d[i]}}" size=""><span class="red" id="{{k}}">*必填</span></div><a href="#" class="inst_code"></a></div>
+            <div class="con"><div>{{cd_zh[i]}}：</div><div class="cd_block"><input name="{{i}}" placeholder="{{d[i]}}" value="{{d[i]}}" size=""><a href="#" class="inst_code"></a><span class="red" id="{{k}}">*必填</span></div></div>
             {% endif %}
         {%else%}
             {% if i=="chinese" %}

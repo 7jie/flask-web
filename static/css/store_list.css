@@ -1,6 +1,6 @@
 #ttt{
     margin-top: 1em;
-    height: 50vh;
+    max-height: 350px;
     overflow: auto;
     border-top:1px solid black ;
 }
@@ -69,7 +69,7 @@ input#search {
 
     margin-top: 10vh;
     font-size: xx-large;
-
+    margin-bottom: 10vh;
     justify-content: center;
 }
 select{
@@ -99,10 +99,13 @@ input:focus:-moz-placeholder {
 button{
     cursor: pointer;
 }
-@media screen and (max-width: 1110px)  {
-    #ttt{
-        height: 40vh;
+@media screen and (max-height: 700px)  {
+    #con_frame{
+        margin-bottom: 100px;
     }
+}
+@media screen and (max-width: 1110px)  {
+   
     #search_top{
         font-size: medium;
     }
@@ -149,13 +152,11 @@ button{
     #diet_name {
         width: auto;
     }
-    #search_no span{
-        display: none;
+    #search_no{
+        font-size: x-large;
     }
-    #search_no::after{
-        content: "查無資料";
-        font-size: xx-large;
-    }
+    
+    
 }
 @media screen and (max-width: 700px)  {
     div#name {

@@ -1,9 +1,14 @@
 .acc_flex{
     display: flex;
 }
-.rev_del{
-    display: flex;
+.uid_text {
+    width: 30vw;
 }
+.rev_del {
+    display: flex;
+    width: calc(100% - 25vw - 1vw);
+}
+
 div#acc_top {
     display: flex;
 }
@@ -21,6 +26,7 @@ div#acc_top {
 .uid_fr {
     display: flex;
     margin-top: 5vh;
+    align-items: center;
 }
 button {
 
@@ -34,10 +40,71 @@ button {
     cursor: pointer;
     margin-left: 20px;
 }
-#uid,#acc_top {
+#acc_top {
     height: 8vh;
 }
 div#acc_con {
     overflow: auto;
     height: calc(100% - 8vh - 8vh);
+}
+button{
+    width:40%;
+}
+div#uid {
+    margin-top: 2vh;
+    border-bottom: 2px solid;
+}
+
+@media screen and (max-width: 1300px)  {
+    .rev_del {
+        display: flex;
+        width: calc(100% - 25vw );
+    }
+    .uid_text {
+        width: 28vw;
+    }
+    button{
+        padding: 5px 10px;
+    }
+}
+@media screen and (max-width: 1150px)  {
+    #c{
+        width: 80vw;
+    }
+    .uid_text {
+        width: 35vw;
+    }
+    button{
+        width: 30%;
+    }
+    .rev_del {
+        display: flex;
+        width: calc(100% - 35vw );
+        justify-content: space-evenly;
+    }
+    }
+    
+
+    
+    
+
+@media screen and (max-width: 840px)  {
+    .rev_del {
+    justify-content: center;
+    }
+    .uid_text {
+        width: 40vw;
+    }
+
+}
+
+
+@media screen and (max-width: 720px)  {
+.uid_text {
+    font-size: large;
+}
+button {
+    padding: 5px 5px;
+    width: 25%;
+}
 }

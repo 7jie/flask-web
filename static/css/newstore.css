@@ -1,12 +1,13 @@
 .left{
     float: left;
-    width: calc(100% - 350px);
+    width: 200px;
     margin: 0;
 }
 .right{
-    float: right;
-    width: 350px;
+    width: 250px;
     margin: 0;
+    display: flex;
+    flex-wrap: wrap;
 }
 .con {
     width: 50vw;
@@ -21,6 +22,7 @@
     margin: 0;
     margin-bottom: 20px;
     display: flex;
+    flex-wrap: wrap;
 }
 form{
     padding-top: 20px;
@@ -35,9 +37,10 @@ form{
 #info {
     margin: auto;
     width: 80%;
-    height: 60vh;
+    max-height:500px;
     overflow: auto;
     font-size: x-large;
+    overflow-y: scroll;
 }
 #form1{
     width: 80%;
@@ -87,16 +90,17 @@ a{
 span#sizetext {
     display: block;
 }
-@media screen and (max-width: 1200px)  {
-    .left{
-        width: calc(100% - 250px);
+@media screen and (max-height: 700px)  {
+    .con{
+        margin-bottom: 100px;
     }
-    .right{
-        width: 250px;
-    }
-
 }
 
+@media screen and (max-width: 1500px)  {
+.red{
+    display: block;
+}
+}
 @media screen and (max-width: 1020px)  {
     
     

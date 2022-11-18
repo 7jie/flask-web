@@ -98,10 +98,23 @@ button{
     width: 20px;
     height: 20px;
 }
-@media screen and (max-width: 800px)  {
-
+@media screen and (max-width: 1100px)  {
+    form {
+        width: 70vw;
+    }
+}
+@media screen and (max-width: 900px)  {
+    form {
+        width: 80vw;
+    }
     .filterFood div {
         flex: 0 0 40%;
+    }
+    
+}
+@media screen and (max-width: 760px)  {
+    .red{
+        display: block;
     }
 }
 @media screen and (max-width: 670px)  {
@@ -110,3 +123,17 @@ button{
         flex: 0 0 50%;
     }
 }
+@media screen and (max-width: 500px)  {
+    input[name=height],input[name=weight]{
+        max-width: 100px;
+    }
+    input[name=phone]{
+        max-width: 150px;
+    }
+    #step, #step2 {
+        width: 70%;
+        margin: auto;
+    }
+
+}
+

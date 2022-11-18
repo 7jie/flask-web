@@ -1,5 +1,6 @@
 
 $(document).ready(function() {
+    
     $('#preloader').show()
     function db_pre(){
         $.ajax({
@@ -24,8 +25,15 @@ $(document).ready(function() {
             }
 
             $('#preloader').hide()
+            introJs().setOptions({
+                steps: [
+                  {element: document.querySelector('#acc_ch'),
+                    intro: "可選擇查詢不同方式登入的帳號"}
+                ]
+            }).start();
         })
     }
+
     console.log($('#acc_ch').val())
 
     db_pre()

@@ -10,6 +10,29 @@ $(document).ready(function() { //確保網頁載入完畢才執行程式
   var hei_bool=false
   var wei_bool=false
   var user
+  introJs().setOptions({
+    steps: [
+      {element: document.querySelector('input[name="account"]'),
+        intro: "請輸入帳號"},
+      {element: document.querySelector('input[name="password"]'),
+        intro: "請輸入密碼"},
+      {element: document.querySelector('input[name="phone"]'),
+        intro: "請輸入個人手機號碼"},
+      {element: document.querySelector('#button_1'),
+        intro: "填寫完手機號碼即可點擊發送驗證碼"},
+      {element: document.querySelector('#input_1'),
+        intro: "請輸入收到的驗證碼"},
+      {element: document.querySelector('#next'),
+        intro: "完成以上步驟，請點選即可完成新增帳號"}
+    ],
+    
+    hidePrev: true,
+    hideNext: true,  
+    nextLabel:'下一步>>',
+    prevLabel:'<<上一步',
+    skipLabel:'跳過',
+    doneLabel: '我知道了'
+  }).start();
   var firebaseConfig = {
     apiKey: "AIzaSyAk2Sp6_oP4o1Q1_wOtgOlIKpdaVemoqEI",
     authDomain: "topic-3b33d.firebaseapp.com",
@@ -122,7 +145,7 @@ $(document).ready(function() { //確保網頁載入完畢才執行程式
         });
       cd_bool=true
 
-      seconds=5
+      seconds=60
       $('#button_1').attr("disabled",true);
       
       var count=setInterval(function () {
@@ -152,6 +175,7 @@ $(document).ready(function() { //確保網頁載入完畢才執行程式
   $('#next').on('click',function(){
     $('#step').hide()
     $('#step2').show()
+    
     user.updateEmail($('input[name=account]').val()+"@xxx.com").then(() => {
       // Update successful
       // ...
@@ -178,8 +202,32 @@ $(document).ready(function() { //確保網頁載入完畢才執行程式
       }
     })
     .done(function(data){
-      console.log("t")
+      $("h1").html('輸入個人資料')
+    introJs().setOptions({
+      steps: [
+        {element: document.querySelector('input[name="birth_year"]'),
+          intro: "請輸入生日年分"},
+        {element: document.querySelector('select[name="sex"]'),
+          intro: "請選擇性別"},
+        {element: document.querySelector('input[name="height"]'),
+          intro: "請輸入身高"},
+        {element: document.querySelector('input[name="weight"]'),
+          intro: "請輸入體重"},
+        {element: document.querySelector('.filterFood'),
+          intro: "若有想避免的食物請勾選"},
+        {element: document.querySelector('#click'),
+          intro: "完成以上步驟，點選即完成個人資料輸入"}
+      ],
+      
+      hidePrev: true,
+      hideNext: true,  
+      nextLabel:'下一步>>',
+      prevLabel:'<<上一步',
+      skipLabel:'跳過',
+      doneLabel: '我知道了'
+    }).start();
     })
+    
     return false
     })
     

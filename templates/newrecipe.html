@@ -13,30 +13,36 @@
 
 <div id="recipe_insert">
 
-<div id="re_name">食譜名稱：<div id="rename_con"><div><input id="recipe_name"></div><div><span class="red" id="chinese">*必填</span></div></div></div>
+<div id="re_name"><div>食譜名稱：</div><div id="rename_con"><div><input id="recipe_name"></div><div><span class="red" id="chinese">*必填</span></div></div></div>
 
-<div>食譜英文名稱：<input id="recipe_en"><span class="red" id="english"></span></div>
+<div id="rena_en"><div>食譜英文名稱：</div>
+    <div id="rena_en_con">
+    <div>
+<input id="recipe_en"></div><div><span class="red" id="english"></span></div></div></div>
 <p>食譜圖片：<input name="image" id="test1"type="file" accept="image/gif, image/jpeg, image/png"></p>
 
 <div id="img"><img src="" id="img1"></div>
+<div class="red">食材：<button class="r1">+</button></div>
 <div class="ins_con">
-    <p >食材：<button class="r1">+</button></p><ul id="ing">
-<li class="r0">
-    <div class="float_ins">
-    <div class="test"><div class="ins_le"><span>名稱：</span><input name="n" class="name"><span class="red">*必填</span></div><div class="ins_ri"><span>份量：</span><input name="s" class="size"><span class="red">*必填</span></div></div><div><button class="r2">刪除</button></div></div>
+    <ul id="ing">
+        
+    <li class="r0">
+        <div class="float_ins">
+        <div class="test"><div class="ins_le"><span>名稱：</span><input name="n" class="name"><span class="red must">*必填</span></div><div class="ins_ri"><span>份量：</span><input name="s" class="size"><span class="red must">*必填</span></div></div><div><button class="r2">刪除</button></div></div>
+</div>
 </li>
 </ul>
-</div>
+<div class="red">步驟：<button class="r3">+</button></div>
 <div class="step_con">
-<p>步驟：<button class="r3">+</button></p>
+
 <ul id="st">
 <li>
     <div class="st_con">
-    <div class="st_block"><input class="step"><span class="red">*必填</span></div><div><button class="r4">刪除</button></div></div></li>
+    <div class="st_block"><input class="step"><span class="red must">*必填</span></div><div><button class="r4">刪除</button></div></div></li>
 </ul>
 </div>
 
-<div id="click_recipe"><button id="go" disabled>新增食譜</button></div>
+<div id="click_recipe"><button id="go" disabled :data-scrollTo="true">新增食譜</button></div>
 </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

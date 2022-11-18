@@ -63,13 +63,16 @@ $(document).ready(function() {
         }
         var st_num=0
         $('input[class=step]').each(function(){
-            if($(this).next().html()=="*請填寫食譜步驟"){
+            if($(this).val().length==0){{
+                $(this).next().html("*請填寫食譜步驟")
                 st_num+=1
+            }
+                
             }
             
         })
         if(st_num==0){
-            $('#step_rev').append('<li><div class="step_num"><div class="step_left"><span>'+num+'</span>：</div><div class="step_right"><input type="text" class="step"type="text" size="60"></div><div><button class="r4">刪除</button></div></div></li>');
+            $('#step_rev').append('<li><div class="step_num"><div class="step_left"><span>'+num+'</span>：</div><div class="step_right"><input type="text" class="step"type="text" size="60"><span class="red must"></span></div><div><button class="r4">刪除</button></div></div></li>');
         }
         //console.log(parseInt($('#step_rev').children().last().find('span').html())+1);
         
@@ -119,18 +122,25 @@ $(document).ready(function() {
         var name_num=0
         var size_num=0
         $('input[class=name]').each(function(){
-            if($(this).next().html()=="*請填寫食材名稱")
+            if($(this).val().length==0){
+                $(this).next().html("*請填寫食材名稱")
                 name_num+=1
+            }
+
             
         })
     
         $('input[class=size]').each(function(){
-            if($(this).next().html()=="*請填寫食材份量")
+            if($(this).val().length==0){
+
+                $(this).next().html("*請填寫食材份量")
                 size_num+=1
+            }
+                
             
         })
         if(name_num==0&size_num==0){
-            $('#ing_rev').append('<li><div class="ing_num"><div class="ing_left"><span>名稱：</span><input type="text" class="name"></div><div class="ing_right"><span>份量：</span><input type="text" class="size"></div><div><button class="r2">刪除</button></div></div></li>');
+            $('#ing_rev').append('<li><div class="ing_num"><div class="ing_left"><span>名稱：</span><input type="text" class="name"><span class="red must"></span></div><div class="ing_right"><span>份量：</span><input type="text" class="size"><span class="red must"></span></div><div><button class="r2">刪除</button></div></div></li>');
         }
         
     });

@@ -37,6 +37,7 @@ a{
     display: flex;
     justify-content: start;
     align-items: center;
+    flex-wrap: wrap;
 }
 #st_code::after{
     content: "店內條碼";
@@ -53,4 +54,18 @@ span{
 .btn_con{
     display: flex;
     justify-content: center;
+}
+.con_block {
+    display: flex;
+    flex-wrap: wrap;
+}
+.cd_block {
+    display: flex;
+    flex-wrap: wrap;
+}
+@media screen and (max-width: 900px)  {
+    #c{
+        width: 70vw;
+    }
+
 }

@@ -24,8 +24,41 @@ var en=true
 var ing=false;
 var recipe_size=false;
 var recipe_step=false;
+introJs().setOptions({
+    steps: [
+     
+    {element: document.querySelector('#recipe_name'),
+        intro: "請輸入食譜名稱"},
+         
+    {element: document.querySelector('#recipe_en'),
+        intro: "若無輸入英文食譜名稱則系統自動翻譯"},
+    {element: document.querySelector('#test1'),
+        intro: "您可選擇上傳食譜圖片"},
+    {element: document.querySelector('.r1'),
+        intro: "點選增加食材與份量，請先填寫在增加"},
+    {element: document.querySelector('.name'),
+        intro: "請輸入食材名稱"},
+    {element: document.querySelector('.size'),
+        intro: "請輸入食譜份量"},
+    {element: document.querySelector('.r3'),
+        intro: "點選增加步驟，請先填寫在增加"},    
+    {element: document.querySelector('.step'),
+        intro: "請輸入食譜步驟"},
+       /* */
+    
+    {element: document.querySelector('#go'),
+        scrollPadding:100,
+        intro: "完成以上輸入後可新增食譜"},
+    ],
 
-var a='<div class="float_ins"><div class="test"><div class="ins_le"><span>名稱：</span><input name="n" class="name"><span class="red">*必填</span></div><div class="ins_ri"><span>份量：</span><input name="s" class="size"><span class="red">*必填</span></div></div><div><button class="r2">刪除</button></div></div>';
+    hidePrev: true,
+    hideNext: true,   
+    nextLabel:'下一步>>',
+    prevLabel:'<<上一步',
+    skipLabel:'跳過',
+    doneLabel: '我知道了'
+  }).start();
+var a='<li class="r0"><div class="float_ins"><div class="test"><div class="ins_le"><span>名稱：</span><input name="n" class="name"><span class="red must">*必填</span></div><div class="ins_ri"><span>份量：</span><input name="s" class="size"><span class="red must">*必填</span></div></div><div><button class="r2">刪除</button></div></div></div></li>';
 $(document).on('click','.r1',function(){
 
 
@@ -158,16 +191,16 @@ $(document).on('input','#recipe_name',function(){
 })
 $(document).on('blur','#recipe_en',function(){
     if($(this).val().length>80){
-            $(this).next().html('*請輸入80字以內');
+        $('#english').html('*請輸入80字以內');
             en=false;
  
     }
     else if(/.*[\u4e00-\u9fa5]+.*$/.test($(this).val())){
-        $(this).next().html('*請勿包含中文');
+        $('#english').html('*請勿包含中文');
         en=false;
     }
     else{
-        $(this).next().html('');
+        $('#english').html('');
         en=true;
     }
     checkcon()
@@ -178,7 +211,7 @@ $(document).on('click','.r2',function(){
 });
 $(document).on('click','.r3',function(){
     s=Boolean
-    var b='<li><div><div class="st_block"><input class="step"><span class="red">*必填</span></div></div><div><button class="r4">刪除</button></div></li>';
+    var b='<li><div><div class="st_block"><input class="step"><span class="red must">*必填</span></div></div><div><button class="r4">刪除</button></div></li>';
     var st_num=0
     $('input[class=step]').each(function(){
         if ($(this).val().length==0){

@@ -1,4 +1,6 @@
 $(document).ready(function(){
+  
+  console.log(document.cookie);
     const firebaseConfig = {
         apiKey: "AIzaSyAk2Sp6_oP4o1Q1_wOtgOlIKpdaVemoqEI",
         authDomain: "topic-3b33d.firebaseapp.com",
