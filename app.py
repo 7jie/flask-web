@@ -416,7 +416,6 @@ def insert_food():
 
     if request.method=='POST':
         mess={'店家中文名稱：':request.form.get('store_name'),
-            '店家英文名稱：':request.form.get('store_name_en'),
             '食品中文名稱：':request.form.get('name_zh'),
             '食品英文名稱：':request.form.get('name_en'),
             '熱量(kcal)：':request.form.get('kcal'),
@@ -430,7 +429,10 @@ def insert_food():
             }
         with open ("store_name.json","r",encoding="utf-8") as f:
             st_en_name=json.load(f)
-
+        try:
+            mess['店家英文名稱：']=request.form.get('store_name_en')
+        except:
+            mess['店家英文名稱：']=""
         if mess['店家英文名稱：']=="" or mess['店家英文名稱：']==None:
             if mess['店家中文名稱：'] not in st_en_name:
                 mess['店家英文名稱：'] = translator.translate(mess['店家中文名稱：'], dest='en').text
@@ -439,6 +441,7 @@ def insert_food():
         
 
         if mess['食品英文名稱：']=="":
+            print(translator.translate(mess['食品中文名稱：'], dest='en').text)
             mess['食品英文名稱：'] = mess['店家英文名稱：']+"-"+translator.translate(mess['食品中文名稱：'], dest='en').text
 
     
@@ -1329,4 +1332,4 @@ def getadit_re():
     return "OK"
 
 if __name__=='__main__':
-    app.run('120.110.7.178',debug=True,port='7000') #120.110.7.178 
+    app.run('120.110.7.178',debug=True,port='9000') #120.110.7.178 

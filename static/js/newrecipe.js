@@ -156,7 +156,7 @@ function step_check(){
 $(document).on('blur','.step',function(){
     step_check()
 })
-$(document).on('iunput','.step',function(){
+$(document).on('input','.step',function(){
     step_check()
 })
 function rename(){
