@@ -51,7 +51,7 @@ $(document).ready(function() { //確保網頁載入完畢才執行程式
 
     }else{
         $('#codedata').empty();
-        $('#codedata').append("<div>查無資料，請重新輸入關鍵字</div>");
+        $('#codedata').append("<div id='nodata'>查無資料，請重新輸入關鍵字</div>");
     }
 
     })

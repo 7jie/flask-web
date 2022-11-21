@@ -96,13 +96,17 @@ input#search {
     float: left;
     width: 50%;
 }
+div#nodata {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10vh;
+    font-size: xx-large;
+}
 .right_del{
     float: right;
     width: 50%;
 }
 .right a{
     text-decoration: none;
-}
-#nodata{
-    font-size: xx-large;
 }

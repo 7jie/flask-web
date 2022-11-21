@@ -441,7 +441,6 @@ def insert_food():
         
 
         if mess['食品英文名稱：']=="":
-            print(translator.translate(mess['食品中文名稱：'], dest='en').text)
             mess['食品英文名稱：'] = mess['店家英文名稱：']+"-"+translator.translate(mess['食品中文名稱：'], dest='en').text
 
     
@@ -1035,9 +1034,11 @@ def del_recipe():
     firestore_db.document('recipe/低卡/食譜名稱/'+request.form.get('key')).delete()
     with open('recipe/lowkcal.json','r',encoding='utf-8') as f:
         data=json.load(f)
-    if data[request.form.get('key')]['path']!='' or data[request.form.get('key')]['path']!=None:
+    if data[request.form.get('key')]['path']!='':
+
         blob=bucket.blob(data[request.form.get('key')]['path'])
         blob.delete()
+
         #storage.child(data[request.form.get('key')]['path']).delete()
     
     name=data[request.form.get('key')]['chinese']
@@ -1332,4 +1333,4 @@ def getadit_re():
     return "OK"
 
 if __name__=='__main__':
-    app.run('120.110.7.178',debug=True,port='9000') #120.110.7.178 
+    app.run('0.0.0.0',debug=True,port='9000') #120.110.7.178 

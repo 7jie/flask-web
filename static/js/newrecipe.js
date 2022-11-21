@@ -248,7 +248,6 @@ $('#go').on('click',function(){
     ch_step()
     
 
-    if(ing & recipe_size & recipe_step & n & en){
         
         $('input[class=name]').each(function(){
               name.push($(this).val());
@@ -302,10 +301,7 @@ $('#go').on('click',function(){
           })
           
     
-    }else{
-        
-        $('#preloader').hide();
-    }
+    
 
 })
 

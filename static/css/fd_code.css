@@ -96,6 +96,13 @@ div#code{
 div#code_con {
     border-top: 2px solid;
 }
+#nodata {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10vh;
+    font-size: xx-large;
+}
 @media screen and (max-width: 1300px)  {
     div#search_con {
         width: 20vw;
