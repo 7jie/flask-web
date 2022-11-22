@@ -1333,4 +1333,4 @@ def getadit_re():
     return "OK"
 
 if __name__=='__main__':
-    app.run('120.110.7.178',debug=True,port='8000') #120.110.7.178 
+    app.run('120.110.7.178',debug=True,port='7000') #120.110.7.178 

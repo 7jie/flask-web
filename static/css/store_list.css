@@ -1,6 +1,6 @@
 #ttt{
     margin-top: 1em;
-    max-height: 350px;
+    height: 350px;
     overflow: auto;
     border-top:1px solid black ;
 }
