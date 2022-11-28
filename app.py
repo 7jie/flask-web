@@ -1345,6 +1345,8 @@ def getadit_re():
                         newdata["chinese"]=i["chinese"]
                     del newdata['tag']
                     del newdata['foodType']
+                    del newdata['docID']
+                    del newdata['path']
                     new_data={key:val for key,val in newdata.items() if val!=None}
                     path=firestore_db.collection('code/7-11/條碼資訊').document().path
                     firestore_db.document(path).set(new_data) 
@@ -1371,6 +1373,8 @@ def getadit_re():
                         newdata["chinese"]=i["chinese"]
                     del newdata['tag']
                     del newdata['foodType']
+                    del newdata['docID']
+                    del newdata['path']
                     new_data={key:val for key,val in newdata.items() if val!=None}
                     path='fruit/'+newdata["chinese"]+'/單位/'+newdata["chinese"]+"-"+newdata["size_zh"]
                     firestore_db.document(path).set(new_data)
