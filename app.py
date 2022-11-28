@@ -85,9 +85,11 @@ def num_info(map):
     return map
 @app.template_filter()
 def ba64(x):
-    key=base64.b64encode(x.encode('utf-8')).decode('utf-8')
-    return key
 
+    return urllib.parse.quote(base64.b64encode(base64.b64encode(x.encode('utf-8'))))
+def de_ba64(z):
+
+    return base64.b64decode(base64.b64decode(urllib.parse.unquote(z))).decode('utf-8')
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -611,6 +613,10 @@ def rev_code():
         incode_data['BarCode']=""
     else:
         incode_data['BarCode']=request.form.get('BarCode')
+    if request.form.get('english')=="":
+        incode_data['食品英文名稱']=translator.translate(incode_data['食品中文名稱'], dest='en').text
+    if request.form.get('size_en')=="":
+        incode_data['份量(英文)']=translator.translate(incode_data['份量(中文)'], dest='en').text
     code_path='code/7-11/條碼資訊/'+key
     print(code_path)
     d={code_map[x]:k for x,k in incode_data.items()}
@@ -637,8 +643,8 @@ def rev_code():
 
     with open("code.json", "w", encoding="utf-8") as code:
         json.dump(data,code)
-    if "english" in d and "size_en" in d:
-        cd_all["codeName_en"][d['english']+'-'+d['size_en']]=firestore_db.document(code_path)
+
+    cd_all["codeName_en"][d['english']+'-'+d['size_en']]=firestore_db.document(code_path)
     firestore_db.document('code/code_all').set(cd_all)
     
     return render_template('rev_code.html',data=d,cd=code_map)
@@ -756,12 +762,17 @@ def insert_code():
             '鈉(mg)':request.form.get('sodium'),
             '碳水化合物(g)':request.form.get('carbohydrate')
             }
-        print(type(code_data['熱量(kcal)']))
+
+
         incode_data={x:k for x,k in code_data.items() if k!=""}
         if request.form.get('barcode') is None:
             incode_data['BarCode']=""
         else:
             incode_data['BarCode']=request.form.get('barcode')
+        if request.form.get('name_en')=="":
+            incode_data['食品英文名稱']=translator.translate(incode_data['食品中文名稱'], dest='en').text
+        if request.form.get('size_en')=="":
+            incode_data['份量(英文)']=translator.translate(incode_data['份量(中文)'], dest='en').text
 
         code_path=firestore_db.collection('code/7-11/條碼資訊').document().path
         d={code_map[x]:k for x,k in incode_data.items()}
@@ -781,8 +792,8 @@ def insert_code():
 
         with open("code.json", "w", encoding="utf-8") as code:
             json.dump(data,code)
-        if "english" in d and "size_en" in d:
-            cd_all["codeName_en"][d['english']+'-'+d['size_en']]=firestore_db.document(code_path)
+
+        cd_all["codeName_en"][d['english']+'-'+d['size_en']]=firestore_db.document(code_path)
         firestore_db.document('code/code_all').set(cd_all)
 
         return flask.render_template('insert_code.html', data=incode_data,cd=code_map)
@@ -954,7 +965,7 @@ recipe_map={"chinese":"食譜名稱","english":"食譜英文名稱","url":"圖�
 
 @app.route('/recipe_rev',methods=["POST"])
 def recipe_rev():
-    key=base64.b64decode(request.form.get('key')).decode('utf-8')
+    key=de_ba64(request.form.get('key'))
 
     img_dir="recipe/lowkcal/"
     global recipe
@@ -974,6 +985,8 @@ def recipe_rev():
         url=storage.child(img_dir+path).get_url(None)
         recipe['url']=url
         recipe['path']=img_dir+path
+    else:
+        x=-1
     for s in json.loads(request.form.get("step")) :
         step.append(s)
     for i,k in json.loads(request.form.get("ing")).items():
@@ -993,7 +1006,10 @@ def recipe_rev():
     if request.form.get('def_path')!="undefined":
         blob=bucket.blob(recipe_data[key]['path'])
         blob.delete()
-
+    if x==-1:
+        if "path" and "url" in recipe_data[key]:
+            recipe["path"]=recipe_data[key]["path"]
+            recipe["url"]=recipe_data[key]["url"]
     recipe_data[key]=recipe
     print(recipe)
     with open('recipe/lowkcal.json','w',encoding="utf-8") as f:
@@ -1110,7 +1126,8 @@ def rev_recipe():
 
     with open('recipe/lowkcal.json','r',encoding='utf-8') as f:
         data=json.load(f)
-    name=base64.b64decode(request.args.get('key')).decode('utf-8')
+    name=de_ba64(request.args.get('key'))
+    
 
     return render_template('rev_recipe.html',data=data[name],rec=recipe_data,len=len(data[name]['step']))
 
@@ -1362,4 +1379,4 @@ def getadit_re():
     return "OK"
 
 if __name__=='__main__':
-    app.run('120.110.7.178',debug=True,port='7000') #120.110.7.178 
+    app.run('0.0.0.0',debug=True,port='7000') #120.110.7.178 

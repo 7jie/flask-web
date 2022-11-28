@@ -242,10 +242,7 @@ $(document).on('click','.r3',function(){
         }
 $('#go').on('click',function(){
     $('#preloader').show();
-    ch_rename()
-    ch_name()
-    ch_size()
-    ch_step()
+
     
 
         

@@ -1,4 +1,5 @@
 $(document).ready(function() { //確保網頁載入完畢才執行程式
+  var ser_bool=false
   //這段沒用
   $('#click').on('click,', function(){
     $.ajax({
@@ -19,12 +20,7 @@ $(document).ready(function() { //確保網頁載入完畢才執行程式
       }
     })
   })
-  
-
-  $('#sea_code').on('click', function() {
-    // location.reload(true) //重整頁面
-    var search = $('#search_code').val()
-    console.log(search);
+  function search_text(){
     $.ajax({
         url:"/search",
         type:"POST",
@@ -55,6 +51,12 @@ $(document).ready(function() { //確保網頁載入完畢才執行程式
     }
 
     })
+  }
+  
+  $('#sea_code').on('click', function() {
+    // location.reload(true) //重整頁面
+    search_text()
+    ser_bool=true
   });
 
   $(document).on('click', '.del', function() {
@@ -63,7 +65,7 @@ $(document).ready(function() { //確保網頁載入完畢才執行程式
     var key=$(this).data('val')
     var name=$(this).parent().parent().find('#codet_con').text()
 
-    $('#back').html("");
+        $('#back').html("");
         var msg = '<div id="note">';
         msg += '<div id="title"><a href="#">關閉X</a></div><div id="text"><h2 id="tip_bold">刪除資料</h2>';
         msg +='<p id="tip_text">是否刪除'+name+'?</p>';
@@ -75,7 +77,7 @@ $(document).ready(function() { //確保網頁載入完畢才執行程式
           if (['back','note','title','text','tip_text','tip_bold'].indexOf(e.target.id) > -1) {
             return false;
           }
-          $('#back').hide();
+          
           $(document).on('click','#affirm',function(){
             $('#preloader').show()
             $.ajax({
@@ -88,6 +90,8 @@ $(document).ready(function() { //確保網頁載入完畢才執行程式
             .done(function(data){
               console.log("成功")
               $('#preloader').hide()
+              $('#back').html("");
+              var msg = '<div id="note">';
               msg += '<div id="title"><a href="#">關閉X</a></div><div id="text"><h2 id="tip_bold">刪除資料</h2>';
               msg +='<p id="tip_text">已刪除'+name+'</p>';
               msg += '</div></div>'
@@ -97,15 +101,18 @@ $(document).ready(function() { //確保網頁載入完畢才執行程式
                 if (['back','note','title','text'].indexOf(e.target.id) > -1) {
                   return false;
                 }
+                if (ser_bool)
+                  search_text()
+                else
+                  location.reload(true)
             })
-            $('#back').hide();
-            location.reload(true)
+            
           })
-
-
-
-        
   })
+  $('#back').hide();
+  
 })
+
+
 })
 })
