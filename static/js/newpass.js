@@ -12,22 +12,47 @@ $(document).ready(function(){
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
       
-        $('#newpass_click').on('click',function(){
+      $(document).on('click','#newpass_click',function(){
         const email = $('#regmail').val();
         firebase.auth().sendPasswordResetEmail(email)
         .then(() => {
-            alert("已發送電子郵件，請查收");
-            window.location.href='/';
+             var seconds =3;
+            $('#back').html("");
+            var msg = '<div id="note">';
+            msg += '<div id="text">已發送電子郵件，請查收<br>將為您轉跳登入頁</div></div>';
+            $('#back').append(msg);
+            $('#back').show();
+          setInterval(function () {
+            seconds--;
+
+            if (seconds == 0) {
+              $("#mess").hide();
+              window.location.href='/';
+              //window.location.href='/reg_manager'+'?mail='+re_mail;
+            }
+          }, 1000);
+
             // Password reset email sent!
             // ..
         })
         .catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;
-            alert("電子郵件錯誤！請確認");
-            
-            // ..
+            $('#back').html("");
+            var msg = '<div id="note">';
+            msg += '<div id="text">電子郵件錯誤！請重新確認<br><button>確定</button></div></div>';
+            $('#back').append(msg);
+            $('#back').show();
+        
         });
-
+        $('body').click((e) => {
+            if (['back','note','text'].indexOf(e.target.id) > -1) {
+                console.log("....")
+                return false;
+            }
+            $('#back').hide();
+        })
+        
     })
+   
 });

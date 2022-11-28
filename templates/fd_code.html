@@ -24,11 +24,13 @@
         {% for i,k in data.items() %}
             <li>
                 <div id="code_back">
+                    {% set key=i|ba64%}
                     
                     {% if k['BarCode']!="nan" and k['BarCode']!="" %}
-                        <div id="code_num">{{ k['BarCode'] }}</div><div id="codet_con"><div id="code_text">{{ k['chinese'] }}</div></div><div id="rev_del"><a href="{{ url_for('fix_code',key=i) }}">修改</a><a href="#" class="del" data-val='{{i}}'>刪除</a></div>
+                        <div id="code_num">{{ k['BarCode'] }}</div><div id="codet_con"><div id="code_text">{{ k['chinese'] }}</div></div><div id="rev_del"><a href="{{ url_for('fix_code',key=key) }}">修改</a><a href="#" class="del" data-val='{{i}}'>刪除</a></div>
                     {% else %}
-                        <div id="code_num">店內條碼</div><div id="codet_con"><div id="code_text">{{ k['chinese'] }}</div></div><div id="rev_del"><a href="{{ url_for('fix_code',key=i) }}">修改</a><a href="#" class="del" data-val="{{i}}">刪除</a></div>
+                    
+                        <div id="code_num">店內條碼</div><div id="codet_con"><div id="code_text">{{ k['chinese'] }}</div></div><div id="rev_del"><a href="{{ url_for('fix_code',key=key) }}">修改</a><a href="#" class="del" data-val="{{i}}">刪除</a></div>
                     {% endif %}
                 
                 </div>

@@ -32,8 +32,11 @@ $(document).ready(function() {
       if (!$.isEmptyObject(data)){
         $('#data_list').empty();
         $.each(data,function(aa,bb){
-          $('#data_list').append("<li><div class='food_list'><div class='left'><span name='food_name'>"+aa+"</span></div><div class='right'><div class='left_rev'><a href='revise_food?a="+bb+"&b="+$('#store_name').val()+"&c="+$('#diet_name').val()+"'class='rev'>修改</a></div><div class='right_del'><a href='#' class='del'>刪除</a></div></div></div></li>");
-    
+          var txt="?a="+encodeURIComponent(Base64.encode(bb)+"&b="+Base64.encode($('#store_name').val())+"&c="+Base64.encode($('#diet_name').val()))+"'class='rev'>修改</a>"
+
+          var rev="<a href='revise_food"+txt
+          //$('#data_list').append("<li><div class='food_list'><div class='left'><span name='food_name'>"+aa+"</span></div><div class='right'><div class='left_rev'><a href='revise_food?a="+bb+"&b="+$('#store_name').val()+"&c="+$('#diet_name').val()+"'class='rev'>修改</a></div><div class='right_del'><a href='#' class='del'>刪除</a></div></div></div></li>");
+          $('#data_list').append("<li><div class='food_list'><div class='left'><span name='food_name'>"+aa+"</span></div><div class='right'><div class='left_rev'>"+rev+"</div><div class='right_del'><a href='#' class='del' data-val='"+bb+"'>刪除</a></div></div></div></li>");
         })
 
     }else{
@@ -84,8 +87,11 @@ $(document).ready(function() {
             $('#data_list').empty();
             if (!$.isEmptyObject(data)){
                 $.each(data,function(aa,bb){
-                  $('#data_list').append("<li><div class='food_list'><div class='left'><span name='food_name'>"+aa+"</span></div><div class='right'><div class='left_rev'><a href='revise_food?a="+bb+"&b="+$('#store_name').val()+"&c="+$('#diet_name').val()+"'class='rev'>修改</a></div><div class='right_del'><a href='#' class='del' data-val='"+bb+"'>刪除</a></div></div></div></li>");
-            
+                  var txt="?a="+encodeURIComponent(Base64.encode(bb)+"&b="+Base64.encode($('#store_name').val())+"&c="+Base64.encode($('#diet_name').val()))+"'class='rev'>修改</a>"
+
+                  var rev="<a href='revise_food"+txt
+                  //$('#data_list').append("<li><div class='food_list'><div class='left'><span name='food_name'>"+aa+"</span></div><div class='right'><div class='left_rev'><a href='revise_food?a="+bb+"&b="+$('#store_name').val()+"&c="+$('#diet_name').val()+"'class='rev'>修改</a></div><div class='right_del'><a href='#' class='del' data-val='"+bb+"'>刪除</a></div></div></div></li>");
+                  $('#data_list').append("<li><div class='food_list'><div class='left'><span name='food_name'>"+aa+"</span></div><div class='right'><div class='left_rev'>"+rev+"</div><div class='right_del'><a href='#' class='del' data-val='"+bb+"'>刪除</a></div></div></div></li>");
                 })
                 
             }else{

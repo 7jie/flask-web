@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var a=decodeURI($(location).attr('href'))
-    var store=a.slice(a.indexOf("&b=")+3,a.indexOf("&c="))
+    var store=a.slice(a.indexOf("?a=")+3)
     var type_sel={"喝":"drink","吃":"eat"}
     var type=type_sel[a.slice(a.indexOf("&c=")+3)]
     var num_tag=true;
@@ -96,8 +96,7 @@ $(document).ready(function() {
         if (name_bool && kcal_bool && num_tag){
             console.log("t")
             $("#rev_f_con").append("<input name='store_name' hidden value='"+store+"'>")
-            $("#rev_f_con").append("<input name='key' hidden value='"+key+"'>")
-            $("#rev_f_con").append("<input name='type' hidden value='"+type+"'>")
+            
             $("#rev_f_con").append("<input name='size_zh' hidden value='"+$('#size_zh').text()+"'>")
             $("#rev_f_con").append("<input name='size_en' hidden value='"+$('#size_en').text()+"'>")
             if ($('input[name="chinese"]').data('val')!=$('input[name="chinese"]').val()){

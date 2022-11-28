@@ -24,6 +24,9 @@ from firebase_admin import storage as st
 from firebase_admin import db
 import hashlib
 from googletrans import Translator
+import base64
+import urllib.parse
+import urllib
 translator = Translator()
 #cred = credentials.Certificate("python.json")#自己的json路徑
 cred = credentials.Certificate("topic.json")#自己的json路徑
@@ -80,8 +83,10 @@ def num_info(map):
         if i not in str_list:
             map[i]=float(k)
     return map
-
-
+@app.template_filter()
+def ba64(x):
+    key=base64.b64encode(x.encode('utf-8')).decode('utf-8')
+    return key
 
 
 login_manager = LoginManager()
@@ -107,9 +112,10 @@ def login():
     #return  redirect(url_for('index',name={"hi":{"no":"QQ"}}))
     session.permanent = True
     app.permanent_session_lifetime = timedelta(minutes=10)
+    """
     if current_user.is_authenticated:
         return redirect(url_for('food'))
-    
+    """
     #return redirect(url_for('logout'))
     return render_template('home.html') 
 
@@ -561,21 +567,31 @@ data_name={"BarCode":"Barcode","chinese":"食品中文名稱","english":"食品�
 @app.route('/revise_food',methods=['POST','GET'])
 @login_required
 def revise_food():
-    diet={"吃":"eat","喝":"drink"}
+
+    
+    txt=request.args.get('a')
+    key=base64.b64decode(txt[:txt.find("&b=")]).decode('UTF-8')
+    st_name=base64.b64decode(txt[txt.find("&b=")+3:txt.find("&c=")]).decode('UTF-8')
+    st_type=base64.b64decode(txt[txt.find("&c=")+3:]).decode('UTF-8')
+
+
+  
     data_del=["size_zh","size_en"]
     
-    with open ("data/"+request.args.get('b')+".json","r",encoding="utf-8") as f:
+    with open ("data/"+st_name+".json","r",encoding="utf-8") as f:
             data=json.load(f)
-    food_data=data[diet[request.args.get('c')]][request.args.get('a')]
+    food_data=data[diet[st_type]][key]
     unit=food_data['unit']
     del food_data['unit']
     food_data['chinese']=food_data['chinese'][food_data['chinese'].find('-')+1:]
     if 'english' in food_data:
         food_data['english']=food_data['english'][food_data['english'].find('-')+1:]
     
-    return render_template('revise_food.html',d=food_data,name=data_name,store_name=request.args.get('b'),u=unit,de=data_del)
+    return render_template('revise_food.html',d=food_data,name=data_name,store_name=st_name,u=unit,de=data_del)
 @app.route('/rev_code',methods=['POST'])
 def rev_code():
+    
+    key=base64.b64decode(urllib.parse.unquote(request.form.get('key'))).decode('utf-8')
     
     code_data={
             '食品中文名稱':request.form.get('chinese'),
@@ -595,7 +611,7 @@ def rev_code():
         incode_data['BarCode']=""
     else:
         incode_data['BarCode']=request.form.get('BarCode')
-    code_path='code/7-11/條碼資訊/'+request.form.get('key')
+    code_path='code/7-11/條碼資訊/'+key
     print(code_path)
     d={code_map[x]:k for x,k in incode_data.items()}
     d=num_info(d)
@@ -624,11 +640,18 @@ def rev_code():
     if "english" in d and "size_en" in d:
         cd_all["codeName_en"][d['english']+'-'+d['size_en']]=firestore_db.document(code_path)
     firestore_db.document('code/code_all').set(cd_all)
-
+    
     return render_template('rev_code.html',data=d,cd=code_map)
 @app.route('/revise_fper',methods=['POST'])
 @login_required
 def revise_fper():
+    txt=urllib.parse.unquote(request.form.get('store_name'))
+    key=base64.b64decode(txt[:txt.find("&b=")+3]).decode('UTF-8')
+    st_name=base64.b64decode(txt[txt.find("&b=")+3:txt.find("&c=")+3]).decode('UTF-8')
+    st_type=base64.b64decode(txt[txt.find("&c=")+3:]).decode('UTF-8')
+
+    
+    
     st_data={}
     revise_fdata={
             '食品中文名稱：':request.form.get('chinese'),
@@ -643,13 +666,14 @@ def revise_fper():
             '碳水化合物(g):':request.form.get('carbohydrate'),
             '鈉(mg):':request.form.get('sodium')
             }
+    
     with open ("store_name.json","r",encoding="utf-8") as f:
         st_en_name=json.load(f)
-    st_en_name=st_en_name[request.form.get('store_name')]
+    st_en_name=st_en_name[st_name]
 
     if revise_fdata['食品英文名稱：']=="":
         revise_fdata['食品英文名稱：']=translator.translate(revise_fdata['食品中文名稱：'], dest='en').text
-    path='food/'+request.form.get('store_name')+'/'+request.form.get('type')+'/'+request.form.get('key')
+    path='food/'+st_name+'/'+st_type+'/'+key
     #取店家英文名稱
     
     
@@ -658,24 +682,24 @@ def revise_fper():
     rf_data={stroe_map[x]:k for x,k in revise_fdata.items() if k!=""}
     rf_data=num_info(rf_data)
     rf_data['unit']={"份":1}
-    rf_data['chinese']=request.form.get('store_name')+'-'+rf_data['chinese']
+    rf_data['chinese']=st_name+'-'+rf_data['chinese']
     rf_data['english']=st_en_name+"-"+rf_data['english']
-    print(rf_data['english'])
-    firestore_db.document(path).set(rf_data)
-    with open('data/'+request.form.get('store_name')+'.json','r',encoding="utf-8")as f:
-        store_data=json.load(f)
-    store_data[request.form.get('type')][request.form.get('key')]=firestore_db.document(path).get().to_dict()
 
-    with open('data/'+request.form.get('store_name')+'.json','w',encoding="utf-8")as f:
+    firestore_db.document(path).set(rf_data)
+    with open('data/'+st_name+'.json','r',encoding="utf-8")as f:
+        store_data=json.load(f)
+    store_data[diet[st_type]][key]=firestore_db.document(path).get().to_dict()
+
+    with open('data/'+st_name+'.json','w',encoding="utf-8")as f:
         json.dump(store_data,f)
-    st_data={data_name[i]:k for i,k in store_data[request.form.get('type')][request.form.get('key')].items() if i!="unit"}
+    st_data={data_name[i]:k for i,k in store_data[diet[st_type]][key].items() if i!="unit"}
 
     if request.form.get('def_chinese'):
-        p=request.form.get('store_name')+'-'+request.form.get('def_chinese')+'-'+request.form.get('size_zh')
+        p=st_name+'-'+request.form.get('def_chinese')+'-'+request.form.get('size_zh')
         fa_zh_db=firestore_db.document("food/food_all_zh").get().to_dict()
-        rf_refname=request.form.get('store_name')+'-'+request.form.get('chinese')+'-'+request.form.get('size_zh')
+        rf_refname=st_name+'-'+request.form.get('chinese')+'-'+request.form.get('size_zh')
         
-        if request.form.get('type')=="eat":
+        if diet[st_type]=="eat":
             
             del fa_zh_db["eatName_zh"][p]
             fa_zh_db["eatName_zh"][rf_refname]=firestore_db.document(path)
@@ -771,7 +795,8 @@ def fd_code():
 @app.route('/fix_code')
 def fix_code():
     with open('code.json','r',encoding="utf-8") as f:
-        data=json.load(f)[request.values.get('key')]
+        
+        data=json.load(f)[base64.b64decode(request.values.get('key')).decode('utf-8')]
     return flask.render_template('fix_code.html',d=data,cd_zh=data_name)
 
 @app.route('/revise',methods=['POST','GET'])
@@ -929,6 +954,8 @@ recipe_map={"chinese":"食譜名稱","english":"食譜英文名稱","url":"圖�
 
 @app.route('/recipe_rev',methods=["POST"])
 def recipe_rev():
+    key=base64.b64decode(request.form.get('key')).decode('utf-8')
+
     img_dir="recipe/lowkcal/"
     global recipe
     recipe={}
@@ -957,17 +984,17 @@ def recipe_rev():
     if request.form.get('english')=="":
         recipe["english"]=translator.translate(recipe["chinese"], dest='en').text
 
-    path='recipe/低卡/食譜名稱/'+request.form.get('key')
+    path='recipe/低卡/食譜名稱/'+key
     firestore_db.document(path).set(recipe,merge=True)
 
 
     with open('recipe/lowkcal.json','r',encoding="utf-8") as f:
         recipe_data=json.load(f)
     if request.form.get('def_path')!="undefined":
-        blob=bucket.blob(recipe_data[request.form.get('key')]['path'])
+        blob=bucket.blob(recipe_data[key]['path'])
         blob.delete()
 
-    recipe_data[request.form.get('key')]=recipe
+    recipe_data[key]=recipe
     print(recipe)
     with open('recipe/lowkcal.json','w',encoding="utf-8") as f:
         json.dump(recipe_data,f)
@@ -1080,9 +1107,11 @@ def del_recipe():
 @app.route('/rev_recipe',methods=['POST','GET'])
 @login_required
 def rev_recipe():
+
     with open('recipe/lowkcal.json','r',encoding='utf-8') as f:
         data=json.load(f)
-    name=request.args.get('key')
+    name=base64.b64decode(request.args.get('key')).decode('utf-8')
+
     return render_template('rev_recipe.html',data=data[name],rec=recipe_data,len=len(data[name]['step']))
 
 

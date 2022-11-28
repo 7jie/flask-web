@@ -14,7 +14,7 @@ $(document).ready(function() {
             $('#data_list').empty();
             $.each(data,function(aa,bb){
               console.log(bb);
-              $('#data_list').append("<li><div class='recipe_list'><div class='left'><span name='food_name'>"+aa+"</span></div><div class='right'><div class='left_rev'><a href='rev_recipe?key="+bb+"'class='rev'>修改</a></div><div class='right_del'><a href='#' class='del_recipe' data-val='"+bb+"'>刪除</a></div></div></div></li>");
+              $('#data_list').append("<li><div class='recipe_list'><div class='left'><span name='food_name'>"+aa+"</span></div><div class='right'><div class='left_rev'><a href='rev_recipe?key="+Base64.encode(bb)+"'class='rev'>修改</a></div><div class='right_del'><a href='#' class='del_recipe' data-val='"+bb+"'>刪除</a></div></div></div></li>");
         
             })
     

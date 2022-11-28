@@ -22,7 +22,7 @@
         <li>
         <div class="recipe_list">
             
-            <div class="left"><span>{{key["chinese"]}}</span></div><div class="right"><div class='left_rev'><a href="rev_recipe?key={{i}}">修改</a></div><div class='right_del'><a href="#" class="del_recipe" data-val="{{i}}">刪除</a></div></div> <!-- href='del_recipe?key={{i}}' -->
+            <div class="left"><span>{{key["chinese"]}}</span></div><div class="right"><div class='left_rev'><a href="rev_recipe?key={{i | ba64}}">修改</a></div><div class='right_del'><a href="#" class="del_recipe" data-val="{{i}}">刪除</a></div></div> <!-- href='del_recipe?key={{i}}' -->
         </div>
         </li>
         {% endfor %}
