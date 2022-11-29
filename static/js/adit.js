@@ -259,6 +259,7 @@ $(document).ready(function() {
         if (d.length!=0){
           var msg = '<div id="note">';
           msg += '<div id="title"><a href="#">關閉X</a></div><div id="text"><h2 id="adit_no">已否決以下項目</h2>';
+          msg +='<p id="text_data">'+data_name+'</p>';
           msg += '<button id="affirm">確認</button>';
           msg += '</div></div>'
           $('#back').append(msg);
