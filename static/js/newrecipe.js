@@ -240,9 +240,10 @@ $(document).on('click','.r3',function(){
             $('#go').attr('disabled',true)
         }
         }
-$('#go').on('click',function(){
-    $('#preloader').show();
-
+$(document).on('click','#go',function(){
+    
+    console.log("u")
+    $('#preloader').show()
     
 
         
@@ -260,13 +261,11 @@ $('#go').on('click',function(){
         for (var x=0;x<name.length;x++){
             k[name[x]]=size[x];
         }
-        console.log(recipe_name);
-        console.log(k);
-        console.log(step);
+
         
         //img!=null放入cover
         if (img==null){
-            console.log("sss");
+            //console.log("sss");
         }else{
             var image=$('#test1')[0].files[0]
             cover.append('img',image)
@@ -289,12 +288,13 @@ $('#go').on('click',function(){
             data:cover,
           })
           .done(function(data){
-            console.log(data);
+            //console.log(data);
             
             $(location).attr("href","insert_recipe");
           })
           .fail(function(data){
-            console.log("圖片錯誤");
+            $('#preloader').hide();
+            //console.log("圖片錯誤");
           })
           
     

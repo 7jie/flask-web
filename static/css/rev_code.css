@@ -11,14 +11,22 @@
     overflow: auto;
 }
 .rev_cd{
-    margin-bottom: 2vh;
+    width: 80%;
+    margin: auto;
+    margin-top: 2vh;
 }
 .rev_con{
     display: flex;
+    margin-top: 3vh;
     flex-wrap: wrap;
 }
 #con_block{
     display: flex;
     justify-content: center;
     margin-bottom: 2vh;
+    margin-top: 3vh;
+}
+#con_block a{
+    text-decoration: none;
+    color: #975C1D;
 }

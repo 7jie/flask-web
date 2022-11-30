@@ -806,8 +806,8 @@ def fd_code():
 @app.route('/fix_code')
 def fix_code():
     with open('code.json','r',encoding="utf-8") as f:
-        
-        data=json.load(f)[base64.b64decode(request.values.get('key')).decode('utf-8')]
+
+        data=json.load(f)[de_ba64(request.values.get('key'))]
     return flask.render_template('fix_code.html',d=data,cd_zh=data_name)
 
 @app.route('/revise',methods=['POST','GET'])
@@ -996,7 +996,8 @@ def recipe_rev():
     recipe["chinese"]=request.form.get('chinese')
     if request.form.get('english')=="":
         recipe["english"]=translator.translate(recipe["chinese"], dest='en').text
-
+    else:
+        recipe["english"]=request.form.get('english')
     path='recipe/低卡/食譜名稱/'+key
     firestore_db.document(path).set(recipe,merge=True)
 
@@ -1077,6 +1078,8 @@ def del_recipe():
     firestore_db.document('recipe/低卡/食譜名稱/'+request.form.get('key')).delete()
     with open('recipe/lowkcal.json','r',encoding='utf-8') as f:
         data=json.load(f)
+    
+    print(data[request.form.get('key')])
     if data[request.form.get('key')]['path']!='':
 
         blob=bucket.blob(data[request.form.get('key')]['path'])
@@ -1241,6 +1244,22 @@ def adit_ch():
                     drink_data["drink"][i[x]]['tag']=True
                     #放資料庫
                     firestore_db.document('userCustomFood/'+x).set(drink_data)
+    elif request.form.get('type')=="code":
+        for i in data:
+            for x,k in i.items():
+                if x!="chinese": 
+                    code_data=firestore_db.document('userCustomFood/'+x).get().to_dict()
+                    code_data["code"][i[x]]['tag']=True
+                    #放資料庫
+                    firestore_db.document('userCustomFood/'+x).set(code_data)
+    elif request.form.get('type')=="fruit":
+        for i in data:
+            for x,k in i.items():
+                if x!="chinese": 
+                    fruit_data=firestore_db.document('userCustomFood/'+x).get().to_dict()
+                    fruit_data["fruit"][i[x]]['tag']=True
+                    #放資料庫
+                    firestore_db.document('userCustomFood/'+x).set(fruit_data)
 
     return "tt"
 @app.route('/getadit_re',methods=['POST'])
@@ -1280,13 +1299,13 @@ def getadit_re():
                         with open('store_name.json','w',encoding="utf-8")as f:
                             json.dump(a,f)
                     try:
-                        with open(stname+'.json','r',encoding="utf-8")as f:
+                        with open('data/'+stname+'.json','r',encoding="utf-8")as f:
                             st_d=json.load(f)
                         st_d['eat'][path[path.rfind('/')+1:]]=new_data
-                        with open(stname+'.json','w',encoding="utf-8")as f:
+                        with open('data/'+stname+'.json','w',encoding="utf-8")as f:
                             json.dump(st_d,f)
                     except:
-                        with open(stname+'.json','w',encoding="utf-8")as f:
+                        with open('data/'+stname+'.json','w',encoding="utf-8")as f:
                             json.dump({'eat':{path[path.rfind('/')+1:]:new_data}},f)
 
                     return "OK"
@@ -1324,13 +1343,13 @@ def getadit_re():
                         with open('store_name.json','w',encoding="utf-8")as f:
                             json.dump(a,f)
                     try:
-                        with open(stname+'.json','r',encoding="utf-8")as f:
+                        with open('data/'+stname+'.json','r',encoding="utf-8")as f:
                             st_d=json.load(f)
                         st_d['drink'][path[path.rfind('/')+1:]]=new_data
-                        with open(stname+'.json','w',encoding="utf-8")as f:
+                        with open('data/'+stname+'.json','w',encoding="utf-8")as f:
                             json.dump(st_d,f)
                     except:
-                        with open(stname+'.json','w',encoding="utf-8")as f:
+                        with open('data/'+stname+'.json','w',encoding="utf-8")as f:
                             json.dump({'drink':{path[path.rfind('/')+1:]:new_data}},f)
                     return "OK"                   
     elif request.form.get('type')=="code":

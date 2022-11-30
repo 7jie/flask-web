@@ -10,18 +10,28 @@
     margin-bottom: 10px;
     overflow: auto;
 }
-#back{
-    display: flex;
-    justify-content: center;
+.info_con {
+    width: 80%;
+    margin: auto;
+    margin-top:2vh;
+}
+#back a{
     color: #975C1D;
     text-decoration: none;
 }
+#back{
+    display: flex;
+    justify-content: center;
+    margin-top: 5vh;
+    margin-bottom: 3vh;
+}
 .data_con {
     display: flex;
-    margin-top: 5vh;
     flex-wrap: wrap;
 }
-
+.info_con div {
+    margin-top: 3vh;
+}
 .info_cd{
     width: 80%;
     margin: auto;
@@ -29,6 +39,7 @@
 }
 .incd_con {
     display: flex;
+    margin-top: 3vh;
     flex-wrap: wrap;
 }
 #con_block{
@@ -38,10 +49,10 @@
     margin: auto;
     margin-bottom: 2vh;
 }
-img{
-
-    max-width: 600px;
-    max-height: 500px;
+#insert img{
+    max-width: 60%;
+    max-height: 50%;
+    margin-top: 2vh;
 }
 @media screen and (max-width: 500px)  {
 

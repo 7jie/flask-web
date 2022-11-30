@@ -12,3 +12,11 @@ h1{
 body{
     background: #F4DCAC;
 }
+button{
+    font-size: x-large;
+    padding: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    border-color: antiquewhite;
+    background-color: aliceblue;
+}

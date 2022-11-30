@@ -14,10 +14,7 @@
     margin-left: 2vw;
     font-size: x-large;
 }
-#insert a {
-    
-    color: #975C1D;
-}
+
 .info_cd{
     width: 80%;
     margin: auto;
@@ -34,16 +31,28 @@
     margin: auto;
     margin-bottom: 2vh;
 }
-img{
-    max-width: 500px;
-    max-height: 500px;
-    margin-left: 2vw;
+#insert img{
+    max-width:60%;
+    max-height:50%;
+    margin-top: 2vh;
 }
 #back_rev{
     display: flex;
     justify-content: center;
+    margin-top: 5vh;
+    margin-bottom: 3vh;
 }
-
-@media screen and (max-width:1165px) {
-
+#back_rev a{
+    color: #975C1D;
+    text-decoration: none;
+}
+.step_con,.ing_con{
+    font-size: x-large;
+}
+.info_con{
+    width: 80%;
+    margin: auto;
+}
+.info_con div{
+    margin-top: 3vh;
 }

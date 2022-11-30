@@ -145,7 +145,7 @@ $(document).ready(function() {
         
     });
 
-    $('#rev_recipe').on('click',function(){
+    $(document).on('click','#rev_recipe',function(){
         $('#preloader').show()
         var ing=true;
         var recipe_size=true;

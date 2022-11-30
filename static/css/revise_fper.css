@@ -15,7 +15,8 @@
     font-size: xx-large;
     justify-content: center;
     margin: auto;
-    margin-bottom: 2vh;
+    margin-top: 5vh;
+    margin-bottom: 3vh;
 }
 #insert a {
     
@@ -24,7 +25,7 @@
 .info_con {
     width: 80%;
     margin: auto;
-    margin-top:2vh;
+    margin-top: 5vh;
 }
 .da-val {
     display: flex;

@@ -76,6 +76,9 @@ button{
 .step_group{
     margin-bottom: 5%;
 }
+.step_group label{
+    font-size: x-large;
+}
 #step,#step2 {
     width: 60%;
     margin: auto;
@@ -86,6 +89,7 @@ button{
     justify-content: start;
     flex-flow: wrap;
 }
+
 .filterFood div {
     flex: 0 0 33%;
 }

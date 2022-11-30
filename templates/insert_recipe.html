@@ -7,29 +7,30 @@
 
 <h1>新增成功</h1>
 <div id="insert">
+    <div class="info_con">
 {% if data !=undefined %}
 
     {% for i,key in re.items() %}
     {% if data[i]!="" %}
         {% if i=="url"%}
-        <div><div>{{ key }}</div>
-            <div>
+        <div class="data_con"><div>{{ key }}</div>
+            <div>圖片：
                 <img src="{{data[i]}}">
             </div>
         </div>
         
         {% elif i=="ingredients"%}
-            <div>{{ key }}</div>
+            <div class="data_con">{{ key }}</div>
             {% for x,k in data[i].items() %}
             <div>{{ x }}：<span>{{ k }}</span></div>
             {%endfor%}
         {%elif i=="step"%}
-        <div>{{ key }}</div>
+        <div class="data_con">{{ key }}</div>
             {% for x in data[i] %}
             <div>{{x}}</div>
             {%endfor%}
         {%else%}
-        <div>{{ key }}：<span>{{ data[i] }}</span></div>
+        <div class="data_con">{{ key }}：<span>{{ data[i] }}</span></div>
         {%endif%}
     {%endif%}
     
@@ -44,5 +45,6 @@
 {% endif %}
 
 <div id="back"><a href="{{ url_for('newrecipe') }}">返回</a></div>
+</div>
 </div>
 {% endblock %}
