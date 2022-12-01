@@ -443,6 +443,7 @@ $(document).ready(function() {
           $('input[name="store_name_en"]').attr('disabled',false)
           $('#preloader').show();
           
+          
           if($('#man').css("display")=="block"){
             $('#form1').append("<input  name='man' value='t'>")
             $('#form1').append("<input  name='size' value='"+size+"'></input>");

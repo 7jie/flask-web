@@ -373,8 +373,9 @@ def del_code():
 
 @app.route('/del_food', methods=['POST'])
 def del_food():
+    star=time.time()
     st_n='data/'+request.form.get("name")+'.json'
-    f_type=diet[request.form.get("diet")]
+    f_type=request.form.get("diet")
     firestore_db.document('food/'+request.form.get("name")+'/'+f_type+'/'+request.form.get("key")).delete()
     
     with open(st_n,'r',encoding="utf-8")as f:
@@ -387,8 +388,8 @@ def del_food():
 
     food_all=firestore_db.document('food/food_all_zh').get().to_dict()
     food_all_en=firestore_db.document('food/food_all_en').get().to_dict()
-    st_name_en_zh=st_name()
-
+    #st_name_en_zh=st_name()
+    print(time.time()-star)
     if f_type=='eat':
         
 
@@ -423,6 +424,7 @@ stroe_map={'店家中文名稱：':'store_chinese','店家英文名稱：':'stor
 def insert_food():
 
     if request.method=='POST':
+        star=time.time()
         mess={'店家中文名稱：':request.form.get('store_name'),
             '食品中文名稱：':request.form.get('name_zh'),
             '食品英文名稱：':request.form.get('name_en'),
@@ -491,7 +493,7 @@ def insert_food():
         firestore_db.document(x).set(st_data)
         #寫json
         print(st_data)
-        
+        print(time.time()-star)
         with open("data/"+request.form.get('store_name')+".json","r",encoding="utf-8")as f:
                 d=json.load(f)
         
@@ -502,8 +504,8 @@ def insert_food():
             d[request.form.get('type')][x[x.rfind("/")+1:]]=st_data
         
         with open("data/"+request.form.get('store_name')+".json","w",encoding="utf-8")as f:
-                        json.dump(d,f)
-        
+            json.dump(d,f)
+        print(time.time()-star)
         if request.form.get('type')=="eat":
             #匯入all資料庫
             eat_zh=firestore_db.document("food/food_all_zh").get().to_dict()
@@ -514,7 +516,8 @@ def insert_food():
             eat_en=firestore_db.document("food/food_all_en").get().to_dict()
             eat_en["eatName_en"][mess['食品英文名稱：']+"-"+mess['份量(英文)：']]=firestore_db.document(x)
             firestore_db.document("food/food_all_en").set(eat_en)
-            
+            print(time.time()-star)
+            return render_template('insert_food.html', data=n)
         else:
             drink_zh=firestore_db.document("food/food_all_zh").get().to_dict()
             drink_zh["drinkName_zh"][request.form.get('store_name')+"-"+request.form.get('name_zh')+"-"+request.form.get('size')]=firestore_db.document(x)
@@ -525,7 +528,7 @@ def insert_food():
             drink_en["drinkName_en"][mess['食品英文名稱：']+"-"+mess['份量(英文)：']]=firestore_db.document(x)
             firestore_db.document("food/food_all_en").set(drink_en)
         
-        return render_template('insert_food.html', data=n)#hi
+            return render_template('insert_food.html', data=n)#hi
 
 
 @app.route('/food_store', methods=['POST'])
@@ -536,7 +539,7 @@ def food_store():
         with open ("data/"+request.form.get('name')+".json","r",encoding="utf-8") as f:
             data=json.load(f)
         
-        aa=data[diet[request.form.get('diet')]]
+        aa=data[request.form.get('diet')]
 
         b={k["chinese"][k["chinese"].find("-")+1:]+"-"+k["size_zh"]:i for i,k in aa.items()}
 
@@ -582,12 +585,12 @@ def revise_food():
     
     with open ("data/"+st_name+".json","r",encoding="utf-8") as f:
             data=json.load(f)
-    food_data=data[diet[st_type]][key]
+    food_data=data[st_type][key]
     unit=food_data['unit']
     del food_data['unit']
     food_data['chinese']=food_data['chinese'][food_data['chinese'].find('-')+1:]
-    if 'english' in food_data:
-        food_data['english']=food_data['english'][food_data['english'].find('-')+1:]
+    
+    food_data['english']=food_data['english'][food_data['english'].find('-')+1:]
     
     return render_template('revise_food.html',d=food_data,name=data_name,store_name=st_name,u=unit,de=data_del)
 @app.route('/rev_code',methods=['POST'])
@@ -657,7 +660,6 @@ def revise_fper():
     st_type=base64.b64decode(txt[txt.find("&c=")+3:]).decode('UTF-8')
 
     
-    
     st_data={}
     revise_fdata={
             '食品中文名稱：':request.form.get('chinese'),
@@ -682,7 +684,6 @@ def revise_fper():
     path='food/'+st_name+'/'+st_type+'/'+key
     #取店家英文名稱
     
-    
     #寫資料庫
 
     rf_data={stroe_map[x]:k for x,k in revise_fdata.items() if k!=""}
@@ -694,18 +695,18 @@ def revise_fper():
     firestore_db.document(path).set(rf_data)
     with open('data/'+st_name+'.json','r',encoding="utf-8")as f:
         store_data=json.load(f)
-    store_data[diet[st_type]][key]=firestore_db.document(path).get().to_dict()
+    store_data[st_type][key]=firestore_db.document(path).get().to_dict()
 
     with open('data/'+st_name+'.json','w',encoding="utf-8")as f:
         json.dump(store_data,f)
-    st_data={data_name[i]:k for i,k in store_data[diet[st_type]][key].items() if i!="unit"}
+    st_data={data_name[i]:k for i,k in store_data[st_type][key].items() if i!="unit"}
 
     if request.form.get('def_chinese'):
         p=st_name+'-'+request.form.get('def_chinese')+'-'+request.form.get('size_zh')
         fa_zh_db=firestore_db.document("food/food_all_zh").get().to_dict()
         rf_refname=st_name+'-'+request.form.get('chinese')+'-'+request.form.get('size_zh')
         
-        if diet[st_type]=="eat":
+        if st_type=="eat":
             
             del fa_zh_db["eatName_zh"][p]
             fa_zh_db["eatName_zh"][rf_refname]=firestore_db.document(path)
@@ -827,14 +828,14 @@ def search_data(name_class,search_text,name=None,d=None):
                 
                 
                 data=json.load(f)
-                print(data)
+                
                 food_data=data[diet[d]]
                 food_res={k["chinese"][k["chinese"].find("-")+1:]+'-'+k['size_zh']:x for i in text_char for x,k in food_data.items() if k["chinese"][k["chinese"].find("-")+1:].find(i)!=-1}
                 return food_res
         if name_class=="recipe":
 
             #食譜json路徑要改
-            print(text)
+            
             with open('recipe/lowkcal.json','r',encoding='utf-8') as f:
                 recipe_data=json.load(f)
                 
@@ -1280,7 +1281,8 @@ def getadit_re():
                     stname=newdata["chinese"][:newdata["chinese"].find('-')]
                     stname_en=newdata["english"][:newdata["english"].find('-')]
                     if firestore_db.document('food/'+stname).get().to_dict()==None:
-                        firestore_db.document('food/'+stname).set({'store_chinese':stname,'store_english':stname_en})
+                        tw = pytz.timezone('Asia/Taipei')
+                        firestore_db.document('food/'+stname).set({'store_chinese':stname,'store_english':stname_en,"time":tw.localize(datetime.datetime.now())})
                     del newdata['tag']
                     del newdata['foodType']
                     new_data={key:val for key,val in newdata.items() if val!=None}
@@ -1324,7 +1326,8 @@ def getadit_re():
                     stname=newdata["chinese"][:newdata["chinese"].find('-')]
                     stname_en=newdata["english"][:newdata["english"].find('-')]
                     if firestore_db.document('food/'+stname).get().to_dict()==None:
-                        firestore_db.document('food/'+stname).set({'store_chinese':stname,'store_english':stname_en})
+                        tw = pytz.timezone('Asia/Taipei')
+                        firestore_db.document('food/'+stname).set({'store_chinese':stname,'store_english':stname_en,"time":tw.localize(datetime.datetime.now())})
                     del newdata['tag']
                     del newdata['foodType']
                     new_data={key:val for key,val in newdata.items() if val!=None}
