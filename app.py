@@ -28,6 +28,7 @@ import base64
 import urllib.parse
 import urllib
 translator = Translator()
+tw = pytz.timezone('Asia/Taipei')
 #cred = credentials.Certificate("python.json")#自己的json路徑
 cred = credentials.Certificate("topic.json")#自己的json路徑
 """
@@ -473,7 +474,6 @@ def insert_food():
                 json.dump(food_data,f)
             with open("data/"+request.form.get('store_name')+".json","w",encoding="utf-8")as f:
                 json.dump({},f)
-            tw = pytz.timezone('Asia/Taipei')
             firestore_db.document('food/'+request.form.get('store_name')).set({"store_chinese":request.form.get('store_name'),
             "store_english":mess['店家英文名稱：'],"time":tw.localize(datetime.datetime.now())})
         
@@ -739,8 +739,6 @@ def revise_fper():
 @login_required
 def newcode():
     return flask.render_template('newcode.html')
-
-
 
 
 code_map={'BarCode':'BarCode',"食品中文名稱":"chinese","食品英文名稱":"english",
@@ -1281,7 +1279,6 @@ def getadit_re():
                     stname=newdata["chinese"][:newdata["chinese"].find('-')]
                     stname_en=newdata["english"][:newdata["english"].find('-')]
                     if firestore_db.document('food/'+stname).get().to_dict()==None:
-                        tw = pytz.timezone('Asia/Taipei')
                         firestore_db.document('food/'+stname).set({'store_chinese':stname,'store_english':stname_en,"time":tw.localize(datetime.datetime.now())})
                     del newdata['tag']
                     del newdata['foodType']
@@ -1326,7 +1323,6 @@ def getadit_re():
                     stname=newdata["chinese"][:newdata["chinese"].find('-')]
                     stname_en=newdata["english"][:newdata["english"].find('-')]
                     if firestore_db.document('food/'+stname).get().to_dict()==None:
-                        tw = pytz.timezone('Asia/Taipei')
                         firestore_db.document('food/'+stname).set({'store_chinese':stname,'store_english':stname_en,"time":tw.localize(datetime.datetime.now())})
                     del newdata['tag']
                     del newdata['foodType']
