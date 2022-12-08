@@ -805,7 +805,7 @@ def fd_code():
 @app.route('/fix_code')
 def fix_code():
     with open('code.json','r',encoding="utf-8") as f:
-
+        
         data=json.load(f)[de_ba64(request.values.get('key'))]
     return flask.render_template('fix_code.html',d=data,cd_zh=data_name)
 
@@ -845,10 +845,13 @@ def search_data(name_class,search_text,name=None,d=None):
         if name_class=="code":
             #code json檔要改
             with open('code.json','r',encoding='utf-8') as f:
+                
                 code_data=json.load(f)
                 code_res={x:{'chinese':k['chinese'],'BarCode':k['BarCode']} for i in text_char for x,k in code_data.items() if k['chinese'].find(i)!=-1}
+                
                 return code_res
     except KeyError:
+        print("no")
         return []
 
 
@@ -1365,6 +1368,8 @@ def getadit_re():
                     del newdata['foodType']
                     del newdata['docID']
                     del newdata['path']
+                    new_data["BarCode"]=new_data["barCode"] #之後可以刪掉
+                    del new_data["barCode"]
                     new_data={key:val for key,val in newdata.items() if val!=None}
                     path=firestore_db.collection('code/7-11/條碼資訊').document().path
                     firestore_db.document(path).set(new_data) 
@@ -1401,4 +1406,4 @@ def getadit_re():
     return "OK"
 
 if __name__=='__main__':
-    app.run('0.0.0.0',debug=True,port='7000') #120.110.7.178 
+    app.run('120.110.7.178',debug=True,port='7000') #120.110.7.178 

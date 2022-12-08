@@ -36,10 +36,10 @@ $(document).ready(function() { //確保網頁載入完畢才執行程式
           console.log(aa)
           console.log(bb)
           if(bb['BarCode']!="" && bb['BarCode']!="nan"){
-            $('#codedata').append('<li><div id="code_back"><div id="code_num">'+bb["BarCode"]+'</div><div id="codet_con"><div id="code_text">'+bb['chinese']+'</div></div><div id="rev_del"><a href="/fix_code?key='+Base64.encode(aa)+'">修改</a><a href="#" class="del" data-val='+aa+">刪除</a></div></div></li>")
+            $('#codedata').append('<li><div id="code_back"><div id="code_num">'+bb["BarCode"]+'</div><div id="codet_con"><div id="code_text">'+bb['chinese']+'</div></div><div id="rev_del"><a href="/fix_code?key='+encodeURL(Base64.encode(Base64.encode(aa)))+'">修改</a><a href="#" class="del" data-val='+aa+">刪除</a></div></div></li>")
           
           }else{
-            $('#codedata').append('<li><div id="code_back"><div id="code_num">店內條碼'+'</div><div id="codet_con"><div id="code_text">'+bb['chinese']+'</div></div><div id="rev_del"><a href="/fix_code?key='+Base64.encode(aa)+'">修改</a><a href="#" class="del" data-val='+aa+">刪除</a></div></div></li>")
+            $('#codedata').append('<li><div id="code_back"><div id="code_num">店內條碼'+'</div><div id="codet_con"><div id="code_text">'+bb['chinese']+'</div></div><div id="rev_del"><a href="/fix_code?key='+encodeURL(Base64.encode(Base64.encode(aa)))+'">修改</a><a href="#" class="del" data-val='+aa+">刪除</a></div></div></li>")
           }
           //$('#codedata').append("<li><div class='recipe_list'><div class='left'><span name='food_name'>"+aa+"</span></div><div class='right'><div class='left_rev'><a href='rev_recipe?key="+bb+"'class='rev'>修改</a></div><div class='right_del'><a href='#' class='del'>刪除</a></div></div></div></li>");
     
